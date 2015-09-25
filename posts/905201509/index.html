@@ -45,7 +45,7 @@
 <meta property="og:url" content="http://zhangqiang.work/posts/905201509/index.html">
 <meta property="og:site_name" content="ssbunny' blog (迁移中)">
 <meta property="og:description" content="总结归纳了常用的 css 布局技巧。">
-<meta property="og:updated_time" content="2015-09-16T02:58:39.000Z">
+<meta property="og:updated_time" content="2015-09-25T00:56:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 布局技巧">
 <meta name="twitter:description" content="总结归纳了常用的 css 布局技巧。">
@@ -184,8 +184,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/程序人生/" itemprop="url" rel="index">
-                  <span itemprop="name">程序人生</span>
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
                 </a>
               </span>
 
@@ -462,29 +462,12 @@
 }
 </style>
 
-<pre><code class="css"><span class="class">.c23</span> <span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;
-    <span class="rule"><span class="attribute">display</span>:<span class="value"> -webkit-flex</span></span>;
-    <span class="rule"><span class="attribute">display</span>:<span class="value">         flex</span></span>;
-    <span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> center</span></span>;
-            <span class="rule"><span class="attribute">align-items</span>:<span class="value"> center</span></span>;
-    <span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> center</span></span>;
-            <span class="rule"><span class="attribute">justify-content</span>:<span class="value"> center</span></span>;
-}</span>
-<span class="class">.c23</span> <span class="class">.content</span> <span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;
-    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;
-    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> blue</span></span>;
-}</span>
-</code></pre>
-<pre><code class="html"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"c23"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.c23</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> -webkit-flex</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">         flex</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> center</span></span>;</span><br><span class="line">            <span class="rule"><span class="attribute">align-items</span>:<span class="value"> center</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> center</span></span>;</span><br><span class="line">            <span class="rule"><span class="attribute">justify-content</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.c23</span> <span class="class">.content</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"c23"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>
-<p><div class="demo"><div class="c23"><div class="content"></div></div></div><br>或是：</p>
+<div class="demo"><div class="c23"><div class="content"></div></div></div>
+
+<p>或是：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">.c22</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">-moz-box</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-box-pack</span>:<span class="value">center</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-moz-box-align</span>:<span class="value">center</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> -webkit-box</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-box-pack</span>:<span class="value"> center</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">-webkit-box-align</span>:<span class="value"> center</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> box</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">box-pack</span>:<span class="value"> center</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">box-align</span>:<span class="value"> center</span></span>;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="class">.c22</span> <span class="class">.content</span> <span class="rules">&#123;</span><br><span class="line">    <span class="comment">/* 此处为模拟的尺寸，实际场景中根据内容撑起。 */</span></span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">300px</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> blue</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"demo"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"c22"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>效果如下：</p>

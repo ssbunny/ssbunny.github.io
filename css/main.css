@@ -185,8 +185,8 @@ th {
 }
 body {
   position: relative;
-  font-family: Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-  font-size: 16px;
+  font-family: Lato, "Hiragino Sans GB", "Microsoft YaHei", "simsun", sans-serif;
+  font-size: 14px;
   line-height: 1.7;
   color: #555;
   background: #fff;
@@ -211,7 +211,7 @@ h6 {
   padding: 0;
   font-weight: bold;
   line-height: 1;
-  font-family: Cambria, Georgia, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", "Times New Roman", serif;
+  font-family: Cambria, Georgia, "Hiragino Sans GB", "Microsoft YaHei", "simsun", "Times New Roman", serif;
 }
 h1 {
   font-size: 24px;
@@ -670,7 +670,7 @@ td {
 .post .gist .gist-file .gist-meta {
   background: #f7f7f7;
   color: #8e908c;
-  font: 13px Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font: 13px Lato, "Hiragino Sans GB", "Microsoft YaHei", "simsun", sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;
@@ -807,7 +807,7 @@ body {
   color: #fff;
   background: #222;
   border-bottom: none;
-  font-family: Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: Lato, "Hiragino Sans GB", "Microsoft YaHei", "simsun", sans-serif;
 }
 .logo {
   display: inline-block;
@@ -1055,7 +1055,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e3ff7d;
+  background: #fff704;
 }
 .sidebar-nav {
   margin: 0;
@@ -1468,7 +1468,7 @@ body {
   margin-left: 60px;
   font-size: 16px;
   font-weight: normal;
-  font-family: Lato, "Microsoft Jhenghei", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-family: Lato, "Hiragino Sans GB", "Microsoft YaHei", "simsun", sans-serif;
   line-height: inherit;
 }
 .posts-collapse .post-title::after {
