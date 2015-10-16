@@ -451,7 +451,7 @@ Do
           
             
               <a class="post-title-link" href="/posts/721201507/" itemprop="url">
-                ExtJS 核心概念 - 类系统
+                ExtJS 核心概念 - 事件模型
               </a>
             
           
@@ -461,7 +461,7 @@ Do
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-07-21T09:07:13+08:00" content="2015-07-21">
+          <time itemprop="dateCreated" datetime="2015-07-21T14:37:04+08:00" content="2015-07-21">
             2015-07-21
           </time>
         </span>
@@ -505,13 +505,206 @@ Do
         
           <span itemprop="articleBody">
             
+            我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件：
+12345678910var i = 0;var btn = Ext.create('Ext.button.Button', &#123;    text: 'Butto
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/721201507/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/709201507/" itemprop="url">
+                ExtJS 核心概念 - 组件的生命周期
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-07-09T14:00:32+08:00" content="2015-07-09">
+            2015-07-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/709201507/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/709201507/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            ExtJS 的组件生命周期分为三个阶段：
+
+初始化
+渲染
+销毁
+
+准确理解组件的生命周期过程，是正确使用 ExtJS 框架的基础。尤其当你需要编写 ExtJS 的插件或对其做其它扩展时，更应该知道组件详细的生命周期过程。
+
+从图中可以看出，ExtJS 的组件始于初始化终于销毁，而且组件未必需要经过渲
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/709201507/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/626201506/" itemprop="url">
+                ExtJS 核心概念 - 类系统
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-06-26T09:07:13+08:00" content="2015-06-26">
+            2015-06-26
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/626201506/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/626201506/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
             [本内容只针对 ExtJS 4.x 和 ExtJS 5.x 版本]
 JavaScript 是一门富有表现力的编程语言，它既可以进行面向对象编程(OOP)，也可以进行函数式编程(FP)。函数是 JavaScript 的一等公民。面向对象编程风格相对要简单一些，这也是 ExtJS 的选择。
 传统方式我们
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/posts/721201507/#more" rel="contents">
+            <a class="btn" href="/posts/626201506/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -567,7 +760,7 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -608,6 +801,13 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
         
 
         <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">Links</p>
+            
+              <span class="links-of-author-item">
+              <a href="http://www.kyletang.work" target="_blank">唐老师的博客</a>
+              </span>
+            
           
         </div>
 
