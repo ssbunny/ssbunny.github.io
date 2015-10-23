@@ -1055,7 +1055,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #55ffa4;
+  background: #2eff9f;
 }
 .sidebar-nav {
   margin: 0;
@@ -2191,4 +2191,10 @@ ul li {
   max-width: 100%;
   width: auto;
   margin: 0;
+}
+.post-body p {
+  margin: 0 0 16px;
+}
+.post-body .highlight {
+  margin: 10px 0 20px;
 }
