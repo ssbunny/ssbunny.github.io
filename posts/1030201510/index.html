@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="docker,go," />
+  <meta name="keywords" content="java,java8新特性,lang," />
 
 
 
@@ -39,24 +39,16 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
+<meta name="description" content="Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 架构">
-<meta property="og:url" content="http://zhangqiang.work/posts/1015201510/index.html">
+<meta property="og:title" content="Java8新特性 - Lambda表达式">
+<meta property="og:url" content="http://zhangqiang.work/posts/1030201510/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
-<meta property="og:image" content="http://zhangqiang.work/docker-architecture-1.svg">
-<meta property="og:image" content="http://zhangqiang.work/docker-architecture-2.png">
-<meta property="og:updated_time" content="2015-10-16T02:19:19.000Z">
+<meta property="og:description" content="Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。">
+<meta property="og:updated_time" content="2015-11-02T08:03:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 架构">
-<meta name="twitter:description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
+<meta name="twitter:title" content="Java8新特性 - Lambda表达式">
+<meta name="twitter:description" content="Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +58,7 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
   };
 </script>
 
-  <title> Docker 架构 | ssbunny' blog </title>
+  <title> Java8新特性 - Lambda表达式 | ssbunny' blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -183,7 +175,7 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
           
           
             
-              Docker 架构
+              Java8新特性 - Lambda表达式
             
           
         </h1>
@@ -192,8 +184,8 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-15T15:08:49+08:00" content="2015-10-15">
-            2015-10-15
+          <time itemprop="dateCreated" datetime="2015-10-30T08:41:43+08:00" content="2015-10-30">
+            2015-10-30
           </time>
         </span>
 
@@ -218,8 +210,8 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1015201510/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1015201510/" itemprop="commentsCount"></span>
+              <a href="/posts/1030201510/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1030201510/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -233,39 +225,7 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       
 
       
-        <span itemprop="articleBody"><p>Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。</p>
-<h3 id="1-_Docker核心">1. Docker核心</h3><ul>
-<li><strong>Docker daemon</strong> 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程。</li>
-<li><strong>Docker client</strong> Docker的用户接口，用户通过执行 <code>docker</code> 命令操作 daemon 。</li>
-</ul>
-<p>其基本结构可参考官方图：<br><img src="docker-architecture-1.svg" alt="Docker架构"></p>
-<h3 id="2-_Docker内部机制">2. Docker内部机制</h3><ul>
-<li>镜像(Docker images)</li>
-<li>仓库(Docker registries)</li>
-<li>容器(Docker containers)</li>
-</ul>
-<p>理解 Docker 内部机制需要理解这三个基本概念。</p>
-<h4 id="2-1-_镜像">2.1. 镜像</h4><ol>
-<li>镜像是一个只读模板，可以包含操作系统、Apache 及 Web 应用等；</li>
-<li>镜像用来创建容器；</li>
-<li>镜像是 Docker 的<strong>构建(Build)</strong>组件。</li>
-</ol>
-<h4 id="2-2-_仓库">2.2. 仓库</h4><ol>
-<li>仓库用来存储镜像，以供上传下载；</li>
-<li>仓库分公有、私有，公有仓库是 <code>Docker Hub</code> ；</li>
-<li>仓库是 Docker 的<strong>分发(Distribution)</strong>组件。</li>
-</ol>
-<h4 id="2-3-_容器">2.3. 容器</h4><ol>
-<li>容器是独立、安全的应用平台，保存着应用运行所需要的一切内容；</li>
-<li>容器由镜像创建，可以被运行、启动、停止、移动或删除；</li>
-<li>容器是 Docker 的<strong>运行(Run)</strong>组件。</li>
-</ol>
-<h3 id="3-_Docker架构">3. Docker架构</h3><p><img src="docker-architecture-2.png" alt="Docker概念思维导图"></p>
-<p>参考文档：</p>
-<ul>
-<li><a href="http://www.infoq.com/cn/articles/docker-source-code-analysis-part1" target="_blank" rel="external">Docker源码分析（一）：Docker架构</a></li>
-<li><a href="https://docs.docker.com" target="_blank" rel="external">Docker Docs</a></li>
-</ul>
+        <span itemprop="articleBody"><p>Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。</p>
 </span>
       
     </div>
@@ -274,9 +234,11 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag">#docker</a>
+            <a href="/tags/java/" rel="tag">#java</a>
           
-            <a href="/tags/go/" rel="tag">#go</a>
+            <a href="/tags/java8新特性/" rel="tag">#java8新特性</a>
+          
+            <a href="/tags/lang/" rel="tag">#lang</a>
           
         </div>
       
@@ -285,13 +247,13 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/1019201510/" rel="prev">编程基本原则汇总</a>
+              <a href="/posts/1103201511/" rel="prev">关于 JavaScript 数字的那些事</a>
             
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/913201509/" rel="next">写好程序分支控制</a>
+              <a href="/posts/1019201510/" rel="next">编程基本原则汇总</a>
             
           </div>
         </div>
@@ -354,8 +316,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 
  </div>
             
-              <div class="ds-thread" data-thread-key="posts/1015201510/"
-                   data-title="Docker 架构" data-url="http://zhangqiang.work/posts/1015201510/">
+              <div class="ds-thread" data-thread-key="posts/1030201510/"
+                   data-title="Java8新特性 - Lambda表达式" data-url="http://zhangqiang.work/posts/1030201510/">
               </div>
             
           </div>
@@ -454,7 +416,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_Docker核心"><span class="nav-text">1. Docker核心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_Docker内部机制"><span class="nav-text">2. Docker内部机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-_镜像"><span class="nav-text">2.1. 镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-_仓库"><span class="nav-text">2.2. 仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-_容器"><span class="nav-text">2.3. 容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_Docker架构"><span class="nav-text">3. Docker架构</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

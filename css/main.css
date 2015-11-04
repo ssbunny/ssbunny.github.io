@@ -180,8 +180,8 @@ th {
   padding: 0;
 }
 ::selection {
-  background: #262a30;
-  color: #fff;
+  background: rgba(143,39,210,0.78);
+  color: #fefefe;
 }
 body {
   position: relative;
@@ -1055,7 +1055,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2eff9f;
+  background: #7ae9ff;
 }
 .sidebar-nav {
   margin: 0;
@@ -2145,7 +2145,7 @@ ul li {
 }
 .post-more-link a {
   padding: 0;
-  font-size: 16px;
+  font-size: 13px;
   color: #666;
   background: none;
   border: none;
