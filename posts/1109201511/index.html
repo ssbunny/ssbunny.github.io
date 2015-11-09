@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="docker,go," />
+  <meta name="keywords" content="烘焙,育儿," />
 
 
 
@@ -39,24 +39,32 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
+<meta name="description" content="简介稀罕了老久的玛格丽特小饼，终于有时间做了，对于烘焙新手而言，这款饼干绝对是增加自信心的首选。零失败，入口即化的美味，和牛奶一起当宵夜是个不错的选择。
+附谷歌search来的故事：玛格丽特饼干的全称为“住在意大利史特蕾莎的玛格丽特小姐”，英文名为 Italian Hard-boiled Egg Yolk Cookies. 很久以前，有一个糕点师在做饼干时，心中默默的念着他心中情人的名字，并将自己">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker 架构">
-<meta property="og:url" content="http://zhangqiang.work/posts/1015201510/index.html">
+<meta property="og:title" content="玛格丽特小饼">
+<meta property="og:url" content="http://zhangqiang.work/posts/1109201511/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
-<meta property="og:image" content="http://zhangqiang.work/docker-architecture-1.svg">
-<meta property="og:image" content="http://zhangqiang.work/docker-architecture-2.png">
-<meta property="og:updated_time" content="2015-10-16T02:19:19.000Z">
+<meta property="og:description" content="简介稀罕了老久的玛格丽特小饼，终于有时间做了，对于烘焙新手而言，这款饼干绝对是增加自信心的首选。零失败，入口即化的美味，和牛奶一起当宵夜是个不错的选择。
+附谷歌search来的故事：玛格丽特饼干的全称为“住在意大利史特蕾莎的玛格丽特小姐”，英文名为 Italian Hard-boiled Egg Yolk Cookies. 很久以前，有一个糕点师在做饼干时，心中默默的念着他心中情人的名字，并将自己">
+<meta property="og:image" content="http://zhangqiang.work/p1.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p2.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p3.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p4.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p5.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p6.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p7.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p8.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p9.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p10.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p11.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p12.jpg">
+<meta property="og:image" content="http://zhangqiang.work/p13.jpg">
+<meta property="og:updated_time" content="2015-11-09T15:06:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Docker 架构">
-<meta name="twitter:description" content="Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
-1. Docker核心
-Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程">
+<meta name="twitter:title" content="玛格丽特小饼">
+<meta name="twitter:description" content="简介稀罕了老久的玛格丽特小饼，终于有时间做了，对于烘焙新手而言，这款饼干绝对是增加自信心的首选。零失败，入口即化的美味，和牛奶一起当宵夜是个不错的选择。
+附谷歌search来的故事：玛格丽特饼干的全称为“住在意大利史特蕾莎的玛格丽特小姐”，英文名为 Italian Hard-boiled Egg Yolk Cookies. 很久以前，有一个糕点师在做饼干时，心中默默的念着他心中情人的名字，并将自己">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -66,7 +74,7 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
   };
 </script>
 
-  <title> Docker 架构 | ssbunny' blog </title>
+  <title> 玛格丽特小饼 | ssbunny' blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -183,7 +191,7 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
           
           
             
-              Docker 架构
+              玛格丽特小饼
             
           
         </h1>
@@ -192,8 +200,8 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-10-15T15:08:49+08:00" content="2015-10-15">
-            2015-10-15
+          <time itemprop="dateCreated" datetime="2015-11-09T21:58:52+08:00" content="2015-11-09">
+            2015-11-09
           </time>
         </span>
 
@@ -202,8 +210,8 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
+                <a href="/categories/Enjoying/" itemprop="url" rel="index">
+                  <span itemprop="name">Enjoying</span>
                 </a>
               </span>
 
@@ -218,8 +226,8 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1015201510/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1015201510/" itemprop="commentsCount"></span>
+              <a href="/posts/1109201511/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1109201511/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -233,39 +241,31 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       
 
       
-        <span itemprop="articleBody"><p>Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。</p>
-<h3 id="1-_Docker核心">1. Docker核心</h3><ul>
-<li><strong>Docker daemon</strong> 接受并处理Docker Client发送的请求，它是运行在宿主机上的系统进程。</li>
-<li><strong>Docker client</strong> Docker的用户接口，用户通过执行 <code>docker</code> 命令操作 daemon 。</li>
+        <span itemprop="articleBody"><h2 id="简介">简介</h2><p>稀罕了老久的玛格丽特小饼，终于有时间做了，对于烘焙新手而言，这款饼干绝对是增加自信心的首选。零失败，入口即化的美味，和牛奶一起当宵夜是个不错的选择。</p>
+<p>附谷歌search来的故事：玛格丽特饼干的全称为“住在意大利史特蕾莎的玛格丽特小姐”，英文名为 Italian Hard-boiled Egg Yolk Cookies. 很久以前，有一个糕点师在做饼干时，心中默默的念着他心中情人的名字，并将自己的手印按在饼干上。这就是“住在意大利史特雷莎的玛格丽特小姐”小饼的由来。</p>
+<h2 id="用料">用料</h2><ul>
+<li><strong>低筋面粉</strong> 100克</li>
+<li><strong>玉米淀粉</strong> 100克</li>
+<li><strong>黄油</strong> 100克</li>
+<li><strong>熟蛋黄</strong> 2个</li>
+<li><strong>盐</strong> 1克</li>
+<li><strong>糖粉</strong> 40克</li>
 </ul>
-<p>其基本结构可参考官方图：<br><img src="docker-architecture-1.svg" alt="Docker架构"></p>
-<h3 id="2-_Docker内部机制">2. Docker内部机制</h3><ul>
-<li>镜像(Docker images)</li>
-<li>仓库(Docker registries)</li>
-<li>容器(Docker containers)</li>
-</ul>
-<p>理解 Docker 内部机制需要理解这三个基本概念。</p>
-<h4 id="2-1-_镜像">2.1. 镜像</h4><ol>
-<li>镜像是一个只读模板，可以包含操作系统、Apache 及 Web 应用等；</li>
-<li>镜像用来创建容器；</li>
-<li>镜像是 Docker 的<strong>构建(Build)</strong>组件。</li>
-</ol>
-<h4 id="2-2-_仓库">2.2. 仓库</h4><ol>
-<li>仓库用来存储镜像，以供上传下载；</li>
-<li>仓库分公有、私有，公有仓库是 <code>Docker Hub</code> ；</li>
-<li>仓库是 Docker 的<strong>分发(Distribution)</strong>组件。</li>
-</ol>
-<h4 id="2-3-_容器">2.3. 容器</h4><ol>
-<li>容器是独立、安全的应用平台，保存着应用运行所需要的一切内容；</li>
-<li>容器由镜像创建，可以被运行、启动、停止、移动或删除；</li>
-<li>容器是 Docker 的<strong>运行(Run)</strong>组件。</li>
-</ol>
-<h3 id="3-_Docker架构">3. Docker架构</h3><p><img src="docker-architecture-2.png" alt="Docker概念思维导图"></p>
-<p>参考文档：</p>
-<ul>
-<li><a href="http://www.infoq.com/cn/articles/docker-source-code-analysis-part1" target="_blank" rel="external">Docker源码分析（一）：Docker架构</a></li>
-<li><a href="https://docs.docker.com" target="_blank" rel="external">Docker Docs</a></li>
-</ul>
+<p><img src="p1.jpg" alt="用料"></p>
+<h2 id="做法">做法</h2><h4 id="1-_软化黄油">1. 软化黄油</h4><p>黄油软化到用筷子可以和泥的感觉，加入糖粉和盐，用打蛋器打发（隔水法总是掌握不好温度，直接拿吹风机吹的，一边吹一边用筷子搅动，分分钟就软了）。</p>
+<p><img src="p2.jpg" alt="图2"><br><img src="p3.jpg" alt="图3"></p>
+<h4 id="2-_黄油打发">2. 黄油打发</h4><p>黄油打到体积稍微膨大，颜色稍变浅即可（手动打蛋器快速搅动两分钟左右即可，无需太过打发）。</p>
+<p><img src="p4.jpg" alt="图4"></p>
+<h4 id="3-_筛入蛋黄">3. 筛入蛋黄</h4><p>取蛋黄放在晒网上，用手指按压即可（密集恐惧症者千万不要去看晒网底部，绝对的自虐），筛入蛋黄细末后拌匀。</p>
+<p><img src="p5.jpg" alt="图5"><br><img src="p6.jpg" alt="图6"></p>
+<h4 id="4-_筛入面粉、淀粉">4. 筛入面粉、淀粉</h4><p>低筋面粉和玉米淀粉过筛，筛进拌匀后的蛋黄糊中。</p>
+<p><img src="p7.jpg" alt="图7"><br><img src="p8.jpg" alt="图8"></p>
+<h4 id="5-_揉成面团">5. 揉成面团</h4><p>将筛入面粉和淀粉的蛋黄糊揉成面团，揉好的面团的状态应该是略微偏干，但不会因为干燥而散开的状态，将面团用保鲜膜包好，放入冰箱冷藏一小时左右（冷藏后的面团更为干硬，用拇指按压塑形时更容易绽放出漂亮的裂纹）。</p>
+<p><img src="p9.jpg" alt="图9"><br><img src="p10.jpg" alt="图10"> </p>
+<h4 id="6-_烤盘塑形">6. 烤盘塑形</h4><p>取出冷藏后的面团，酌量取小块逐一揉成小圆球，放在烤盘上用拇指按压，按压至圆球变成饼状，边缘开裂即可，力度需要自己把握。</p>
+<p><img src="p11.jpg" alt="图11"> </p>
+<h4 id="7-_烤制阶段">7. 烤制阶段</h4><p>烤箱预热，将烤盘送入中上层、170度、15-20分钟（饼干表层开始起色其实就已经烤好了，可以果断取出来了）。</p>
+<p><img src="p12.jpg" alt="图12"><br><img src="p13.jpg" alt="图13"> </p>
 </span>
       
     </div>
@@ -274,9 +274,9 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
       
         <div class="post-tags">
           
-            <a href="/tags/docker/" rel="tag">#docker</a>
+            <a href="/tags/烘焙/" rel="tag">#烘焙</a>
           
-            <a href="/tags/go/" rel="tag">#go</a>
+            <a href="/tags/育儿/" rel="tag">#育儿</a>
           
         </div>
       
@@ -285,13 +285,11 @@ Docker daemon 接受并处理Docker Client发送的请求，它是运行在宿�
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/1019201510/" rel="prev">编程基本原则汇总</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/913201509/" rel="next">写好程序分支控制</a>
+              <a href="/posts/1103201511/" rel="next">关于 JavaScript 数字的那些事</a>
             
           </div>
         </div>
@@ -354,8 +352,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 
  </div>
             
-              <div class="ds-thread" data-thread-key="posts/1015201510/"
-                   data-title="Docker 架构" data-url="http://zhangqiang.work/posts/1015201510/">
+              <div class="ds-thread" data-thread-key="posts/1109201511/"
+                   data-title="玛格丽特小饼" data-url="http://zhangqiang.work/posts/1109201511/">
               </div>
             
           </div>
@@ -454,7 +452,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-_Docker核心"><span class="nav-text">1. Docker核心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-_Docker内部机制"><span class="nav-text">2. Docker内部机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-_镜像"><span class="nav-text">2.1. 镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-_仓库"><span class="nav-text">2.2. 仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-_容器"><span class="nav-text">2.3. 容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-_Docker架构"><span class="nav-text">3. Docker架构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用料"><span class="nav-text">用料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做法"><span class="nav-text">做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_软化黄油"><span class="nav-text">1. 软化黄油</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_黄油打发"><span class="nav-text">2. 黄油打发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-_筛入蛋黄"><span class="nav-text">3. 筛入蛋黄</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-_筛入面粉、淀粉"><span class="nav-text">4. 筛入面粉、淀粉</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-_揉成面团"><span class="nav-text">5. 揉成面团</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-_烤盘塑形"><span class="nav-text">6. 烤盘塑形</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-_烤制阶段"><span class="nav-text">7. 烤制阶段</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
