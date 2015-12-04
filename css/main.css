@@ -1055,7 +1055,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #16ffc4;
+  background: #c8818b;
 }
 .sidebar-nav {
   margin: 0;
@@ -2194,6 +2194,9 @@ ul li {
 }
 .post-body p {
   margin: 0 0 16px;
+}
+.post-body table {
+  margin-bottom: 16px;
 }
 .post-body .highlight {
   margin: 10px 0 20px;
