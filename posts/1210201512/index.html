@@ -39,26 +39,23 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是真的是一个 异步请求 ？
-我这里所指的 异步请求 是指浏览器会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
+<meta name="description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是独立线程中的异步请求 ？也就是说，浏览器是否会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
 通常我们知道 setTimeout 函数会将执行代码压入下一次 Event Loop 中执行：
-123456789101112131415setTimeout(function () &amp;">
+123456789101112131415setTimeout(function () &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ajax 是否是异步请求？">
+<meta property="og:title" content="Ajax 是否是独立线程中的异步请求？">
 <meta property="og:url" content="http://zhangqiang.work/posts/1210201512/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是真的是一个 异步请求 ？
-我这里所指的 异步请求 是指浏览器会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
+<meta property="og:description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是独立线程中的异步请求 ？也就是说，浏览器是否会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
 通常我们知道 setTimeout 函数会将执行代码压入下一次 Event Loop 中执行：
-123456789101112131415setTimeout(function () &amp;">
+123456789101112131415setTimeout(function () &amp;#123;">
 <meta property="og:image" content="http://zhangqiang.work/settimeout.png">
-<meta property="og:updated_time" content="2015-12-10T08:16:17.000Z">
+<meta property="og:updated_time" content="2015-12-11T01:42:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ajax 是否是异步请求？">
-<meta name="twitter:description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是真的是一个 异步请求 ？
-我这里所指的 异步请求 是指浏览器会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
+<meta name="twitter:title" content="Ajax 是否是独立线程中的异步请求？">
+<meta name="twitter:description" content="刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是独立线程中的异步请求 ？也就是说，浏览器是否会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
 通常我们知道 setTimeout 函数会将执行代码压入下一次 Event Loop 中执行：
-123456789101112131415setTimeout(function () &amp;">
+123456789101112131415setTimeout(function () &amp;#123;">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -68,7 +65,7 @@
   };
 </script>
 
-  <title> Ajax 是否是异步请求？ | ssbunny' blog </title>
+  <title> Ajax 是否是独立线程中的异步请求？ | ssbunny' blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -185,7 +182,7 @@
           
           
             
-              Ajax 是否是异步请求？
+              Ajax 是否是独立线程中的异步请求？
             
           
         </h1>
@@ -235,8 +232,7 @@
       
 
       
-        <span itemprop="articleBody"><p>刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是真的是一个 <code>异步请求</code> ？</p>
-<p>我这里所指的 <code>异步请求</code> 是指浏览器会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。</p>
+        <span itemprop="articleBody"><p>刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是<strong>独立线程中的异步请求</strong> ？也就是说，浏览器是否会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。</p>
 <p>通常我们知道 <code>setTimeout</code> 函数会将执行代码压入下一次 Event Loop 中执行：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'foofoo'</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'barbar'</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'bar'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'foobar'</span>);</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
@@ -244,7 +240,7 @@
 <p>那么 <code>Ajax</code> 是否也是如些？想要验证这个问题非常简单，执行下面的代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$.get(<span class="string">'http://baidu.com'</span>);</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>如果出现跨域请求错误，说明 Ajax 是独立线程的异步请求，如果浏览器假死，说明它只是被压入了下一次 Event Loop 中。</p>
-<p>答案是后者，Ajax 并非会独立的异步执行，只是被推迟到下一次事件循环中执行，当前事件循环仍然可以阻塞其执行。</p>
+<p>答案是后者，Ajax 请求只是被推迟到下一次事件循环中执行，当前事件循环仍然可以阻塞其执行，然而在本次循环内，它可以达到非堵塞的效果。</p>
 </span>
       
     </div>
@@ -261,6 +257,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/1214201512/" rel="prev">Redis 中的数据结构：简单动态字符串（SDS）</a>
             
           </div>
 
@@ -330,7 +328,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
  </div>
             
               <div class="ds-thread" data-thread-key="posts/1210201512/"
-                   data-title="Ajax 是否是异步请求？" data-url="http://zhangqiang.work/posts/1210201512/">
+                   data-title="Ajax 是否是独立线程中的异步请求？" data-url="http://zhangqiang.work/posts/1210201512/">
               </div>
             
           </div>
@@ -370,7 +368,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
