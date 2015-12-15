@@ -39,23 +39,23 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 实现字符串存储，其结构非常简单，直接看源码即可了解个大概：
+<meta name="description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：
 1234567typedef char *sds;struct sdshdr &amp;#123;    unsigned int len;    unsigned int free;    char buf[];&amp;#125;;
-其中，结构体 sdshdr 中的 le">
+其中，结构体 sdshd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis 中的数据结构：简单动态字符串（SDS）">
 <meta property="og:url" content="http://zhangqiang.work/posts/1214201512/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 实现字符串存储，其结构非常简单，直接看源码即可了解个大概：
+<meta property="og:description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：
 1234567typedef char *sds;struct sdshdr &amp;#123;    unsigned int len;    unsigned int free;    char buf[];&amp;#125;;
-其中，结构体 sdshdr 中的 le">
+其中，结构体 sdshd">
 <meta property="og:image" content="http://zhangqiang.work/sds.png">
-<meta property="og:updated_time" content="2015-12-15T02:47:30.000Z">
+<meta property="og:updated_time" content="2015-12-15T07:12:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 中的数据结构：简单动态字符串（SDS）">
-<meta name="twitter:description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 实现字符串存储，其结构非常简单，直接看源码即可了解个大概：
+<meta name="twitter:description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：
 1234567typedef char *sds;struct sdshdr &amp;#123;    unsigned int len;    unsigned int free;    char buf[];&amp;#125;;
-其中，结构体 sdshdr 中的 le">
+其中，结构体 sdshd">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -232,7 +232,7 @@
       
 
       
-        <span itemprop="articleBody"><p>Redis 底层使用 <strong>SDS</strong> (Simple Dynamic Strings) 实现字符串存储，其结构非常简单，直接看源码即可了解个大概：</p>
+        <span itemprop="articleBody"><p>Redis 底层使用 <strong>SDS</strong> (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *sds;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> sdshdr &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> len;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="built_in">free</span>;</span><br><span class="line">    <span class="keyword">char</span> buf[];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>其中，结构体 sdshdr 中的 len 用来存储字符串的实际长度，free 用来存储预留空间的长度，buf 用来存储字符串内容。</p>
 <p>与一般动态字符串直接使用结构体表示字符串的实现方式不同，sds 仍使用 <code>char*</code> 表示字符串，只是其指向的位置略微特殊而已。通过创建 sds 的函数，可以看出这种特殊性：</p>
@@ -248,14 +248,15 @@
 <p>可以看出，redis 在首次创建字符串时并不会额外分配 <code>free</code> 空间，而是按字符串实际的大小申请内存空间来创建，这和 Java 中 StringBuffer 等预先分配一定容量(通常16char)的策略是不同的。</p>
 <p><strong>sds 是二进制安全的</strong>，字符串中间可以包含 <code>\0</code> 。获取 sds 的长度时通常不能直接使用 strlen 而是使用 sdslen 读取其 len 值：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">inline</span> size_t <span class="title">sdslen</span><span class="params">(<span class="keyword">const</span> sds s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> sdshdr *sh = (<span class="keyword">void</span>*)(s-(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> sdshdr)));</span><br><span class="line">    <span class="keyword">return</span> sh-&gt;len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>唐老师画了一张图，可以帮助理解：</p>
+<p>唐老师给我画了一张图，可以帮助理解：</p>
 <p><img src="sds.png" alt="sds"></p>
-<p>最后一个我比较关注的问题是，sds 是如何扩容的？这一过程在 sdsMakeRoomFor 函数中实现：</p>
+<p>最后一个值得关注的问题是，sds 是如何扩容的？这一过程在 sdsMakeRoomFor 函数中实现：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">sds <span class="title">sdsMakeRoomFor</span><span class="params">(sds s, size_t addlen)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> sdshdr *sh, *newsh;</span><br><span class="line">    <span class="keyword">size_t</span> <span class="built_in">free</span> = sdsavail(s);</span><br><span class="line">    <span class="keyword">size_t</span> len, newlen;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">free</span> &gt;= addlen) <span class="keyword">return</span> s;</span><br><span class="line">    len = sdslen(s);</span><br><span class="line">    sh = (<span class="keyword">void</span>*) (s-(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> sdshdr)));</span><br><span class="line">    newlen = (len+addlen);</span><br><span class="line">    <span class="keyword">if</span> (newlen &lt; SDS_MAX_PREALLOC)</span><br><span class="line">        newlen *= <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        newlen += SDS_MAX_PREALLOC;</span><br><span class="line">    newsh = zrealloc(sh, <span class="keyword">sizeof</span>(<span class="keyword">struct</span> sdshdr)+newlen+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newsh == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    newsh-&gt;<span class="built_in">free</span> = newlen - len;</span><br><span class="line">    <span class="keyword">return</span> newsh-&gt;buf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到，当扩展后的长度比 <code>SDS_MAX_PREALLOC</code> 小时，预留一倍的容量；否则增加 <code>SDS_MAX_PREALLOC</code> 的容量。当前版本中：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SDS_MAX_PREALLOC (<span class="number">1024</span>*<span class="number">1024</span>)</span></span><br></pre></td></tr></table></figure>
 <p>理解了这些便很容易知道 redis <code>APPEND</code> 命令的实现细节：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ SET foo bar</span><br><span class="line">$ APPEND foo blahblah</span><br></pre></td></tr></table></figure>
+<p>当然，这种预先分配容量的方式，虽然能减少内存分配的次数，提高 <code>APPEND</code> 操作的性能，但会造成一定的内存占用，而且此部分内存不会主动释放。 </p>
 </span>
       
     </div>
@@ -272,6 +273,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/1215201512/" rel="prev">Redis 中的数据结构：双链表</a>
             
           </div>
 
@@ -381,7 +384,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">19</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
