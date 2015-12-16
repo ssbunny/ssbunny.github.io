@@ -59,7 +59,8 @@
 
 其节点如下：
 12345typedef struct listNode &amp;#123;    struct listNode *prev;    struct listNode *next;    void *val">
-<meta property="og:updated_time" content="2015-12-15T08:15:31.000Z">
+<meta property="og:image" content="http://zhangqiang.work/double_link_list.svg">
+<meta property="og:updated_time" content="2015-12-16T16:33:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 中的数据结构：双链表">
 <meta name="twitter:description" content="Redis 实现了通用的双链表作为其基础数据结构之一。双链表是 redis 列表类型的实际存储方式之一，同时双链表还被其它功能模块广泛使用。它由三部分组成：
@@ -258,6 +259,7 @@
 <p><strong>链表</strong>的定义如下：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">list</span> &#123;</span><br><span class="line">    listNode *head;</span><br><span class="line">    listNode *tail;</span><br><span class="line">    <span class="keyword">void</span> *(*dup)(<span class="keyword">void</span> *ptr);</span><br><span class="line">    <span class="keyword">void</span> (*<span class="built_in">free</span>)(<span class="keyword">void</span> *ptr);</span><br><span class="line">    <span class="keyword">int</span> (*match)(<span class="keyword">void</span> *ptr, <span class="keyword">void</span> *key);</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> len;</span><br><span class="line">&#125; <span class="built_in">list</span>;</span><br></pre></td></tr></table></figure>
 <p><code>list</code> 中保存了指向表头和表尾的指针，因此在执行 <code>LPUSH</code>、<code>RPUSH</code>、<code>RPOP</code> 等命令时是非常快的(θ(1))；其中还保存了 len 值，因此 <code>LLEN</code> 命令的执行也是非常快的。</p>
+<p><img src="double_link_list.svg" alt="double_link_list.svg"></p>
 <p>另外，它还保存了三个函数指针 dup、free 和 match 用来复制、释放和对比链表，这样做是因为节点值的类型是不确定的，具体的实现方法交由用户代码灵活扩展处理。比如如果用户定义了 match 函数的实现，则采用它来替换默认使用 <code>==</code> 的比较策略：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">list</span>-&gt;match) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">list</span>-&gt;match(node-&gt;value, key)) &#123;</span><br><span class="line">        listReleaseIterator(iter);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (key == node-&gt;value) &#123;</span><br><span class="line">        listReleaseIterator(iter);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>类似地，释放一个链表时会优先调用指定的 free 函数后再完成其它释放过程：</p>
@@ -288,6 +290,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/1216201512/" rel="prev">Redis 中的数据结构：HyperLogLog</a>
             
           </div>
 
@@ -397,7 +401,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
