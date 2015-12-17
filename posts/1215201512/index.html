@@ -60,7 +60,7 @@
 其节点如下：
 12345typedef struct listNode &amp;#123;    struct listNode *prev;    struct listNode *next;    void *val">
 <meta property="og:image" content="http://zhangqiang.work/double_link_list.svg">
-<meta property="og:updated_time" content="2015-12-16T16:33:31.000Z">
+<meta property="og:updated_time" content="2015-12-17T03:36:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 中的数据结构：双链表">
 <meta name="twitter:description" content="Redis 实现了通用的双链表作为其基础数据结构之一。双链表是 redis 列表类型的实际存储方式之一，同时双链表还被其它功能模块广泛使用。它由三部分组成：
@@ -274,6 +274,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">listNode *<span class="title">listNext</span><span class="params">(listIter *iter)</span></span>;</span><br></pre></td></tr></table></figure>
 <p>进行遍历。另外，还可以将指针移到表头或表尾：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">listRewind</span><span class="params">(<span class="built_in">list</span> *<span class="built_in">list</span>, listIter *li)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">listRewindTail</span><span class="params">(<span class="built_in">list</span> *<span class="built_in">list</span>, listIter *li)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><em>(使用的源码基于 redis 3.0.5)</em></p>
 </span>
       
     </div>
@@ -401,7 +402,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="育儿,豆妈,面食," />
+  <meta name="keywords" content="redis," />
 
 
 
@@ -39,67 +39,33 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="豆子发烧好了以后，胃口大减，转着心思想给他弄点好吃的，然后。。。开启面食模式。
-用料
-普通面粉 230克
-干酵母 1克
-紫薯 适量
+<meta name="description" content="总起来看，redis 的数据存储结构大致是这样的：
 
-做法1. 和面发面判断发面是否成功，手指插个小洞，不回缩不塌陷即可，拉开面团会看见丝状组织。
-
-2. 分割面团排气后，将面团分割为20克一个的小面团。
-
-3. 编花造型3.1. 步骤一取四个小面团，分別揉成22厘米左右的长条；
-
-3.2. 步骤二将四条面排成 ＃ 字">
+它使用全局变量 server 来存储服务器信息：
+1struct redisServer server;
+其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
+12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="花式馒头">
-<meta property="og:url" content="http://zhangqiang.work/posts/1206201512/index.html">
+<meta property="og:title" content="Redis 数据存储结构关系">
+<meta property="og:url" content="http://zhangqiang.work/posts/1217201512/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="豆子发烧好了以后，胃口大减，转着心思想给他弄点好吃的，然后。。。开启面食模式。
-用料
-普通面粉 230克
-干酵母 1克
-紫薯 适量
+<meta property="og:description" content="总起来看，redis 的数据存储结构大致是这样的：
 
-做法1. 和面发面判断发面是否成功，手指插个小洞，不回缩不塌陷即可，拉开面团会看见丝状组织。
-
-2. 分割面团排气后，将面团分割为20克一个的小面团。
-
-3. 编花造型3.1. 步骤一取四个小面团，分別揉成22厘米左右的长条；
-
-3.2. 步骤二将四条面排成 ＃ 字">
-<meta property="og:image" content="http://zhangqiang.work/p1.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p2.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p3.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p4.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p5.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p6.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p7.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p8.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p9.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p10.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p11.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p12.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p13.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p14.jpg">
-<meta property="og:image" content="http://zhangqiang.work/p15.jpg">
-<meta property="og:updated_time" content="2015-12-05T17:05:22.000Z">
+它使用全局变量 server 来存储服务器信息：
+1struct redisServer server;
+其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
+12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
+<meta property="og:image" content="http://zhangqiang.work/overview.png">
+<meta property="og:image" content="http://zhangqiang.work/type_encoding.svg">
+<meta property="og:updated_time" content="2015-12-17T07:20:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="花式馒头">
-<meta name="twitter:description" content="豆子发烧好了以后，胃口大减，转着心思想给他弄点好吃的，然后。。。开启面食模式。
-用料
-普通面粉 230克
-干酵母 1克
-紫薯 适量
+<meta name="twitter:title" content="Redis 数据存储结构关系">
+<meta name="twitter:description" content="总起来看，redis 的数据存储结构大致是这样的：
 
-做法1. 和面发面判断发面是否成功，手指插个小洞，不回缩不塌陷即可，拉开面团会看见丝状组织。
-
-2. 分割面团排气后，将面团分割为20克一个的小面团。
-
-3. 编花造型3.1. 步骤一取四个小面团，分別揉成22厘米左右的长条；
-
-3.2. 步骤二将四条面排成 ＃ 字">
+它使用全局变量 server 来存储服务器信息：
+1struct redisServer server;
+其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
+12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -109,7 +75,7 @@
   };
 </script>
 
-  <title> 花式馒头 | ssbunny' blog </title>
+  <title> Redis 数据存储结构关系 | ssbunny' blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -226,7 +192,7 @@
           
           
             
-              花式馒头
+              Redis 数据存储结构关系
             
           
         </h1>
@@ -235,8 +201,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-06T00:54:31+08:00" content="2015-12-06">
-            2015-12-06
+          <time itemprop="dateCreated" datetime="2015-12-17T11:16:40+08:00" content="2015-12-17">
+            2015-12-17
           </time>
         </span>
 
@@ -245,8 +211,8 @@
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Enjoying/" itemprop="url" rel="index">
-                  <span itemprop="name">Enjoying</span>
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
                 </a>
               </span>
 
@@ -261,8 +227,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1206201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1206201512/" itemprop="commentsCount"></span>
+              <a href="/posts/1217201512/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1217201512/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -276,37 +242,32 @@
       
 
       
-        <span itemprop="articleBody"><p>豆子发烧好了以后，胃口大减，转着心思想给他弄点好吃的，然后。。。开启面食模式。</p>
-<h2 id="用料">用料</h2><ul>
-<li><strong>普通面粉</strong> 230克</li>
-<li><strong>干酵母</strong> 1克</li>
-<li><strong>紫薯</strong> 适量</li>
-</ul>
-<h2 id="做法">做法</h2><h4 id="1-_和面发面">1. 和面发面</h4><p>判断发面是否成功，手指插个小洞，不回缩不塌陷即可，拉开面团会看见丝状组织。</p>
-<p><img src="p1.jpg" alt="和面发面"></p>
-<h4 id="2-_分割面团">2. 分割面团</h4><p>排气后，将面团分割为20克一个的小面团。</p>
-<p><img src="p2.jpg" alt="分割面团"></p>
-<h4 id="3-_编花造型">3. 编花造型</h4><h5 id="3-1-_步骤一">3.1. 步骤一</h5><p>取四个小面团，分別揉成22厘米左右的长条；</p>
-<p><img src="p3.jpg" alt="编花造型"></p>
-<h5 id="3-2-_步骤二">3.2. 步骤二</h5><p>将四条面排成 <code>＃</code> 字形状；</p>
-<p><img src="p4.jpg" alt="编花造型"></p>
-<h5 id="3-3-_步骤三">3.3. 步骤三</h5><p>顺时针方向，（以上方为例）左手边压右手边的那根面；</p>
-<p><img src="p5.jpg" alt="编花造型"></p>
-<h5 id="3-4-_步骤四">3.4. 步骤四</h5><p>逆时针方向，（以上方为例）右手边压左手边的那根面；</p>
-<p><img src="p6.jpg" alt="编花造型"></p>
-<h5 id="3-5-_步骤五">3.5. 步骤五</h5><p>重复 <strong>步骤三</strong> 和 <strong>步骤四</strong>，直到面条全部盘完为止，压紧最低端；</p>
-<p><img src="p7.jpg" alt="编花造型"></p>
-<h5 id="3-6-_步骤六">3.6. 步骤六</h5><p>将盘好的面翻过来，将四个底边向内聚拢，窝紧；</p>
-<p><img src="p8.jpg" alt="编花造型"></p>
-<h5 id="3-7-_步骤七">3.7. 步骤七</h5><p>窝紧后，倒过来塑形即可；</p>
-<p><img src="p9.jpg" alt="编花造型"></p>
-<h4 id="4-_棒棒糖造型">4. 棒棒糖造型</h4><p>取两个小面团，搓成条状，像麻花一样扭在一起，盘起来即可。</p>
-<p><img src="p10.jpg" alt="棒棒糖造型"></p>
-<h4 id="5-_刺猬造型">5. 刺猬造型</h4><p>将小面团揉成刺猬的形状，用剪刀剪出刺来就可以了，拿黑芝麻做眼睛。</p>
-<p><img src="p11.jpg" alt="刺猬造型"></p>
-<h4 id="6-_小猪造型">6. 小猪造型</h4><p>将小面团揉成椭圆形，贴上椭圆形的猪鼻子，拿牙签扎上鼻孔，取正方形小面片，对角切开，最长边的两个角捏在一起，贴在猪脸上，一只呆萌呆萌的小猪猪就做好了。</p>
-<p><img src="p12.jpg" alt="小猪造型"></p>
-<h4 id="5-_赤裸炫耀">5. 赤裸炫耀</h4><p><img src="p13.jpg" alt="赤裸炫耀"><br><img src="p14.jpg" alt="赤裸炫耀"><br><img src="p15.jpg" alt="赤裸炫耀"></p>
+        <span itemprop="articleBody"><p>总起来看，redis 的数据存储结构大致是这样的：</p>
+<p><img src="overview.png" alt="overview.png"></p>
+<p>它使用全局变量 <code>server</code> 来存储服务器信息：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> redisServer server;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>redisServer</code> 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> redisServer &#123;</span><br><span class="line">    redisDb *db;</span><br><span class="line">    <span class="keyword">int</span> dbnum;</span><br><span class="line">    <span class="comment">// ... 等等等</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>由此可见 redis 服务是由 redis 数据库(redisDb)构成的。redisServer 中存储了 redisDb 数组，其初始化大小可配置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the number of databases. The default database is DB 0, you can select</span></span><br><span class="line"><span class="comment"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span></span><br><span class="line"><span class="comment"># dbid is a number between 0 and 'databases'-1</span></span><br><span class="line">databases <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>默认值为 <code>16</code> :</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_DEFAULT_DBNUM     <span class="number">16</span></span></span><br></pre></td></tr></table></figure>
+<p><code>server</code> 在初始化的时候会对每一个数据库做初始化操作，因此配置时用不着的数据库尽量关闭：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">server.dbnum = REDIS_DEFAULT_DBNUM;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.db = zmalloc(<span class="keyword">sizeof</span>(redisDb)*server.dbnum);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; server.dbnum; j++) &#123;</span><br><span class="line">    server.db[j].dict = dictCreate(&amp;dbDictType,<span class="literal">NULL</span>);</span><br><span class="line">    server.db[j].expires = dictCreate(&amp;keyptrDictType,<span class="literal">NULL</span>);</span><br><span class="line">    server.db[j].blocking_keys = dictCreate(&amp;keylistDictType,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">// ... 等等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>redisDb 的结构并不复杂：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> redisDb &#123;</span><br><span class="line">    dict *dict;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> avg_ttl;</span><br><span class="line">    <span class="comment">// ... 等</span></span><br><span class="line">&#125; redisDb;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>dict *dict</code> 用来存储键值对数据。也就是说 <code>SET foo bar</code> 命令实际会将 foo 存入 <code>dict</code> 结构的 key 中。Redis 用来存储值的对象是 <code>redisObject</code> ，它是对 redis 不同数据类型的抽象：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> redisObject &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> type:<span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> encoding:<span class="number">4</span>;</span><br><span class="line">    <span class="keyword">void</span> *ptr;</span><br><span class="line">    <span class="comment">// ... 等</span></span><br><span class="line">&#125; robj;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>type</code> 代表一个 redis 数据类型(抽象给用户使用的)，<code>encoding</code> 代表 redis 内部对该类型的实际编码方式(底层的数据结构实现)， <code>*ptr</code> 是指向实际值的指针。</p>
+<p><code>redisObject</code> 的类型为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_STRING <span class="number">0</span>  <span class="comment">/* 字符串 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_LIST <span class="number">1</span>    <span class="comment">/* 列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_SET <span class="number">2</span>     <span class="comment">/* 哈希 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ZSET <span class="number">3</span>    <span class="comment">/* 集合 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_HASH <span class="number">4</span>    <span class="comment">/* 有序集合 */</span></span></span><br></pre></td></tr></table></figure>
+<p>编码方式有：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_RAW <span class="number">0</span>        <span class="comment">/* 原始sds方式 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_INT <span class="number">1</span>        <span class="comment">/* 整数 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_HT <span class="number">2</span>         <span class="comment">/* 散列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_ZIPMAP <span class="number">3</span>     <span class="comment">/* (已弃用) */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_LINKEDLIST <span class="number">4</span> <span class="comment">/* 双链表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_ZIPLIST <span class="number">5</span>    <span class="comment">/* 压缩列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_INTSET <span class="number">6</span>     <span class="comment">/* 整型集合 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_SKIPLIST <span class="number">7</span>   <span class="comment">/* 跳跃表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_EMBSTR <span class="number">8</span>     <span class="comment">/* 内嵌式sds */</span></span></span><br></pre></td></tr></table></figure>
+<p>通常一个 redis 的对象类型都会对应两个以上的编码方式，它们的详细对应关系为：</p>
+<p><img src="type_encoding.svg" alt="type_encoding.svg"></p>
+<p>命令示例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ SET foo abc</span><br><span class="line">$ OBJECT ENCODING foo  </span><br><span class="line"><span class="string">"embstr"</span></span><br><span class="line"></span><br><span class="line">$ SET bar abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</span><br><span class="line">$ OBJECT ENCODING bar</span><br><span class="line"><span class="string">"raw"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">123</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"int"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">12345678901234567890</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"embstr"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">1.0</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"embstr"</span></span><br></pre></td></tr></table></figure>
+<p><em>(使用的源码基于 redis 3.0.5)</em></p>
 </span>
       
     </div>
@@ -315,11 +276,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/育儿/" rel="tag">#育儿</a>
-          
-            <a href="/tags/豆妈/" rel="tag">#豆妈</a>
-          
-            <a href="/tags/面食/" rel="tag">#面食</a>
+            <a href="/tags/redis/" rel="tag">#redis</a>
           
         </div>
       
@@ -328,13 +285,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/1207201512/" rel="prev">Redis 持久化方案</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/1205201512/" rel="next">手掰芝麻薄脆</a>
+              <a href="/posts/1216201512/" rel="next">Redis 中的数据结构：HyperLogLog</a>
             
           </div>
         </div>
@@ -397,8 +352,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 
  </div>
             
-              <div class="ds-thread" data-thread-key="posts/1206201512/"
-                   data-title="花式馒头" data-url="http://zhangqiang.work/posts/1206201512/">
+              <div class="ds-thread" data-thread-key="posts/1217201512/"
+                   data-title="Redis 数据存储结构关系" data-url="http://zhangqiang.work/posts/1217201512/">
               </div>
             
           </div>
@@ -497,7 +452,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#用料"><span class="nav-text">用料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做法"><span class="nav-text">做法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_和面发面"><span class="nav-text">1. 和面发面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_分割面团"><span class="nav-text">2. 分割面团</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-_编花造型"><span class="nav-text">3. 编花造型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-_步骤一"><span class="nav-text">3.1. 步骤一</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-_步骤二"><span class="nav-text">3.2. 步骤二</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-_步骤三"><span class="nav-text">3.3. 步骤三</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-_步骤四"><span class="nav-text">3.4. 步骤四</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-_步骤五"><span class="nav-text">3.5. 步骤五</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-6-_步骤六"><span class="nav-text">3.6. 步骤六</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-7-_步骤七"><span class="nav-text">3.7. 步骤七</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-_棒棒糖造型"><span class="nav-text">4. 棒棒糖造型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-_刺猬造型"><span class="nav-text">5. 刺猬造型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-_小猪造型"><span class="nav-text">6. 小猪造型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-_赤裸炫耀"><span class="nav-text">5. 赤裸炫耀</span></a></li></ol></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>

@@ -50,7 +50,7 @@
 1234567typedef char *sds;struct sdshdr &amp;#123;    unsigned int len;    unsigned int free;    char buf[];&amp;#125;;
 其中，结构体 sdshd">
 <meta property="og:image" content="http://zhangqiang.work/sds.png">
-<meta property="og:updated_time" content="2015-12-15T07:12:02.000Z">
+<meta property="og:updated_time" content="2015-12-17T03:36:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 中的数据结构：简单动态字符串（SDS）">
 <meta name="twitter:description" content="Redis 底层使用 SDS (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：
@@ -257,6 +257,7 @@
 <p>理解了这些便很容易知道 redis <code>APPEND</code> 命令的实现细节：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ SET foo bar</span><br><span class="line">$ APPEND foo blahblah</span><br></pre></td></tr></table></figure>
 <p>当然，这种预先分配容量的方式，虽然能减少内存分配的次数，提高 <code>APPEND</code> 操作的性能，但会造成一定的内存占用，而且此部分内存不会主动释放。 </p>
+<p><em>(使用的源码基于 redis 3.0.5)</em></p>
 </span>
       
     </div>
@@ -384,7 +385,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
