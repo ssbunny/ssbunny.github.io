@@ -39,33 +39,20 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="总起来看，redis 的数据存储结构大致是这样的：
-
-它使用全局变量 server 来存储服务器信息：
-1struct redisServer server;
-其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
-12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
+<meta name="description" content="散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 SET、ZSET、集群节点映射等，都是通过散列表实现的。结构体定义为：
+1234567typedef struct dict &amp;#123;    dictType *type;    void *privdata;    dictht ht[2];    long rehashidx;    int itera">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 数据存储结构关系">
-<meta property="og:url" content="http://zhangqiang.work/posts/1217201512/index.html">
+<meta property="og:title" content="Redis 中的数据结构：散列表">
+<meta property="og:url" content="http://zhangqiang.work/posts/1221201512/index.html">
 <meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="总起来看，redis 的数据存储结构大致是这样的：
-
-它使用全局变量 server 来存储服务器信息：
-1struct redisServer server;
-其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
-12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
-<meta property="og:image" content="http://zhangqiang.work/overview.png">
-<meta property="og:image" content="http://zhangqiang.work/type_encoding.svg">
-<meta property="og:updated_time" content="2015-12-17T07:20:47.000Z">
+<meta property="og:description" content="散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 SET、ZSET、集群节点映射等，都是通过散列表实现的。结构体定义为：
+1234567typedef struct dict &amp;#123;    dictType *type;    void *privdata;    dictht ht[2];    long rehashidx;    int itera">
+<meta property="og:image" content="http://zhangqiang.work/redis-dict.svg">
+<meta property="og:updated_time" content="2015-12-21T11:49:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis 数据存储结构关系">
-<meta name="twitter:description" content="总起来看，redis 的数据存储结构大致是这样的：
-
-它使用全局变量 server 来存储服务器信息：
-1struct redisServer server;
-其中 redisServer 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：
-12345struct redisServer &amp;#123;    redisDb *db;    int dbnum;">
+<meta name="twitter:title" content="Redis 中的数据结构：散列表">
+<meta name="twitter:description" content="散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 SET、ZSET、集群节点映射等，都是通过散列表实现的。结构体定义为：
+1234567typedef struct dict &amp;#123;    dictType *type;    void *privdata;    dictht ht[2];    long rehashidx;    int itera">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -75,7 +62,7 @@
   };
 </script>
 
-  <title> Redis 数据存储结构关系 | ssbunny' blog </title>
+  <title> Redis 中的数据结构：散列表 | ssbunny' blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -192,7 +179,7 @@
           
           
             
-              Redis 数据存储结构关系
+              Redis 中的数据结构：散列表
             
           
         </h1>
@@ -201,8 +188,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-12-17T11:16:40+08:00" content="2015-12-17">
-            2015-12-17
+          <time itemprop="dateCreated" datetime="2015-12-21T11:05:05+08:00" content="2015-12-21">
+            2015-12-21
           </time>
         </span>
 
@@ -227,8 +214,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1217201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1217201512/" itemprop="commentsCount"></span>
+              <a href="/posts/1221201512/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1221201512/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -242,32 +229,18 @@
       
 
       
-        <span itemprop="articleBody"><p>总起来看，redis 的数据存储结构大致是这样的：</p>
-<p><img src="overview.png" alt="overview.png"></p>
-<p>它使用全局变量 <code>server</code> 来存储服务器信息：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> redisServer server;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>redisServer</code> 包含了数据存储结构、事件、集群、持久化等诸多信息，和数据存储结构相关的定义如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> redisServer &#123;</span><br><span class="line">    redisDb *db;</span><br><span class="line">    <span class="keyword">int</span> dbnum;</span><br><span class="line">    <span class="comment">// ... 等等等</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>由此可见 redis 服务是由 redis 数据库(redisDb)构成的。redisServer 中存储了 redisDb 数组，其初始化大小可配置：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the number of databases. The default database is DB 0, you can select</span></span><br><span class="line"><span class="comment"># a different one on a per-connection basis using SELECT &lt;dbid&gt; where</span></span><br><span class="line"><span class="comment"># dbid is a number between 0 and 'databases'-1</span></span><br><span class="line">databases <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>默认值为 <code>16</code> :</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_DEFAULT_DBNUM     <span class="number">16</span></span></span><br></pre></td></tr></table></figure>
-<p><code>server</code> 在初始化的时候会对每一个数据库做初始化操作，因此配置时用不着的数据库尽量关闭：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">server.dbnum = REDIS_DEFAULT_DBNUM;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">server.db = zmalloc(<span class="keyword">sizeof</span>(redisDb)*server.dbnum);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; server.dbnum; j++) &#123;</span><br><span class="line">    server.db[j].dict = dictCreate(&amp;dbDictType,<span class="literal">NULL</span>);</span><br><span class="line">    server.db[j].expires = dictCreate(&amp;keyptrDictType,<span class="literal">NULL</span>);</span><br><span class="line">    server.db[j].blocking_keys = dictCreate(&amp;keylistDictType,<span class="literal">NULL</span>);</span><br><span class="line">    <span class="comment">// ... 等等</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>redisDb 的结构并不复杂：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> redisDb &#123;</span><br><span class="line">    dict *dict;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> avg_ttl;</span><br><span class="line">    <span class="comment">// ... 等</span></span><br><span class="line">&#125; redisDb;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>dict *dict</code> 用来存储键值对数据。也就是说 <code>SET foo bar</code> 命令实际会将 foo 存入 <code>dict</code> 结构的 key 中。Redis 用来存储值的对象是 <code>redisObject</code> ，它是对 redis 不同数据类型的抽象：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> redisObject &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> type:<span class="number">4</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> encoding:<span class="number">4</span>;</span><br><span class="line">    <span class="keyword">void</span> *ptr;</span><br><span class="line">    <span class="comment">// ... 等</span></span><br><span class="line">&#125; robj;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>type</code> 代表一个 redis 数据类型(抽象给用户使用的)，<code>encoding</code> 代表 redis 内部对该类型的实际编码方式(底层的数据结构实现)， <code>*ptr</code> 是指向实际值的指针。</p>
-<p><code>redisObject</code> 的类型为：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_STRING <span class="number">0</span>  <span class="comment">/* 字符串 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_LIST <span class="number">1</span>    <span class="comment">/* 列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_SET <span class="number">2</span>     <span class="comment">/* 哈希 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ZSET <span class="number">3</span>    <span class="comment">/* 集合 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_HASH <span class="number">4</span>    <span class="comment">/* 有序集合 */</span></span></span><br></pre></td></tr></table></figure>
-<p>编码方式有：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_RAW <span class="number">0</span>        <span class="comment">/* 原始sds方式 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_INT <span class="number">1</span>        <span class="comment">/* 整数 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_HT <span class="number">2</span>         <span class="comment">/* 散列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_ZIPMAP <span class="number">3</span>     <span class="comment">/* (已弃用) */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_LINKEDLIST <span class="number">4</span> <span class="comment">/* 双链表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_ZIPLIST <span class="number">5</span>    <span class="comment">/* 压缩列表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_INTSET <span class="number">6</span>     <span class="comment">/* 整型集合 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_SKIPLIST <span class="number">7</span>   <span class="comment">/* 跳跃表 */</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REDIS_ENCODING_EMBSTR <span class="number">8</span>     <span class="comment">/* 内嵌式sds */</span></span></span><br></pre></td></tr></table></figure>
-<p>通常一个 redis 的对象类型都会对应两个以上的编码方式，它们的详细对应关系为：</p>
-<p><img src="type_encoding.svg" alt="type_encoding.svg"></p>
-<p>命令示例：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ SET foo abc</span><br><span class="line">$ OBJECT ENCODING foo  </span><br><span class="line"><span class="string">"embstr"</span></span><br><span class="line"></span><br><span class="line">$ SET bar abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</span><br><span class="line">$ OBJECT ENCODING bar</span><br><span class="line"><span class="string">"raw"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">123</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"int"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">12345678901234567890</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"embstr"</span></span><br><span class="line"></span><br><span class="line">$ SET foobar <span class="number">1.0</span></span><br><span class="line">$ OBJECT ENCODING foobar</span><br><span class="line"><span class="string">"embstr"</span></span><br></pre></td></tr></table></figure>
-<p><em>(使用的源码基于 redis 3.0.5)</em></p>
+        <span itemprop="articleBody"><p>散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 <code>SET</code>、<code>ZSET</code>、集群节点映射等，都是通过散列表实现的。结构体定义为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dict &#123;</span><br><span class="line">    dictType *type;</span><br><span class="line">    <span class="keyword">void</span> *privdata;</span><br><span class="line">    dictht ht[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">long</span> rehashidx;</span><br><span class="line">    <span class="keyword">int</span> iterators;</span><br><span class="line">&#125; dict;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>*type</code> 指针指向 dict 的类型，例如它是一个 ZSET(zsetDictType) 还是一个集群节点(clusterNodesDictType)。实际上它们的存储结构是相同的，之所以区分类型，是因为其散列函数、key 的比较(或销毁)策略是不同的。因而所谓的 dict 类型，不过是一组函数指针罢了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictType &#123;</span><br><span class="line">    <span class="function"><span class="keyword">unsigned</span> <span class="title">int</span> <span class="params">(*hashFunction)</span><span class="params">(<span class="keyword">const</span> <span class="keyword">void</span> *key)</span></span>;       <span class="comment">// 散列函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*keyDup)(<span class="keyword">void</span> *privdata, <span class="keyword">const</span> <span class="keyword">void</span> *key);    <span class="comment">// key 复制函数</span></span><br><span class="line">    <span class="keyword">void</span> *(*valDup)(<span class="keyword">void</span> *privdata, <span class="keyword">const</span> <span class="keyword">void</span> *obj);    <span class="comment">// value 复制函数</span></span><br><span class="line">    <span class="keyword">int</span> (*keyCompare)(<span class="keyword">void</span> *privdata, <span class="keyword">const</span> <span class="keyword">void</span> *key1, <span class="keyword">const</span> <span class="keyword">void</span> *key2);     <span class="comment">// key 比较函数</span></span><br><span class="line">    <span class="keyword">void</span> (*keyDestructor)(<span class="keyword">void</span> *privdata, <span class="keyword">void</span> *key);    <span class="comment">// key 销毁函数</span></span><br><span class="line">    <span class="keyword">void</span> (*valDestructor)(<span class="keyword">void</span> *privdata, <span class="keyword">void</span> *obj);    <span class="comment">// value 销毁函数</span></span><br><span class="line">&#125; dictType;</span><br></pre></td></tr></table></figure>
+<p>数组 <code>ht</code> 中存放的是 dict 的实际散列表结构 <code>dictht</code> ：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictht &#123;</span><br><span class="line">    dictEntry **table;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> size;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> sizemask;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> used;</span><br><span class="line">&#125; dictht;</span><br></pre></td></tr></table></figure>
+<p>之所以存放 2 个，是为了实现<strong>渐进式再散列(incremental rehashing)</strong>。</p>
+<p><code>**table</code> 指向桶结构 <code>dictEntry</code> :</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictEntry &#123;</span><br><span class="line">    <span class="keyword">void</span> *key;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">void</span> *val;</span><br><span class="line">        <span class="keyword">uint64_t</span> u64;</span><br><span class="line">        <span class="keyword">int64_t</span> s64;</span><br><span class="line">        <span class="keyword">double</span> d;</span><br><span class="line">    &#125; v;</span><br><span class="line">    <span class="keyword">struct</span> dictEntry *next;</span><br><span class="line">&#125; dictEntry;</span><br></pre></td></tr></table></figure>
+<p><img src="redis-dict.svg" alt="redis-dict.svg"></p>
+<p>todo 渐进式再散列</p>
+<p><em>(使用的源码基于 redis 3.0.5)</em> </p>
 </span>
       
     </div>
@@ -285,13 +258,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/posts/1219201512/" rel="prev">椰蓉牛奶小方</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/1216201512/" rel="next">Redis 中的数据结构：HyperLogLog</a>
+              <a href="/posts/1219201512/" rel="next">椰蓉牛奶小方</a>
             
           </div>
         </div>
@@ -354,8 +325,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
 
  </div>
             
-              <div class="ds-thread" data-thread-key="posts/1217201512/"
-                   data-title="Redis 数据存储结构关系" data-url="http://zhangqiang.work/posts/1217201512/">
+              <div class="ds-thread" data-thread-key="posts/1221201512/"
+                   data-title="Redis 中的数据结构：散列表" data-url="http://zhangqiang.work/posts/1221201512/">
               </div>
             
           </div>
