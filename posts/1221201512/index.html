@@ -48,7 +48,7 @@
 <meta property="og:description" content="散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 SET、ZSET、集群节点映射等，都是通过散列表实现的。结构体定义为：
 1234567typedef struct dict &amp;#123;    dictType *type;    void *privdata;    dictht ht[2];    long rehashidx;    int itera">
 <meta property="og:image" content="http://zhangqiang.work/redis-dict.svg">
-<meta property="og:updated_time" content="2015-12-21T11:49:34.000Z">
+<meta property="og:updated_time" content="2015-12-21T12:49:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 中的数据结构：散列表">
 <meta name="twitter:description" content="散列表是 redis 中的基础数据结构之一， redis 中的键空间、redisDB、 SET、ZSET、集群节点映射等，都是通过散列表实现的。结构体定义为：
@@ -238,7 +238,10 @@
 <p>之所以存放 2 个，是为了实现<strong>渐进式再散列(incremental rehashing)</strong>。</p>
 <p><code>**table</code> 指向桶结构 <code>dictEntry</code> :</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictEntry &#123;</span><br><span class="line">    <span class="keyword">void</span> *key;</span><br><span class="line">    <span class="keyword">union</span> &#123;</span><br><span class="line">        <span class="keyword">void</span> *val;</span><br><span class="line">        <span class="keyword">uint64_t</span> u64;</span><br><span class="line">        <span class="keyword">int64_t</span> s64;</span><br><span class="line">        <span class="keyword">double</span> d;</span><br><span class="line">    &#125; v;</span><br><span class="line">    <span class="keyword">struct</span> dictEntry *next;</span><br><span class="line">&#125; dictEntry;</span><br></pre></td></tr></table></figure>
+<p>当发生冲突时，dict 首先会使用<strong>分离链接法</strong>将散列到同一个值的所有元素保留到一个表中。当到了一定时机，它会通过<strong>再散列</strong>进行扩展。</p>
 <p><img src="redis-dict.svg" alt="redis-dict.svg"></p>
+<p>Redis 还提供了遍历散列表用的迭代器，它支持安全(遍历期间可以增加元素等操作)、不安全两种方式遍历散列表：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> dictIterator &#123;</span><br><span class="line">    dict *d;</span><br><span class="line">    <span class="keyword">long</span> index;</span><br><span class="line">    <span class="keyword">int</span> table, safe;</span><br><span class="line">    dictEntry *entry, *nextEntry;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> fingerprint;</span><br><span class="line">&#125; dictIterator;</span><br></pre></td></tr></table></figure>
 <p>todo 渐进式再散列</p>
 <p><em>(使用的源码基于 redis 3.0.5)</em> </p>
 </span>
@@ -294,7 +297,13 @@
 	border-bottom: none;
 }
 </style>
-<div style="color:#999;">写的太好了，忍不住要分享：</div>
+<div style="color:#999;">
+    <span id="busuanzi_container_page_pv">
+    	本文已被阅读
+    	<span id="busuanzi_value_page_pv"></span>
+    	次，若是感觉写得还不错就分享一下 :)
+    </span>
+</div>
 <div class="bdsharebuttonbox">
 	<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
 	<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
@@ -447,23 +456,15 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
     <i class="icon-next-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">绿豆爸爸</span>
+  <span>&nbsp;&nbsp;&nbsp;(感谢 Github 、 Hexo 、 NexT 的支持。）</span>
 </div>
 
-<div>感谢 Github 、 Hexo 、 NexT 的支持。</div>
-
-<!--
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+<div>
+  <span id="busuanzi_container_site_pv">
+    您是本站的第 <span style="color:green" id="busuanzi_value_site_uv"></span> 位访客，
+    我可怜的博客已被猛戳了 <span style="color:green" id="busuanzi_value_site_pv"></span> 下。
+  </span>
 </div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
--->
-
 
 
  </div>
@@ -705,5 +706,6 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
       });
     });
   </script>
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
 </html>
