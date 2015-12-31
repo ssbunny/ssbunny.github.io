@@ -47,8 +47,12 @@
 <meta property="og:description" content="本文整理我对 JavaScript 的一些理解，试将零散的知识归总。">
 <meta property="og:image" content="http://zhangqiang.work/javascript_types.png">
 <meta property="og:image" content="http://zhangqiang.work/function_object.png">
-<meta property="og:image" content="http://zhangqiang.work/exe.svg">
-<meta property="og:updated_time" content="2015-12-31T07:54:06.000Z">
+<meta property="og:image" content="http://zhangqiang.work/prototype1.png">
+<meta property="og:image" content="http://zhangqiang.work/function_relation.png">
+<meta property="og:image" content="http://zhangqiang.work/exe1.png">
+<meta property="og:image" content="http://zhangqiang.work/exe2.png">
+<meta property="og:image" content="http://zhangqiang.work/exe3.png">
+<meta property="og:updated_time" content="2015-12-31T17:43:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 知识整理">
 <meta name="twitter:description" content="本文整理我对 JavaScript 的一些理解，试将零散的知识归总。">
@@ -228,8 +232,8 @@
       
 
       
-        <span itemprop="articleBody"><p>本文整理我对 JavaScript 的一些理解，试将零散的知识归总。此文非语法整理，内容偏中高级。</p>
-<h2 id="1-_对象模型">1. 对象模型</h2><h3 id="1-1-_数据类型">1.1. 数据类型</h3><p>解析引擎中创建了诸多内建类型，它们是实现 JavaScript 各类型的数据结构。在 JavaScript 的语法层面，除了 <code>undefined</code> 和 <code>null</code> 一切皆对象，字面量也是对象，而 <code>null</code> 的类型也是对象：</p>
+        <span itemprop="articleBody"><p>2015年最后一天了，写本文以整理我对 JavaScript 的一些理解，试将零散的知识归总。此文非语法整理，内容偏中高级，如有纰漏或错误，请予以指正。</p>
+<h2 id="1-_对象模型">1. 对象模型</h2><h3 id="1-1-_数据类型">1.1. 数据类型</h3><p>在 JavaScript 的语法层面，除了 <code>undefined</code> 和 <code>null</code> 一切皆对象，字面量也是对象，而 <code>null</code> 的类型也是对象：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'foo'</span>.substring(<span class="number">1</span>);</span><br><span class="line"><span class="number">3.1415926</span>.toFixed(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span>; <span class="comment">// 'object'</span></span><br></pre></td></tr></table></figure>
 <p>JavaScript 语言中内置了一些对象用来辅助用户编程，它们均是 <code>函数对象</code> ，如：</p>
 <ul>
@@ -238,6 +242,7 @@
 <li>String</li>
 <li>Number</li>
 </ul>
+<p>解析引擎中创建了诸多内建类型，它们是实现 JavaScript 各类型的数据结构。</p>
 <p>基本类型的字面量创建方式会直接调用解析引擎来创建 JavaScript 对象，它不是内置函数对象的实例：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'foo'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// false</span></span><br><span class="line">foo = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'foo'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(foo <span class="keyword">instanceof</span> <span class="built_in">String</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>对象(这里指语法层面的对象)、正则、数组等的字面量创建方式会调用内置函数对象来创建实例：</p>
@@ -245,13 +250,39 @@
 <p>归纳如下：</p>
 <p><img src="javascript_types.png" alt="javascript_types.png"></p>
 <h3 id="1-2-_函数对象">1.2. 函数对象</h3><p>任何JS对象均需要由函数对象创建。<strong>函数对象</strong>是在普通对象的基础上增加了内建的属性 <code>[[Call]]</code> 和 <code>[[Construct]]</code> ，这一过程由解释器完成，两个属性均指向解释器的内建函数：[[Call]] 用于函数调用，使用操作符 <code>()</code> 时执行；[[Construct]] 用于构造对象，使用操作符 <code>new</code> 时执行。</p>
-<p>语法层面上，函数对象也是由其它函数对象(或自己)创建的，使用 <code>function</code> 关键字可以创建用户自定义函数对象。最上游的对象是 <code>Function</code> 。原型对象通常由内置函数对象 <code>Object</code> 创建，它通常是一个普通对象，但也可能是函数对象。</p>
+<p>语法层面上，函数对象也是由其它函数对象(或自己)创建的，使用 <code>function</code> 关键字可以创建用户自定义函数对象。最上游的对象是 <code>Function</code> 。</p>
 <p><img src="function_object.png" alt="function_object.png"></p>
-<h3 id="1-3-_原型链">1.3. 原型链</h3><h3 id="1-4-_函数和对象的关系">1.4. 函数和对象的关系</h3><h2 id="2-_执行模型">2. 执行模型</h2><h3 id="2-1-_函数执行过程">2.1. 函数执行过程</h3><p>示例以下代码的执行过程：</p>
+<p>当对象被创建后，解释器为对象增加 <code>constructor</code> 属性指向创建它的函数对象。</p>
+<h3 id="1-3-_原型对象">1.3. 原型对象</h3><p>原型对象通常由内置函数对象 <code>Object</code> 创建，它通常是一个普通对象，但也可能是函数对象。</p>
+<p>任何对象都有内建属性 <code>[[Prototype]]</code> 用来指向其原型对象，有些解释器(如V8)会将其开放为 <code>__proto__</code> 属性供用户代码调用。函数对象有开放属性 <code>prototype</code> ，用来表示通过函数对象构建的对象的原型。</p>
+<p>以下条件总是为 true ：</p>
+<pre><code>函数对象.prototype === 该函数对象创建的对象.<span class="strong">__proto__</span>
+</code></pre><p>示例如下代码的原型关系：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="string">'foo'</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Foo.prototype.bar = <span class="string">'bar'</span>;</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> Foo();</span><br><span class="line"><span class="keyword">var</span> f2 = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+<p>对象指向原型对象的层层链条构成<strong>原型链</strong>，对象查找属性时沿着原型链向上游找。</p>
+<p><img src="prototype1.png" alt="prototype1.png"></p>
+<p>通常情况下，<code>Function.prototype</code> 为解析引擎创建的空函数，<code>Object.prototype</code> 为解析引擎创建的空对象。</p>
+<h3 id="1-4-_对象的关系">1.4. 对象的关系</h3><p>示例如下代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> foo = <span class="keyword">new</span> Foo();</span><br></pre></td></tr></table></figure>
+<p>再加上内置函数对象 String，其关系如下：</p>
+<p><img src="function_relation.png" alt="function_relation.png"></p>
+<p>有如下规律：</p>
+<ul>
+<li>所有函数对象的原型最终指向 Function.prototype ；</li>
+<li>所有普通对象(除 Object.prototype)的原型最终指向 Object.prototype，而 Object.prototype 的原型为 null ；</li>
+<li>所有 constructor 最终指向 Function ，包括它自己；</li>
+<li>所有原型对象的 constructor 的 prototype 指向自己，普通对象不具备该特性。</li>
+</ul>
+<h2 id="2-_执行模型">2. 执行模型</h2><h3 id="2-1-_函数执行过程">2.1. 函数执行过程</h3><p>函数执行前会先为其创建执行环境：</p>
+<p><img src="exe1.png" alt="exe1.png"></p>
+<p>示例以下代码的执行过程：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">foo1, foo2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> foo3 = <span class="string">'foo3'</span>;</span><br><span class="line">    <span class="keyword">var</span> foo4 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">this</span>.foo5 = <span class="string">'foo5'</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo6</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    foo6();</span><br><span class="line">&#125;</span><br><span class="line">foo(<span class="string">'foo1'</span>, <span class="string">'foo2'</span>, <span class="string">'more'</span>);</span><br></pre></td></tr></table></figure>
-<p>重点是创建执行环境的过程，而此过程的重点是创建 <code>活动对象</code> 的属性：</p>
-<p><img src="exe.svg" alt="exe.svg"></p>
-<p>以上过程可以解释局部变量的初始化时机问题：</p>
+<p><strong>1) 创建执行环境</strong></p>
+<p>该过程重点是创建 <code>活动对象</code> 的属性：</p>
+<p><img src="exe2.png" alt="exe2.png"></p>
+<p><strong>2) 依次执行代码</strong></p>
+<p><img src="exe3.png" alt="exe3.png"></p>
+<p>理解了函数执行过程便可以解释局部变量的初始化时机问题：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="string">'global'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(foo);  <span class="comment">// undefined</span></span><br><span class="line">    <span class="keyword">var</span> foo = <span class="string">'local'</span>;</span><br><span class="line">&#125;</span><br><span class="line">bar();</span><br></pre></td></tr></table></figure>
 <p>同时也解释了两种函数声明方式的区别：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">foo();  <span class="comment">// foo</span></span><br><span class="line">bar();  <span class="comment">// TypeError: bar is not a function.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'bar'</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -445,7 +476,7 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_对象模型"><span class="nav-text">1. 对象模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-_数据类型"><span class="nav-text">1.1. 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-_函数对象"><span class="nav-text">1.2. 函数对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-_原型链"><span class="nav-text">1.3. 原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-_函数和对象的关系"><span class="nav-text">1.4. 函数和对象的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_执行模型"><span class="nav-text">2. 执行模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-_函数执行过程"><span class="nav-text">2.1. 函数执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-_作用域"><span class="nav-text">2.2. 作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-_闭包"><span class="nav-text">2.3. 闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_其它"><span class="nav-text">3. 其它</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_对象模型"><span class="nav-text">1. 对象模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-_数据类型"><span class="nav-text">1.1. 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-_函数对象"><span class="nav-text">1.2. 函数对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-_原型对象"><span class="nav-text">1.3. 原型对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-_对象的关系"><span class="nav-text">1.4. 对象的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_执行模型"><span class="nav-text">2. 执行模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-_函数执行过程"><span class="nav-text">2.1. 函数执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-_作用域"><span class="nav-text">2.2. 作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-_闭包"><span class="nav-text">2.3. 闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-_其它"><span class="nav-text">3. 其它</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -461,8 +492,8 @@ with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElemen
     <footer id="footer" class="footer">
       <div class="footer-inner"> <div class="copyright" >
   
-  &copy; &nbsp; 
-  <span itemprop="copyrightYear">2015</span>
+  &copy; &nbsp;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="icon-next-heart"></i>
   </span>
