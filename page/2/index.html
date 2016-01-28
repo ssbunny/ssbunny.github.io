@@ -176,6 +176,105 @@
           
           
             
+              <a class="post-title-link" href="/posts/1215201512/" itemprop="url">
+                Redis 中的数据结构：双链表
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-12-15T15:02:39+08:00" content="2015-12-15">
+            2015-12-15
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/1215201512/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1215201512/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            Redis 实现了通用的双链表作为其基础数据结构之一。双链表是 redis 列表类型的实际存储方式之一，同时双链表还被其它功能模块广泛使用。它由三部分组成：
+
+节点
+迭代器
+链表自身
+
+其节点如下：
+12345typedef struct listNode &#123;    struct list
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/1215201512/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/posts/1214201512/" itemprop="url">
                 Redis 中的数据结构：简单动态字符串（SDS）
               </a>
@@ -1040,98 +1139,6 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
 
 
     
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1103201511/" itemprop="url">
-                关于 JavaScript 数字的那些事
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-11-03T10:49:15+08:00" content="2015-11-03">
-            2015-11-03
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1103201511/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1103201511/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            本文总结 JavaScript 语言中和数字相关的语言特性、缺陷与陷阱及使用技巧。相关基础内容请参考语言规范，本文只涉及较容易被疏忽的方面。首先分享一个经验：我在使用 JavaScript 做大数计算或高精度计算时有个原则：不要使用 JavaScript 做这件事情！ 如果某个运算过程你可以选择在 
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1103201511/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1170,7 +1177,7 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1184,7 +1191,7 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
