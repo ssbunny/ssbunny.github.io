@@ -176,595 +176,6 @@
           
           
             
-              <a class="post-title-link" href="/posts/1215201512/" itemprop="url">
-                Redis 中的数据结构：双链表
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-15T15:02:39+08:00" content="2015-12-15">
-            2015-12-15
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1215201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1215201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            Redis 实现了通用的双链表作为其基础数据结构之一。双链表是 redis 列表类型的实际存储方式之一，同时双链表还被其它功能模块广泛使用。它由三部分组成：
-
-节点
-迭代器
-链表自身
-
-其节点如下：
-12345typedef struct listNode &#123;    struct list
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1215201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1214201512/" itemprop="url">
-                Redis 中的数据结构：简单动态字符串（SDS）
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-14T16:25:56+08:00" content="2015-12-14">
-            2015-12-14
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1214201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1214201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            Redis 底层使用 SDS (Simple Dynamic Strings) 作为字符串类型的存储方式之一，其结构非常简单，直接看源码即可了解个大概：
-1234567typedef char *sds;struct sdshdr &#123;    unsigned int len;    uns
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1214201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1210201512/" itemprop="url">
-                Ajax 是否是独立线程中的异步请求？
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-10T15:53:57+08:00" content="2015-12-10">
-            2015-12-10
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1210201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1210201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            刚刚脑子中突然间产生的一个疑问，使用了这么久的 Ajax 技术，是不是独立线程中的异步请求 ？也就是说，浏览器是否会为它开启一个独立的线程发起请求，并在成功后执行回调函数。整个过程应该是非阻塞的。
-通常我们知道 setTimeout 函数会将执行代码压入下一次 Event Loop 中执行：
-123
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1210201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1207201512/" itemprop="url">
-                Redis 持久化方案
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-07T09:30:55+08:00" content="2015-12-07">
-            2015-12-07
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Coding/" itemprop="url" rel="index">
-                  <span itemprop="name">Coding</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1207201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1207201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            Redis 中提供了不同的持久化选项：
-
-RDB 会定时地保存数据集快照；
-AOF 记录下服务器收到的每一条“写”操作，并在服务启动时通过依次执行这些操作重建数据集。AOF 文件过大时，Redis 会对其重写；
-可以关闭持久化功能，使数据仅保存在内存中；
-同时开启 RDB 和 AOF 。服务重启时会
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1207201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1206201512/" itemprop="url">
-                花式馒头
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-06T00:54:31+08:00" content="2015-12-06">
-            2015-12-06
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Cooking/" itemprop="url" rel="index">
-                  <span itemprop="name">Cooking</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1206201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1206201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            豆子发烧好了以后，胃口大减，转着心思想给他弄点好吃的，然后。。。开启面食模式。
-用料
-普通面粉 230克
-干酵母 1克
-紫薯 适量
-
-做法1. 和面发面判断发面是否成功，手指插个小洞，不回缩不塌陷即可，拉开面团会看见丝状组织。
-
-2. 分割面团排气后，将面团分割为20克一个的小面团。
-
-3. 编花造
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1206201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
-              <a class="post-title-link" href="/posts/1205201512/" itemprop="url">
-                手掰芝麻薄脆
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          发表于
-          <time itemprop="dateCreated" datetime="2015-12-05T23:17:26+08:00" content="2015-12-05">
-            2015-12-05
-          </time>
-        </span>
-
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Cooking/" itemprop="url" rel="index">
-                  <span itemprop="name">Cooking</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
-        
-
-        
-          
-            <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/posts/1205201512/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1205201512/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-          
-        
-      </div>
-    </header>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            快手芝麻薄脆，好吃！好吃！真的好吃！芝麻薄脆只用到蛋清，本来想着把蛋黄做成蛋黄饼干给绿豆吃，结果做黄了。。。内心跑过一万只草泥马。
-用料
-低粉 40克
-玉米淀粉 10克
-细砂糖 20克
-白芝麻 5O克
-玉米油 35克
-蛋清 2个
-
-
-做法1. 蛋清拌糖将细砂糖倒入蛋清中，拌匀，蛋清无需打发。
-
-2.
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1205201512/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      
-      
-        <h1 class="post-title" itemprop="name headline">
-          
-          
-            
               <a class="post-title-link" href="/posts/1203201512/" itemprop="url">
                 Redis 中的命令
               </a>
@@ -853,8 +264,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
           
             
-              <a class="post-title-link" href="/posts/1128201511/" itemprop="url">
-                牛奶吐司
+              <a class="post-title-link" href="/posts/1103201511/" itemprop="url">
+                关于 JavaScript 数字的那些事
               </a>
             
           
@@ -864,8 +275,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-28T23:53:32+08:00" content="2015-11-28">
-            2015-11-28
+          <time itemprop="dateCreated" datetime="2015-11-03T10:49:15+08:00" content="2015-11-03">
+            2015-11-03
           </time>
         </span>
 
@@ -874,8 +285,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Cooking/" itemprop="url" rel="index">
-                  <span itemprop="name">Cooking</span>
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
                 </a>
               </span>
 
@@ -890,8 +301,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1128201511/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1128201511/" itemprop="commentsCount"></span>
+              <a href="/posts/1103201511/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1103201511/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -908,21 +319,11 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
         
           <span itemprop="articleBody">
             
-            这款牛奶吐司用了“爱和自由”姐的方子，果然是零失败！豆子爸爸觉得烤一只吐司很浪费，这个意见得到了豆麻的强烈支持，于是把方子里的量全部两倍，结果忽略了面包机的最大量，把面包机累瘫了。。哈哈。
-用料
-面包粉 270克
-干酵母 3克
-细砂糖 40克
-盐 4克
-蛋液 32克
-牛奶 138克
-黄油 27克
-
-
+            本文总结 JavaScript 语言中和数字相关的语言特性、缺陷与陷阱及使用技巧。相关基础内容请参考语言规范，本文只涉及较容易被疏忽的方面。首先分享一个经验：我在使用 JavaScript 做大数计算或高精度计算时有个原则：不要使用 JavaScript 做这件事情！ 如果某个运算过程你可以选择在 
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1128201511/#more" rel="contents">
+            <a class="btn" href="/posts/1103201511/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -955,8 +356,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
           
             
-              <a class="post-title-link" href="/posts/1120201511/" itemprop="url">
-                海绵蛋糕
+              <a class="post-title-link" href="/posts/1030201510/" itemprop="url">
+                Java8特性 - Lambda表达式
               </a>
             
           
@@ -966,8 +367,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-20T08:46:11+08:00" content="2015-11-20">
-            2015-11-20
+          <time itemprop="dateCreated" datetime="2015-10-30T08:41:43+08:00" content="2015-10-30">
+            2015-10-30
           </time>
         </span>
 
@@ -976,8 +377,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Cooking/" itemprop="url" rel="index">
-                  <span itemprop="name">Cooking</span>
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
                 </a>
               </span>
 
@@ -992,8 +393,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1120201511/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1120201511/" itemprop="commentsCount"></span>
+              <a href="/posts/1030201510/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1030201510/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -1010,21 +411,12 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
         
           <span itemprop="articleBody">
             
-            这个蛋糕是给绿豆一周岁生日准备的，一个人哄着孩子做蛋糕，虽然有些捉急，但还是颇具挑战性的。
-绿豆，生日快乐！
-用料
-低筋面粉 180克
-玉米油 60克
-牛奶 60克
-细砂糖 90克
-鸡蛋 5个
-
-
-做法1. 鸡蛋打发将细砂糖加入鸡蛋盆中，准备开打。开打前，要提前准备好一盆温度在50度上下的热水，将打
+            Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。不说废话。假设有这样一个对象：
+123456789101112131415161718public class Person &#123;    public enum Sex &#123
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1120201511/#more" rel="contents">
+            <a class="btn" href="/posts/1030201510/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1057,8 +449,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
           
             
-              <a class="post-title-link" href="/posts/1109201511/" itemprop="url">
-                玛格丽特小饼
+              <a class="post-title-link" href="/posts/1019201510/" itemprop="url">
+                编程基本原则汇总
               </a>
             
           
@@ -1068,8 +460,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-09T21:58:52+08:00" content="2015-11-09">
-            2015-11-09
+          <time itemprop="dateCreated" datetime="2015-10-19T15:48:35+08:00" content="2015-10-19">
+            2015-10-19
           </time>
         </span>
 
@@ -1078,8 +470,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
             &nbsp; | &nbsp; 分类于
             
               <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/Cooking/" itemprop="url" rel="index">
-                  <span itemprop="name">Cooking</span>
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
                 </a>
               </span>
 
@@ -1094,8 +486,8 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/posts/1109201511/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1109201511/" itemprop="commentsCount"></span>
+              <a href="/posts/1019201510/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1019201510/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -1112,12 +504,584 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
         
           <span itemprop="articleBody">
             
-            稀罕了老久的玛格丽特小饼，终于有时间做了，对于烘焙新手而言，这款饼干绝对是增加自信心的首选。零失败，入口即化的美味，和牛奶一起当宵夜是个不错的选择。
-附谷歌search来的故事：玛格丽特饼干的全称为“住在意大利史特蕾莎的玛格丽特小姐”，英文名为 Italian Hard-boiled Egg Yol
+            整理一些公认的编程基本原则。
+KISS
+Keep It Simple Stupid
+
+要注重简约。
+YAGNI
+you aren’t gonna need it
+
+在确实需要某功能之前，不要依靠预测去实现它。
+DRY
+Don’t Repeat Yourself
+
+不要编写重复代码，将业务规则、公式、
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/posts/1109201511/#more" rel="contents">
+            <a class="btn" href="/posts/1019201510/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/1015201510/" itemprop="url">
+                Docker 架构
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-15T15:08:49+08:00" content="2015-10-15">
+            2015-10-15
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/1015201510/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/1015201510/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            Docker 采用 C/S 架构。Docker client 和 Docker daemon 通信，以创建、运行或发布容器。可以将 Docker daemon 运行在本机或远程主机，client 和 daemon 通过 sockets 或 RESTful API 交互。
+1. Docker核心
+Do
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/1015201510/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/913201509/" itemprop="url">
+                写好程序分支控制
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-13T00:00:00+08:00" content="2015-09-13">
+            2015-09-13
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/913201509/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/913201509/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            分支语句在编程语言中有着举足轻重的地位。有一定工作年限的程序员，通常遇到过这样一段代码，它有数百行，包含了十几甚至二十几个分支，嵌套多达五六层甚至十多层，各种 if ... else ... 语句交叉在一起。最可恨的是，每个分支上有着详尽的注释，你花了二十分钟，仔细阅读了每条注释，最后发现这些注释根
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/913201509/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/905201509/" itemprop="url">
+                CSS 布局技巧
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-09-05T15:56:30+08:00" content="2015-09-05">
+            2015-09-05
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/905201509/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/905201509/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="description">总结归纳了常用的 css 布局技巧。</span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/905201509/">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/721201507/" itemprop="url">
+                ExtJS 核心概念 - 事件模型
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-07-21T14:37:04+08:00" content="2015-07-21">
+            2015-07-21
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/721201507/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/721201507/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件：
+12345678910var i = 0;var btn = Ext.create('Ext.button.Button', &#123;    text: 'Butto
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/721201507/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/709201507/" itemprop="url">
+                ExtJS 核心概念 - 组件的生命周期
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-07-09T14:00:32+08:00" content="2015-07-09">
+            2015-07-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/709201507/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/709201507/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            ExtJS 的组件生命周期分为三个阶段：
+
+初始化
+渲染
+销毁
+
+准确理解组件的生命周期过程，是正确使用 ExtJS 框架的基础。尤其当你需要编写 ExtJS 的插件或对其做其它扩展时，更应该知道组件详细的生命周期过程。
+
+从图中可以看出，ExtJS 的组件始于初始化终于销毁，而且组件未必需要经过渲
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/709201507/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              <a class="post-title-link" href="/posts/626201506/" itemprop="url">
+                ExtJS 核心概念 - 类系统
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-06-26T09:07:13+08:00" content="2015-06-26">
+            2015-06-26
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Coding/" itemprop="url" rel="index">
+                  <span itemprop="name">Coding</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/posts/626201506/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="posts/626201506/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            [本内容只针对 ExtJS 4.x 和 ExtJS 5.x 版本]
+JavaScript 是一门富有表现力的编程语言，它既可以进行面向对象编程(OOP)，也可以进行函数式编程(FP)。函数是 JavaScript 的一等公民。面向对象编程风格相对要简单一些，这也是 ExtJS 的选择。
+传统方式我们
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/posts/626201506/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1143,7 +1107,7 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">&raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
  </div>
@@ -1177,21 +1141,21 @@ AOF 记录下服务器收到的每一条“写”操作，并在服务启动时�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/categories">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
