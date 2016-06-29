@@ -33,32 +33,6 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
@@ -121,8 +95,8 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
-      author: '博主'
+      userId: 13527402,
+      author: '作者'
     }
   };
 </script>
@@ -369,7 +343,7 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
 <p>现在来看看如何创建 <code>Programmer</code> 的实例并调用其方法：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> zhangsan = <span class="keyword">new</span> Programmer();</span><br><span class="line">zhangsan.setName(<span class="string">'ZhangSan'</span>);</span><br><span class="line"><span class="keyword">if</span> (zhangsan.isProgrammer) &#123;</span><br><span class="line">    zhangsan.program();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>控制台将打印出：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZhangSan codes <span class="keyword">in</span> java.</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZhangSan codes <span class="keyword">in</span> java.</span><br></pre></td></tr></table></figure>
 <p>这看上去并不难。那么如果我们想模拟出“子类”及“继承”的概念呢？我想先给你看一下它的代码实现：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Geek = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Geek.superclass.constructor.call(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">this</span>.niubility = <span class="literal">true</span>;</span><br><span class="line">&#125;;</span><br><span class="line">Geek.prototype = <span class="keyword">new</span> Programmer();</span><br><span class="line">Geek.superclass = Programmer.prototype;</span><br><span class="line"></span><br><span class="line">Geek.prototype.superSkill = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'kill himself.'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>我们实现了 <code>Programmer</code> 的子类 <code>Geek</code> 并为其扩展了 <code>niubility</code> 属性和 <code>superSkill</code> 方法。这里将 <code>Geek</code> 的原型指向 <code>Programmer</code> 的一个实例，以此来获得 <code>Programmer</code> 上的所有属性及方法。除此之外，我们还将 <code>Geek</code> 的 <code>superclass</code> 指向 <code>Programmer.prototype</code> ，这么一来便可以通过 <code>superclass</code> 引用调用并继承父类方法。</p>
@@ -647,11 +621,38 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/ssbunny" target="_blank" title="github">
+                <a href="https://github.com/ssbunny" target="_blank" title="Github">
                   
                     <i class="fa fa-fw fa-github"></i>
                   
-                  github
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/grub2" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/zhangqiang" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-code"></i>
+                  
+                  Coding
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://appleid.apple.com" target="_blank" title="Apple">
+                  
+                    <i class="fa fa-fw fa-apple"></i>
+                  
+                  Apple
                 </a>
               </span>
             
@@ -830,6 +831,10 @@ JavaScript 是一门富有表现力的编程语言，它既可以进行面向对
   </script>
 
   
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
     
   
 
