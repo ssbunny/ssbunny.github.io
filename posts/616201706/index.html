@@ -64,7 +64,7 @@
 <meta property="og:url" content="http://zhangqiang.work/posts/616201706/index.html">
 <meta property="og:site_name" content="ssbunny&#39; blog">
 <meta property="og:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
-<meta property="og:updated_time" content="2017-06-26T07:26:09.000Z">
+<meta property="og:updated_time" content="2017-06-26T07:31:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3 选集的工作原理">
 <meta name="twitter:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
@@ -344,11 +344,13 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 
 <p>【本文译自 <a href="https://bost.ocks.org/mike/selection/" target="_blank" rel="external">How Selections Work</a> 如有侵权，即刻删除。】</p>
 <script>
-(function() {
+(function (fn) {
+  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){fn();} else {document.addEventListener('DOMContentLoaded', fn);}
+}(function() {
     var d = document.createElement('script');
     d.src = '/js/drawSvg.js';
     document.body.appendChild(d);
-}());
+}));
 </script>
       
     </div>
