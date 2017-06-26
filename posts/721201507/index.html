@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="web,extjs,javascript,ExtJS核心概念系列文章," />
+  <meta name="keywords" content="javascript,web,extjs,ExtJS核心概念系列文章," />
 
 
 
@@ -57,23 +57,21 @@
 
 
 
-<meta name="description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件：
-12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
+<meta name="description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件： 12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
+<meta name="keywords" content="javascript,web,extjs,ExtJS核心概念系列文章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ExtJS 核心概念 - 事件模型">
 <meta property="og:url" content="http://zhangqiang.work/posts/721201507/index.html">
-<meta property="og:site_name" content="ssbunny' blog">
-<meta property="og:description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件：
-12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
-<meta property="og:image" content="http://zhangqiang.work/event_01.png">
-<meta property="og:image" content="http://zhangqiang.work/event_02.gif">
-<meta property="og:image" content="http://zhangqiang.work/event_03.gif">
+<meta property="og:site_name" content="ssbunny&#39; blog">
+<meta property="og:description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件： 12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
+<meta property="og:image" content="http://zhangqiang.work/posts/721201507/event_01.png">
+<meta property="og:image" content="http://zhangqiang.work/posts/721201507/event_02.gif">
+<meta property="og:image" content="http://zhangqiang.work/posts/721201507/event_03.gif">
 <meta property="og:updated_time" content="2015-10-16T08:09:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ExtJS 核心概念 - 事件模型">
-<meta name="twitter:description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件：
-12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
-<meta name="twitter:image" content="http://zhangqiang.work/event_01.png">
+<meta name="twitter:description" content="我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 listeners 属性即可绑定事件： 12345678910var i = 0;var btn = Ext.create(&apos;Ext.button.Button&apos;, &amp;#123;    text: &apos;Button&apos;,    listeners: &amp;#123;        mouseover: functio">
+<meta name="twitter:image" content="http://zhangqiang.work/posts/721201507/event_01.png">
 
 
 
@@ -83,14 +81,10 @@
     scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 13527402,
-      author: '作者'
-    }
+    motion: true
   };
 </script>
-
+<script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
 
 
@@ -299,13 +293,6 @@
 
           
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/posts/721201507/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="posts/721201507/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -326,9 +313,9 @@
 
       
         <p>我们在使用 ExtJS 时，经常会为某组件绑定事件，以做相应扩展处理。创建组件时通过配置 <code>listeners</code> 属性即可绑定事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> btn = Ext.create(<span class="string">'Ext.button.Button'</span>, &#123;</span><br><span class="line">    text: <span class="string">'Button'</span>,</span><br><span class="line">    listeners: &#123;</span><br><span class="line">        mouseover: <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(btn.getText() + ++i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    renderTo: <span class="built_in">document</span>.body</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> btn = Ext.create(<span class="string">'Ext.button.Button'</span>, &#123;</div><div class="line">    <span class="attr">text</span>: <span class="string">'Button'</span>,</div><div class="line">    <span class="attr">listeners</span>: &#123;</div><div class="line">        <span class="attr">mouseover</span>: <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(btn.getText() + ++i);</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">renderTo</span>: <span class="built_in">document</span>.body</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>也可以通过 <code>on</code> 方法给组件实例绑定事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">'clicked'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'clicked'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>以上方法已经能解决我们使用 ExtJS 事件时绝大多数需求。然而当我们扩展或自定义一个组件时，常常需要注册自定义的事件并在合适的时机触发它们。</p>
 <p>本篇文章要讲的事件模型分为三部分，以上为其一 —— 绑定：</p>
 <ul>
@@ -337,7 +324,7 @@
 <li>绑定</li>
 </ul>
 <h2 id="ExtJS事件模型完整示例"><a href="#ExtJS事件模型完整示例" class="headerlink" title="ExtJS事件模型完整示例"></a>ExtJS事件模型完整示例</h2><p>先来看一个较为完整的示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">'MyButton'</span>, &#123;</span><br><span class="line">    extend: <span class="string">'Ext.button.Button'</span>,</span><br><span class="line"></span><br><span class="line">    initComponent: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.callParent();</span><br><span class="line">        <span class="keyword">this</span>.addEvents(<span class="string">'blink'</span>);  <span class="comment">// &lt;------ 注册</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    shake: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Give your body a bit of a shake!'</span>);</span><br><span class="line">        <span class="keyword">this</span>.fireEvent(<span class="string">'blink'</span>, <span class="keyword">this</span>); <span class="comment">// &lt;------ 触发</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Take a break!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> mybtn = Ext.create(<span class="string">'MyButton'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// &lt;------ 绑定</span></span><br><span class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Begin to blink!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Begin to blink, again!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">mybtn.shake();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Ext.define(<span class="string">'MyButton'</span>, &#123;</div><div class="line">    <span class="attr">extend</span>: <span class="string">'Ext.button.Button'</span>,</div><div class="line"></div><div class="line">    <span class="attr">initComponent</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.callParent();</div><div class="line">        <span class="keyword">this</span>.addEvents(<span class="string">'blink'</span>);  <span class="comment">// &lt;------ 注册</span></div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="attr">shake</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Give your body a bit of a shake!'</span>);</div><div class="line">        <span class="keyword">this</span>.fireEvent(<span class="string">'blink'</span>, <span class="keyword">this</span>); <span class="comment">// &lt;------ 触发</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'Take a break!'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> mybtn = Ext.create(<span class="string">'MyButton'</span>);</div><div class="line"></div><div class="line"><span class="comment">// &lt;------ 绑定</span></div><div class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Begin to blink!'</span>);</div><div class="line">&#125;);</div><div class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Begin to blink, again!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">mybtn.shake();</div></pre></td></tr></table></figure>
 <p>执行结果如下：</p>
 <p><img src="event_01.png" alt="示例结果"></p>
 <p>从代码中可以看出，对于 <code>shake</code> 方法只需要在合适的时机触发 <code>blink</code> 事件，它不需要知道有谁绑定了该事件，也不关心事件的执行过程，从而将 <code>blink</code> 这一特定行为从 <code>shake</code> 中解耦。</p>
@@ -346,26 +333,26 @@
 <p>一个被观察对象和两个观察者调用关系时序图如下：</p>
 <p><img src="event_03.gif" alt="观察者模式时序图"></p>
 <p>剥离出精简的代码实现示例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Subject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.observers = [];</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype = &#123;</span><br><span class="line">    addObserver: <span class="function"><span class="keyword">function</span> (<span class="params">ob</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.observers.push(ob);</span><br><span class="line">    &#125;,</span><br><span class="line">    removeObserver: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// remove...</span></span><br><span class="line">    &#125;,</span><br><span class="line">    notify: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> i = <span class="number">0</span>, len = <span class="keyword">this</span>.observers.length;</span><br><span class="line">        <span class="keyword">for</span> (; i &lt; len; ++i) &#123;</span><br><span class="line">            <span class="keyword">this</span>.observers[i].update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Observer</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' was updated!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> zs = <span class="keyword">new</span> Observer(<span class="string">'zhangsan'</span>);</span><br><span class="line"><span class="keyword">var</span> ls = <span class="keyword">new</span> Observer(<span class="string">'lisi'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> subject = <span class="keyword">new</span> Subject();</span><br><span class="line">subject.addObserver(zs);</span><br><span class="line">subject.addObserver(ls);</span><br><span class="line">subject.notify();</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Subject</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.observers = [];</div><div class="line">&#125;</div><div class="line">Subject.prototype = &#123;</div><div class="line">    <span class="attr">addObserver</span>: <span class="function"><span class="keyword">function</span> (<span class="params">ob</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.observers.push(ob);</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">removeObserver</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// remove...</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">notify</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> i = <span class="number">0</span>, len = <span class="keyword">this</span>.observers.length;</div><div class="line">        <span class="keyword">for</span> (; i &lt; len; ++i) &#123;</div><div class="line">            <span class="keyword">this</span>.observers[i].update();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Observer</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">    <span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' was updated!'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> zs = <span class="keyword">new</span> Observer(<span class="string">'zhangsan'</span>);</div><div class="line"><span class="keyword">var</span> ls = <span class="keyword">new</span> Observer(<span class="string">'lisi'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> subject = <span class="keyword">new</span> Subject();</div><div class="line">subject.addObserver(zs);</div><div class="line">subject.addObserver(ls);</div><div class="line">subject.notify();</div></pre></td></tr></table></figure>
 <p>关于观察者模式的书籍、网络资源极其丰富，请参考相应介绍。</p>
 <h2 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h2><p>发布/订阅模式可以被理解为一种特殊的观察者模式。订阅者和发布者并不直接耦合，而是通过注册事件的方式，因此较之观察者模式，其耦合度更低。</p>
 <p>这里摘录 JavaScript 大神 addyosmani 实现的发布/订阅模式代码供参考：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"> window, doc, undef </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> topics = &#123;&#125;,</span><br><span class="line">        subUid = <span class="number">-1</span>,</span><br><span class="line">        pubsubz =&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    pubsubz.publish = <span class="function"><span class="keyword">function</span> (<span class="params"> topic, args </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!topics[topic]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> subscribers = topics[topic],</span><br><span class="line">                len = subscribers ? subscribers.length : <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (len--) &#123;</span><br><span class="line">                subscribers[len].func(topic, args);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    pubsubz.subscribe = <span class="function"><span class="keyword">function</span> (<span class="params"> topic, func </span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!topics[topic]) &#123;</span><br><span class="line">            topics[topic] = [];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> token = (++subUid).toString();</span><br><span class="line">        topics[topic].push(&#123;</span><br><span class="line">            token: token,</span><br><span class="line">            func: func</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    pubsubz.unsubscribe = <span class="function"><span class="keyword">function</span> (<span class="params"> token </span>) </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> m <span class="keyword">in</span> topics) &#123;</span><br><span class="line">            <span class="keyword">if</span> (topics[m]) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = topics[m].length; i &lt; j; i++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (topics[m][i].token === token) &#123;</span><br><span class="line">                        topics[m].splice(i, <span class="number">1</span>);</span><br><span class="line">                        <span class="keyword">return</span> token;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    getPubSubz = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pubsubz;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.pubsubz = getPubSubz();</span><br><span class="line"></span><br><span class="line">&#125;( <span class="keyword">this</span>, <span class="keyword">this</span>.document ));</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"> window, doc, undef </span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> topics = &#123;&#125;,</div><div class="line">        subUid = <span class="number">-1</span>,</div><div class="line">        pubsubz =&#123;&#125;;</div><div class="line"></div><div class="line">    pubsubz.publish = <span class="function"><span class="keyword">function</span> (<span class="params"> topic, args </span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!topics[topic]) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> subscribers = topics[topic],</div><div class="line">                len = subscribers ? subscribers.length : <span class="number">0</span>;</div><div class="line"></div><div class="line">            <span class="keyword">while</span> (len--) &#123;</div><div class="line">                subscribers[len].func(topic, args);</div><div class="line">            &#125;</div><div class="line">        &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line"></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    pubsubz.subscribe = <span class="function"><span class="keyword">function</span> (<span class="params"> topic, func </span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (!topics[topic]) &#123;</div><div class="line">            topics[topic] = [];</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> token = (++subUid).toString();</div><div class="line">        topics[topic].push(&#123;</div><div class="line">            <span class="attr">token</span>: token,</div><div class="line">            <span class="attr">func</span>: func</div><div class="line">        &#125;);</div><div class="line">        <span class="keyword">return</span> token;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    pubsubz.unsubscribe = <span class="function"><span class="keyword">function</span> (<span class="params"> token </span>) </span>&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> m <span class="keyword">in</span> topics) &#123;</div><div class="line">            <span class="keyword">if</span> (topics[m]) &#123;</div><div class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = topics[m].length; i &lt; j; i++) &#123;</div><div class="line">                    <span class="keyword">if</span> (topics[m][i].token === token) &#123;</div><div class="line">                        topics[m].splice(i, <span class="number">1</span>);</div><div class="line">                        <span class="keyword">return</span> token;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    getPubSubz = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> pubsubz;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="built_in">window</span>.pubsubz = getPubSubz();</div><div class="line"></div><div class="line">&#125;( <span class="keyword">this</span>, <span class="keyword">this</span>.document ));</div></pre></td></tr></table></figure>
 <h2 id="事件模型的缺陷"><a href="#事件模型的缺陷" class="headerlink" title="事件模型的缺陷"></a>事件模型的缺陷</h2><p>事件模型虽然能够较好的解耦，为编码工作带来灵活性，然而它也有较为明显的缺陷：</p>
 <p><strong>1. 发布者无法得知订阅者中产生的错误</strong></p>
 <p>例如之前的示例，如果订阅者中抛出了异常：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Ext.Error.raise(<span class="string">'I am too old to blink!'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    Ext.Error.raise(<span class="string">'I am too old to blink!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>我们无法在发布者中得知这一情况。下面的代码无法起作用：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line">shake: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Give your body a bit of a shake!'</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.fireEvent(<span class="string">'blink'</span>, <span class="keyword">this</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Take a break!'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ...</span></div><div class="line">shake: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Give your body a bit of a shake!'</span>);</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        <span class="keyword">this</span>.fireEvent(<span class="string">'blink'</span>, <span class="keyword">this</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</div><div class="line">        <span class="comment">// do something</span></div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'Take a break!'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>尽管你可以通过回调方式，将 Error 对象作为回调参数反向传回给发布者，但这样带来的编码复杂度是很高的，而且不能保证每个订阅者都正确捕获异常并传回。同时，发布者自己也会因为异常处理而变得臃肿，且它无法很好的识别异常类型，更无从得知合适的处理逻辑。</p>
 <p><strong>2. 流程控制变得复杂</strong></p>
 <p>事件的订阅过程相对较为分散，通常很难确实绑定的顺序。如果你需要做一系列操作，通过事件模型来处理的话，会把问题变得极为复杂繁琐。</p>
 <p><strong>3. 多个订阅者之间无法通讯，它们互相不了解彼此做了哪些操作</strong></p>
 <p>我发现，这一问题在实际使用 ExtJS 时暴露的极为普遍。很多人习惯通过绑定事件时的回调参数修改此对象，这样一来，由于其它订阅者并不知道他做了什么操作，极有可能得到一个不正确的对象状态。</p>
 <p>例如，张三在某个 JavaScript 源文件中通过绑定事件修改了 button 的状态：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</span><br><span class="line">    btn.setText(<span class="string">'MyButton'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</div><div class="line">    btn.setText(<span class="string">'MyButton'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>而李四并不知道张三做了什么，他想当然地基于 button 的状态做了一些操作：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = btn.getText();</span><br><span class="line">    <span class="keyword">if</span> (text === <span class="string">'Button'</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'I am a button!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mybtn.on(<span class="string">'blink'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">btn</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> text = btn.getText();</div><div class="line">    <span class="keyword">if</span> (text === <span class="string">'Button'</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'I am a button!'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>遗憾的是，如果李四的代码先于张三的执行，则李四能得到正确结果；如果张三的代码先于李四的执行，则李四不能得到正确结果。这显然使得代码结构变得混乱，本来通过事件模型解耦而不相关的代码，又无形地被耦合起来了。而更痛苦的是这样的代码变得更分散，很可能彼此并不知道他人的存在。</p>
 <p><strong>4. 代码调试变得困难</strong></p>
 <p>事件注册到容器中，发布者和订阅者不存在直接调用关系，因此代码调试相对困难一些。</p>
@@ -412,11 +399,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
             <a href="/tags/web/" rel="tag">#web</a>
           
             <a href="/tags/extjs/" rel="tag">#extjs</a>
-          
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
           
             <a href="/tags/ExtJS核心概念系列文章/" rel="tag">#ExtJS核心概念系列文章</a>
           
@@ -452,39 +439,13 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="posts/721201507/"
-     data-title="ExtJS 核心概念 - 事件模型"
-     data-content=""
-     data-url="http://zhangqiang.work/posts/721201507/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
     </div>
   </div>
 
 
           </div>
           
-
-
-          
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="posts/721201507/"
-           data-title="ExtJS 核心概念 - 事件模型" data-url="http://zhangqiang.work/posts/721201507/">
-      </div>
     
   </div>
 
@@ -528,7 +489,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -545,7 +506,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -693,13 +654,9 @@
 
 
 
-
   
 
 
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
   <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
@@ -723,6 +680,8 @@
   <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
   <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/snap.svg.js?v=5.0.1"></script>
 
 
 
@@ -750,36 +709,6 @@
 
 
   
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"ssbunny"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
-
-
-
-
-
 
   
   
