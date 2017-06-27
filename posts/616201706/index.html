@@ -64,7 +64,7 @@
 <meta property="og:url" content="http://zhangqiang.work/posts/616201706/index.html">
 <meta property="og:site_name" content="ssbunny&#39; blog">
 <meta property="og:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
-<meta property="og:updated_time" content="2017-06-26T07:31:37.000Z">
+<meta property="og:updated_time" content="2017-06-27T00:26:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3 选集的工作原理">
 <meta name="twitter:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
@@ -335,12 +335,16 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 
 <p>尝试在 JavaScript 控制台中运行此命令，并通过 selection[0] 检查分组情况，通过 selection[0][0] 检查节点。D3 API 支持直接访问节点，使用 selection.node 即可，该方法十分常用，一会儿你就知道了。</p>
 <p>同样地，d3.selectAll 返回一个选集，它带有一个组和任意数量的元素：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"h2"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"h2"</span>);</div></pre></td></tr></table></figure>
 <svg id="group2" width="620" height="100"/>
 
 <p>d3.select 和 d3.selectAll 返回的选集只包含一个组。获取包含多个组的选集的唯一方法是使用 selection.selectAll 。 例如，假设先选择表格的所有行，再选择每行中的单元格，则会为每行均获取一组同级单元格：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"tr"</span>).selectAll(<span class="string">"td"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"tr"</span>).selectAll(<span class="string">"td"</span>);</div></pre></td></tr></table></figure>
 <svg id="group3" width="620" height="390"/>
+
+<p>通过调用 selectAll 方法，旧选集中的每个元素变成新选集中的一个组；每个组包含一个与旧元素匹配的后代元素。因此，假设每个 table 的单元格包含一个 span 元素，并且您第三次调用 selectAll，您将获得十六个组的选集：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"tr"</span>).selectAll(<span class="string">"td"</span>).selectAll(<span class="string">"span"</span>);</div></pre></td></tr></table></figure>
+<svg id="group4" width="620" height="390"/>
 
 <p>【本文译自 <a href="https://bost.ocks.org/mike/selection/" target="_blank" rel="external">How Selections Work</a> 如有侵权，即刻删除。】</p>
 <script>

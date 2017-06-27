@@ -527,3 +527,235 @@ DrawHelper.play = function (svg, clickCallback) {
 
 
 
+// group4
+(function group4() {
+    var svg = new Snap('#group4');
+    var start, end;
+
+    DrawHelper.play(svg, function (play) {
+        var afterStartShow = function () {
+            start.selectAll('.nodetype-s,.nodetype-a,path')
+                .animate({strokeOpacity: 0, fillOpacity: 0}, 200, function () {
+                    start.selectAll('.nodetype-e').forEach(function (item, index) {
+                        setTimeout(function () {
+                            var dy = item.matrix.split().dy;
+                            item.select('rect').attr({
+                                strokeOpacity: 1, 
+                                fillOpacity: 1,
+                                fill: '#fff',
+                                stroke: '#636363'
+                            });
+                            Snap.animate(200, 100, function (val) {
+                                item.transform('translate(' + val + ',' + dy + ')');
+                            }, 250, mina.easein);
+                        }, index * 25);
+                    });
+                });
+
+            setTimeout(function () {
+                start.attr({display: 'none'});
+                end.attr({display: ''}).selectAll('.nodetype-s,.nodetype-a,path.path-level-0')
+                    .animate({strokeOpacity: 1, fillOpacity: 1}, 200, function () {
+                        end.selectAll('.nodetype-e').forEach(function (item, index) {
+                            var dy = item.matrix.split().dy;
+                            setTimeout(function () {
+                                Snap.animate([0, 100], [1, 200], function (val) {
+                                    item.attr({strokeOpacity: val[0], fillOpacity: val[0]});
+                                    item.transform('translate(' + val[1] + ',' + dy + ')');
+                                }, 250);
+                            }, index * 25);
+                        });
+                        end.selectAll('path.path-level-1').forEach(function (item, index) {
+                            var len = item.getTotalLength();
+                            item.attr({
+                                strokeOpacity: 1, 
+                                fillOpacity: 1, 
+                                strokeDashoffset: len, 
+                                strokeDasharray: len
+                            });
+                            setTimeout(function () {
+                                Snap.animate(len, 0, function (val) {
+                                    item.attr({strokeDashoffset: val});
+                                }, 250);
+                            }, index * 25);
+                        });
+                    });
+            }, 1200);
+
+            setTimeout(function () {
+                svg.clear();
+                group4();
+            }, 2000);
+        };
+
+        end.animate({strokeOpacity: 0, fillOpacity: 0}, 200, function () {
+            end.attr({display: 'none'});
+            start.attr({display: '', strokeOpacity: 0, fillOpacity: 0})
+                .animate({strokeOpacity: 1, fillOpacity: 1}, 800, function () {
+                    setTimeout(afterStartShow, 900);
+                });
+        });
+    });
+
+    start = DrawHelper.tree(svg, {
+        t: 's', n: 'selection', w: 54, y: 192, c: [{
+            t: 'a', n: 'group', w: 39, y: 48, c: [
+                {t: 'e', n: 'td', y: 12},
+                {t: 'e', n: 'td', y: 36},
+                {t: 'e', n: 'td', y: 60},
+                {t: 'e', n: 'td', y: 84}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 144, c: [
+                {t: 'e', n: 'td', y: 108},
+                {t: 'e', n: 'td', y: 132},
+                {t: 'e', n: 'td', y: 156},
+                {t: 'e', n: 'td', y: 180}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 240, c: [
+                {t: 'e', n: 'td', y: 204},
+                {t: 'e', n: 'td', y: 228},
+                {t: 'e', n: 'td', y: 252},
+                {t: 'e', n: 'td', y: 276}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 336, c: [
+                {t: 'e', n: 'td', y: 300},
+                {t: 'e', n: 'td', y: 324},
+                {t: 'e', n: 'td', y: 348},
+                {t: 'e', n: 'td', y: 372}
+            ]
+        }]
+    }, [
+        {d: 'M54,192C77,192 77,48 100,48', l: 0},
+        {d: 'M54,192C77,192 77,144 100,144', l: 0},
+        {d: 'M54,192C77,192 77,240 100,240', l: 0},
+        {d: 'M54,192C77,192 77,336 100,336', l: 0},
+
+        {d: 'M139,48C169,48 169,12 200,12', l: 1},
+        {d: 'M139,48C169,48 169,36 200,36', l: 1},
+        {d: 'M139,48C169,48 169,60 200,60', l: 1},
+        {d: 'M139,48C169,48 169,84 200,84', l: 1},
+
+        {d: 'M139,144C169,144 169,108 200,108', l: 1},
+        {d: 'M139,144C169,144 169,132 200,132', l: 1},
+        {d: 'M139,144C169,144 169,156 200,156', l: 1},
+        {d: 'M139,144C169,144 169,180 200,180', l: 1},
+
+        {d: 'M139,240C169,240 169,204 200,204', l: 1},
+        {d: 'M139,240C169,240 169,228 200,228', l: 1},
+        {d: 'M139,240C169,240 169,252 200,252', l: 1},
+        {d: 'M139,240C169,240 169,276 200,276', l: 1},
+
+        {d: 'M139,336C169,336 169,300 200,300', l: 1},
+        {d: 'M139,336C169,336 169,324 200,324', l: 1},
+        {d: 'M139,336C169,336 169,348 200,348', l: 1},
+        {d: 'M139,336C169,336 169,372 200,372', l: 1}
+    ]);
+
+    start.attr({display: 'none'});
+
+    end = DrawHelper.tree(svg, {
+        t: 's', n: 'selection', w: 54, y: 192, c: [{
+            t: 'a', n: 'group', w: 39, y: 12, c: [
+                {t: 'e', n: 'span', w:34, y: 12}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 36, c: [
+                {t: 'e', n: 'span', w:34, y: 36}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 60, c: [
+                {t: 'e', n: 'span', w:34, y: 60}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 84, c: [
+                {t: 'e', n: 'span', w:34, y: 84}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 108, c: [
+                {t: 'e', n: 'span', w:34, y: 108}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 132, c: [
+                {t: 'e', n: 'span', w:34, y: 132}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 156, c: [
+                {t: 'e', n: 'span', w:34, y: 156}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 180, c: [
+                {t: 'e', n: 'span', w:34, y: 180}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 204, c: [
+                {t: 'e', n: 'span', w:34, y: 204}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 228, c: [
+                {t: 'e', n: 'span', w:34, y: 228}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 252, c: [
+                {t: 'e', n: 'span', w:34, y: 252}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 276, c: [
+                {t: 'e', n: 'span', w:34, y: 276}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 300, c: [
+                {t: 'e', n: 'span', w:34, y: 300}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 324, c: [
+                {t: 'e', n: 'span', w:34, y: 324}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 348, c: [
+                {t: 'e', n: 'span', w:34, y: 348}
+            ]
+        }, {
+            t: 'a', n: 'group', w: 39, y: 372, c: [
+                {t: 'e', n: 'span', w:34, y: 372}
+            ]
+        }]
+    }, [
+        {d: 'M54,192C77,192 77,12 100,12', l: 0},
+        {d: 'M54,192C77,192 77,36 100,36', l: 0},
+        {d: 'M54,192C77,192 77,60 100,60', l: 0},
+        {d: 'M54,192C77,192 77,84 100,84', l: 0},
+        {d: 'M54,192C77,192 77,108 100,108', l: 0},
+        {d: 'M54,192C77,192 77,132 100,132', l: 0},
+        {d: 'M54,192C77,192 77,156 100,156', l: 0},
+        {d: 'M54,192C77,192 77,180 100,180', l: 0},
+        {d: 'M54,192C77,192 77,204 100,204', l: 0},
+        {d: 'M54,192C77,192 77,228 100,228', l: 0},
+        {d: 'M54,192C77,192 77,252 100,252', l: 0},
+        {d: 'M54,192C77,192 77,276 100,276', l: 0},
+        {d: 'M54,192C77,192 77,300 100,300', l: 0},
+        {d: 'M54,192C77,192 77,324 100,324', l: 0},
+        {d: 'M54,192C77,192 77,348 100,348', l: 0},
+        {d: 'M54,192C77,192 77,372 100,372', l: 0},
+
+        {d: 'M139,12H200', l: 1},
+        {d: 'M139,36H200', l: 1},
+        {d: 'M139,60H200', l: 1},
+        {d: 'M139,84H200', l: 1},
+        {d: 'M139,108H200', l: 1},
+        {d: 'M139,132H200', l: 1},
+        {d: 'M139,156H200', l: 1},
+        {d: 'M139,180H200', l: 1},
+        {d: 'M139,204H200', l: 1},
+        {d: 'M139,228H200', l: 1},
+        {d: 'M139,252H200', l: 1},
+        {d: 'M139,276H200', l: 1},
+        {d: 'M139,300H200', l: 1},
+        {d: 'M139,324H200', l: 1},
+        {d: 'M139,348H200', l: 1},
+        {d: 'M139,372H200', l: 1}
+    ]);
+}());
+
