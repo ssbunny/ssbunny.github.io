@@ -759,3 +759,48 @@ DrawHelper.play = function (svg, clickCallback) {
     ]);
 }());
 
+
+// non-group1
+(function () {
+    var svg = new Snap('#non-group1');
+
+    DrawHelper.tree(svg, {
+        t: 's', n: 'selection', w: 54, y: 48, c: [{
+            t: 'a', n: 'group', w: 39, y: 48, c: [
+                {t: 'e', n: 'section', w: 46, y: 12},
+                {t: 'e', n: 'section', w: 46, y: 36},
+                {t: 'e', n: 'section', w: 46, y: 60},
+                {t: 'e', n: 'section', w: 46, y: 84}
+            ]
+        }]
+    }, [
+        'M54,48H100',
+        'M139,48C169,48 169,12 200,12',
+        'M139,48C169,48 169,36 200,36',
+        'M139,48C169,48 169,60 200,60',
+        'M139,48C169,48 169,84 200,84'
+    ]);
+}());
+
+
+// non-group2
+(function () {
+    var svg = new Snap('#non-group2');
+
+    DrawHelper.tree(svg, {
+        t: 's', n: 'selection', w: 54, y: 48, c: [{
+            t: 'a', n: 'group', w: 39, y: 48, c: [
+                {t: 'e', n: 'p', y: 12},
+                {t: 'e', n: 'p', y: 36},
+                {t: 'e', n: 'p', y: 60},
+                {t: 'e', n: 'p', y: 84}
+            ]
+        }]
+    }, [
+        'M54,48H100',
+        'M139,48C169,48 169,12 200,12',
+        'M139,48C169,48 169,36 200,36',
+        'M139,48C169,48 169,60 200,60',
+        'M139,48C169,48 169,84 200,84'
+    ]);
+}());

@@ -61,10 +61,10 @@
 <meta name="keywords" content="javascript,d3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="D3 选集的工作原理">
-<meta property="og:url" content="http://zhangqiang.work/posts/616201706/index.html">
+<meta property="og:url" content="http://zhangqiang.work/posts/628201706/index.html">
 <meta property="og:site_name" content="ssbunny&#39; blog">
 <meta property="og:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
-<meta property="og:updated_time" content="2017-06-27T00:26:16.000Z">
+<meta property="og:updated_time" content="2017-06-28T01:18:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3 选集的工作原理">
 <meta name="twitter:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
@@ -84,7 +84,7 @@
 
 
 
-  <link rel="canonical" href="http://zhangqiang.work/posts/616201706/"/>
+  <link rel="canonical" href="http://zhangqiang.work/posts/628201706/"/>
 
   <title> D3 选集的工作原理 | ssbunny' blog </title>
 </head>
@@ -261,8 +261,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-16T16:40:30+08:00" content="2017-06-16">
-              2017-06-16
+            <time itemprop="dateCreated" datetime="2017-06-28T16:40:30+08:00" content="2017-06-28">
+              2017-06-28
             </time>
           </span>
 
@@ -345,6 +345,18 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 <p>通过调用 selectAll 方法，旧选集中的每个元素变成新选集中的一个组；每个组包含一个与旧元素匹配的后代元素。因此，假设每个 table 的单元格包含一个 span 元素，并且您第三次调用 selectAll，您将获得十六个组的选集：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"tr"</span>).selectAll(<span class="string">"td"</span>).selectAll(<span class="string">"span"</span>);</div></pre></td></tr></table></figure>
 <svg id="group4" width="620" height="390"/>
+
+<p>每个组都有一个 parentNode 属性，它用来存储所有组内元素的共享父节点，该父节点在创建组时设置。因此，如果调用 d3.selectAll(“tr”)​.selectAll(“td”)，返回的选集包含 td 元素构成的组，而它们的父元素是 tr 元素。 对于 d3.select 和 d3.selectAll 返回的选集，父元素则是 document 元素。</p>
+<p>大多数情况下，您可以安全地忽略这些分组选集。调用函数 selection.attr 或 selection.style 时，D3 会自动为各个元素调用该函数；使用分组的主要问题在于：function（i）的第二个参数是组内索引，而不是选集的索引。</p>
+<h1 id="无分组的操作"><a href="#无分组的操作" class="headerlink" title="无分组的操作"></a>无分组的操作</h1><p>只有 selectAll 的行为特殊一些，它会产生分组，而 select 则保留现有分组。select 方法之所以不同，是因为旧选集中的每个元素在新选集中只有一个元素与之对应。这样一来，select 可以将数据从父元素传播至子元素，而 selectAll 不会（因此需要<strong>数据连接（data-join）</strong>）！</p>
+<p>方法 append 和 insert 是在 select 之上的包装，它们也同样会保留分组并传播数据。示例包含四个 section 的文档：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"section"</span>);</div></pre></td></tr></table></figure>
+<svg id="non-group1" width="620" height="100"/>
+
+<p>如果在每个 section 后附加一个 p 元素，新的选集同样只具有一个组，它包含四个元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"section"</span>).append(<span class="string">"p"</span>);</div></pre></td></tr></table></figure>
+<svg id="non-group2" width="620" height="100"/>
+
 
 <p>【本文译自 <a href="https://bost.ocks.org/mike/selection/" target="_blank" rel="external">How Selections Work</a> 如有侵权，即刻删除。】</p>
 <script>
@@ -581,7 +593,7 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的子类"><span class="nav-text">数组的子类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素分组"><span class="nav-text">元素分组</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的子类"><span class="nav-text">数组的子类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素分组"><span class="nav-text">元素分组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无分组的操作"><span class="nav-text">无分组的操作</span></a></li></ol></div>
             
           </div>
         </section>
