@@ -64,7 +64,7 @@
 <meta property="og:url" content="http://zhangqiang.work/posts/628201706/index.html">
 <meta property="og:site_name" content="ssbunny&#39; blog">
 <meta property="og:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
-<meta property="og:updated_time" content="2017-06-28T01:18:53.000Z">
+<meta property="og:updated_time" content="2017-07-14T07:35:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="D3 选集的工作原理">
 <meta name="twitter:description" content="本文详细介绍了 d3.js 中选集的工作原理，深入理解它是理解 D3 的必经之路。">
@@ -329,7 +329,7 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 <p>用来生成选集的代码会尽可能地放在图表上方。为了检测您对文本是否理解，最好的方法是打开浏览器的 JavaScript 控制台并交互式地创建选集，参与其中！</p>
 <p>开始吧。</p>
 <h1 id="数组的子类"><a href="#数组的子类" class="headerlink" title="数组的子类"></a>数组的子类</h1><p>也许您曾听说过，“选集是由 DOM 元素构成的数组”。错。选集其实是数组的子类；该子类提供了操作选集中选中元素的方法，比如设置属性和样式。同时选集也继承了原生数组的一些方法，比如 array.forEach 和 array.map 。尽管如此，通常并不需要使用原生方法，因为 D3 提供了更便利的方式，比如 selection.each 。（另有一些原生方法被覆盖以将其行为适配于选集，即 selection.filter 和 selection.sort）。</p>
-<h1 id="元素分组"><a href="#元素分组" class="headerlink" title="元素分组"></a>元素分组</h1><p>选集“并非由 DOM 元素构成的数组” 的另一个原因是，它是元素数组的数组：选集是一组数组，每个组（group）都是一个元素数组。例如 d3.select 返回的由所选元素构成的选集中，仅包含一个组：</p>
+<h1 id="元素分组"><a href="#元素分组" class="headerlink" title="元素分组"></a>元素分组</h1><p>选集“并非由 DOM 元素构成的数组” 的另一个原因是，它是元素数组的数组：选集是一组数组，每个<strong>组（group）</strong>都是一个元素数组。例如 d3.select 返回的由所选元素构成的选集中，仅包含一个组：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> selection = d3.select(<span class="string">"body"</span>);</div></pre></td></tr></table></figure>
 <svg id="group1" width="620" height="30"/>
 
@@ -349,7 +349,7 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 <p>每个组都有一个 parentNode 属性，它用来存储所有组内元素的共享父节点，该父节点在创建组时设置。因此，如果调用 d3.selectAll(“tr”)​.selectAll(“td”)，返回的选集包含 td 元素构成的组，而它们的父元素是 tr 元素。 对于 d3.select 和 d3.selectAll 返回的选集，父元素则是 document 元素。</p>
 <p>大多数情况下，您可以安全地忽略这些分组选集。调用函数 selection.attr 或 selection.style 时，D3 会自动为各个元素调用该函数；使用分组的主要问题在于：function（i）的第二个参数是组内索引，而不是选集的索引。</p>
 <h1 id="无分组的操作"><a href="#无分组的操作" class="headerlink" title="无分组的操作"></a>无分组的操作</h1><p>只有 selectAll 的行为特殊一些，它会产生分组，而 select 则保留现有分组。select 方法之所以不同，是因为旧选集中的每个元素在新选集中只有一个元素与之对应。这样一来，select 可以将数据从父元素传播至子元素，而 selectAll 不会（因此需要<strong>数据连接（data-join）</strong>）！</p>
-<p>方法 append 和 insert 是在 select 之上的包装，它们也同样会保留分组并传播数据。示例包含四个 section 的文档：</p>
+<p>方法 append 和 insert 是在 select 之上的包装，它们也同样会保留分组并传播数据。示例包含了四个 section 的 document 元素：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"section"</span>);</div></pre></td></tr></table></figure>
 <svg id="non-group1" width="620" height="100"/>
 
@@ -357,8 +357,47 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"section"</span>).append(<span class="string">"p"</span>);</div></pre></td></tr></table></figure>
 <svg id="non-group2" width="620" height="100"/>
 
+<p>值得注意的是，该选集的 parentNode 仍然是 document 元素，因为没有调用 selection.selectAll 来对选集进行重新分组。</p>
+<h1 id="空元素"><a href="#空元素" class="headerlink" title="空元素"></a>空元素</h1><p>组内可以使用 null 来表示缺失的元素。D3 中的大多数操作都会忽略空值，例如，设置样式或修改属性时，它会跳过空元素。</p>
+<p>使用 selection.select 方法查找元素时，如果给定的选择器匹配不到任何元素，则会产生空元素。select 方法保留分组结构并使用 null 来填充缺失。假设只有最后两个 section 包含 aside 元素：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.selectAll(<span class="string">"section"</span>).select(<span class="string">"aside"</span>);</div></pre></td></tr></table></figure>
+<svg id="non-element" width="620" height="100"/>
 
-<p>【本文译自 <a href="https://bost.ocks.org/mike/selection/" target="_blank" rel="external">How Selections Work</a> 如有侵权，即刻删除。】</p>
+<p>与分组一样，您通常可以忽略 null 元素的存在，但请注意，D3 确实使用了它们以保持选集分组的结构不变，另外值得注意的是它们的组内索引。</p>
+<h1 id="绑定数据"><a href="#绑定数据" class="headerlink" title="绑定数据"></a>绑定数据</h1><p>数据并非选集的属性，而是元素的属性，这或许有些出人意料。这意味着在选集上绑定数据时，数据被存到了 DOM 而非选集中：数据被赋至每个元素的 __data__ 属性。如果元素缺少此属性则相关联的数据为 undefined。因此可以认为数据是持久态的，而选集是瞬时态的：你可以从 DOM 重新选择元素，它们将保留先前与之绑定的任何数据。</p>
+<p>数据通过以下几种方式之一绑定到元素上：</p>
+<ul>
+<li>通过 selection.data 加入到组中。</li>
+<li>通过 selection.datum 分配给个别元素。</li>
+<li>通过 append、insert 或 select 从父元素传播至子元素。</li>
+</ul>
+<p>示例如何实现数据绑定（事实上并不应该直接设置 __data__ 属性，而是应该使用 selection.datum 方法来实现）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.body.__data__ = <span class="number">42</span>;</div></pre></td></tr></table></figure>
+<svg id="bind-data1" width="620" height="30"/>
+
+<p>此例若采用 D3 惯用风格应该是先选中 body ，再调用 datum ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.select(<span class="string">"body"</span>).datum(<span class="number">42</span>);</div></pre></td></tr></table></figure>
+<svg id="bind-data2" width="620" height="30"/>
+
+<p>如果将一个元素 append 到 body 上，那么子元素会自动从父元素继承数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d3.select(<span class="string">"body"</span>).datum(<span class="number">42</span>).append(<span class="string">"h1"</span>);</div></pre></td></tr></table></figure>
+<svg id="bind-data3" width="620" height="34"/>
+
+<p>至此，我们将引入数据绑定最后一个方法：神秘的 join（连接）操作！当务之急，我们需要先来回答一个更加实在的问题。</p>
+<h1 id="何谓数据？"><a href="#何谓数据？" class="headerlink" title="何谓数据？"></a>何谓数据？</h1><p>D3 中的数据可以是任意值的数组。例如，数字构成的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">18</span>, <span class="number">23</span>, <span class="number">42</span>];</div></pre></td></tr></table></figure>
+<p>又或对象构成的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> letters = [</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"A"</span>, <span class="attr">frequency</span>: <span class="number">.08167</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"B"</span>, <span class="attr">frequency</span>: <span class="number">.01492</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"C"</span>, <span class="attr">frequency</span>: <span class="number">.02780</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"D"</span>, <span class="attr">frequency</span>: <span class="number">.04253</span>&#125;,</div><div class="line">  &#123;<span class="attr">name</span>: <span class="string">"E"</span>, <span class="attr">frequency</span>: <span class="number">.12702</span>&#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>甚或数组构成的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> matrix = [</div><div class="line">  [ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>],</div><div class="line">  [ <span class="number">4</span>,  <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>],</div><div class="line">  [ <span class="number">8</span>,  <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>],</div><div class="line">  [<span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">15</span>]</div><div class="line">];</div></pre></td></tr></table></figure>
+<p>我们参照选集的可视化表示方式来表示数据，包含 5 个数字的普通数组形如：</p>
+<svg id="whatis-data1" width="620" height="135"/>
+
+<p>就像 selection.style 一样——它既可以通过指定一个常量字符串来为每个选定的元素定义统一的样式属性（例如 “red”），也可以通过指定函数来动态计算每个元素的样式（function（d）{return d.color; }）—— selection.data 也可以接收常量值或函数。</p>
+<p>然而，与选集其它方法不同的是：<strong>selection.data 是为各组定义数据而不是为各元素定义数据</strong>。在各个组中，使用数组或返回数组的函数来表示数据，因此选集中的分组具有相应的分组数据！</p>
+<svg id="whatis-data2" width="620" height="385"/>
+
+<p>【本文译自 <a href="https://bost.ocks.org/mike/selection/" target="_blank" rel="external">How Selections Work</a> 如有侵权，即刻删除。另，鉴于翻译期间译者对 D3 的掌握水平有限，文中所有示例图使用 Snap.svg 绘制且未引入 D3 库，故不可以直接在本页面 JavaScript 控制台中调用 D3】</p>
 <script>
 (function (fn) {
   if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){fn();} else {document.addEventListener('DOMContentLoaded', fn);}
@@ -593,7 +632,7 @@ span.inlinespan > svg {position:absolute;top:-17px;width:55px;height:22px}
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的子类"><span class="nav-text">数组的子类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素分组"><span class="nav-text">元素分组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无分组的操作"><span class="nav-text">无分组的操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的子类"><span class="nav-text">数组的子类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元素分组"><span class="nav-text">元素分组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无分组的操作"><span class="nav-text">无分组的操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空元素"><span class="nav-text">空元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#绑定数据"><span class="nav-text">绑定数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#何谓数据？"><span class="nav-text">何谓数据？</span></a></li></ol></div>
             
           </div>
         </section>

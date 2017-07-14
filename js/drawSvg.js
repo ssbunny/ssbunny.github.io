@@ -242,11 +242,12 @@
 
 var DrawHelper = {};
 
-DrawHelper.tree = function (svg, data, paths, yAll) {
+DrawHelper.tree = function (svg, data, paths, xAll, yAll, lineWidth) {
     var i, len;
     var gLink = svg.g();
     var gNode = svg.g();
     var gAll = svg.g(gLink, gNode);
+    var pathStyle;
 
     (function self(node, depth) {
         var i, len, path;
@@ -256,14 +257,14 @@ DrawHelper.tree = function (svg, data, paths, yAll) {
         var matrix = new Snap.Matrix();
        
         rect.attr({
-            fill: {e:'#bdbdbd'}[node.t] || '#fff',
-            stroke: {s:'#e6550d', a:'#636363'}[node.t] || 'none',
+            fill: node.fill || {e:'#bdbdbd', d:'#d9d9d9'}[node.t] || '#fff',
+            stroke: node.stroke || {s:'#e6550d', a:'#636363'}[node.t] || 'none',
             strokeWidth: 1.5
         });
 
         text.attr({dy: '.35em'});
 
-        matrix.translate(depth * 100, node.y);
+        matrix.translate(depth * (lineWidth || 100), node.y);
         g.addClass('nodetype-' + node.t);
         g.transform(matrix);
 
@@ -286,15 +287,28 @@ DrawHelper.tree = function (svg, data, paths, yAll) {
         } else {
             path = svg.path(paths[i]);
         }
-        path.attr({
+        pathStyle = {
             fill: 'none',
             stroke: '#969696',
             strokeWidth: 1.5
-        });
+        };
+        if (paths[i].style) {
+            for (var k in paths[i].style) {
+                if (paths[i].style.hasOwnProperty(k)) {
+                    pathStyle[k] = paths[i].style[k];
+                }
+            }
+        } 
+        path.attr(pathStyle);
         gLink.add(path);
     }
 
-    gAll.transform('translate(10,' + (yAll || 0) + ')');
+    if (yAll === undefined) {
+        yAll = xAll;
+        xAll = 10;
+    }
+
+    gAll.transform('translate(' + xAll + ',' + (yAll || 0) + ')');
 
     return gAll;
 };
@@ -348,24 +362,22 @@ DrawHelper.play = function (svg, clickCallback) {
 
 
 // group2
-(function () {
-    DrawHelper.tree(new Snap('#group2'), {
-        t: 's', n: 'selection', w: 54, y: 48, c: [{
-            t: 'a', n: 'group', w: 39, y: 48, c: [
-                {t: 'e', n: 'h2', y: 12},
-                {t: 'e', n: 'h2', y: 36},
-                {t: 'e', n: 'h2', y: 60},
-                {t: 'e', n: 'h2', y: 84}
-            ]
-        }]
-    }, [
-        'M54,48H100',
-        'M139,48C169,48 169,12 200,12',
-        'M139,48C169,48 169,36 200,36',
-        'M139,48C169,48 169,60 200,60',
-        'M139,48C169,48 169,84 200,84'
-    ]);
-}());
+DrawHelper.tree(new Snap('#group2'), {
+    t: 's', n: 'selection', w: 54, y: 48, c: [{
+        t: 'a', n: 'group', w: 39, y: 48, c: [
+            {t: 'e', n: 'h2', y: 12},
+            {t: 'e', n: 'h2', y: 36},
+            {t: 'e', n: 'h2', y: 60},
+            {t: 'e', n: 'h2', y: 84}
+        ]
+    }]
+}, [
+    'M54,48H100',
+    'M139,48C169,48 169,12 200,12',
+    'M139,48C169,48 169,36 200,36',
+    'M139,48C169,48 169,60 200,60',
+    'M139,48C169,48 169,84 200,84'
+]);
 
 
 // group3
@@ -761,46 +773,172 @@ DrawHelper.play = function (svg, clickCallback) {
 
 
 // non-group1
-(function () {
-    var svg = new Snap('#non-group1');
-
-    DrawHelper.tree(svg, {
-        t: 's', n: 'selection', w: 54, y: 48, c: [{
-            t: 'a', n: 'group', w: 39, y: 48, c: [
-                {t: 'e', n: 'section', w: 46, y: 12},
-                {t: 'e', n: 'section', w: 46, y: 36},
-                {t: 'e', n: 'section', w: 46, y: 60},
-                {t: 'e', n: 'section', w: 46, y: 84}
-            ]
-        }]
-    }, [
-        'M54,48H100',
-        'M139,48C169,48 169,12 200,12',
-        'M139,48C169,48 169,36 200,36',
-        'M139,48C169,48 169,60 200,60',
-        'M139,48C169,48 169,84 200,84'
-    ]);
-}());
+DrawHelper.tree(new Snap('#non-group1'), {
+    t: 's', n: 'selection', w: 54, y: 48, c: [{
+        t: 'a', n: 'group', w: 39, y: 48, c: [
+            {t: 'e', n: 'section', w: 46, y: 12},
+            {t: 'e', n: 'section', w: 46, y: 36},
+            {t: 'e', n: 'section', w: 46, y: 60},
+            {t: 'e', n: 'section', w: 46, y: 84}
+        ]
+    }]
+}, [
+    'M54,48H100',
+    'M139,48C169,48 169,12 200,12',
+    'M139,48C169,48 169,36 200,36',
+    'M139,48C169,48 169,60 200,60',
+    'M139,48C169,48 169,84 200,84'
+]);
 
 
 // non-group2
-(function () {
-    var svg = new Snap('#non-group2');
+DrawHelper.tree(new Snap('#non-group2'), {
+    t: 's', n: 'selection', w: 54, y: 48, c: [{
+        t: 'a', n: 'group', w: 39, y: 48, c: [
+            {t: 'e', n: 'p', y: 12},
+            {t: 'e', n: 'p', y: 36},
+            {t: 'e', n: 'p', y: 60},
+            {t: 'e', n: 'p', y: 84}
+        ]
+    }]
+}, [
+    'M54,48H100',
+    'M139,48C169,48 169,12 200,12',
+    'M139,48C169,48 169,36 200,36',
+    'M139,48C169,48 169,60 200,60',
+    'M139,48C169,48 169,84 200,84'
+]);
 
-    DrawHelper.tree(svg, {
-        t: 's', n: 'selection', w: 54, y: 48, c: [{
-            t: 'a', n: 'group', w: 39, y: 48, c: [
-                {t: 'e', n: 'p', y: 12},
-                {t: 'e', n: 'p', y: 36},
-                {t: 'e', n: 'p', y: 60},
-                {t: 'e', n: 'p', y: 84}
-            ]
+
+// non-element
+DrawHelper.tree(new Snap('#non-element'), {
+    t: 's', n: 'selection', w: 54, y: 48, c: [{
+        t: 'a', n: 'group', w: 39, y: 48, c: [
+            {t: 'e', n: 'null', y: 12, fill: 'none', stroke: 'none'},
+            {t: 'e', n: 'null', y: 36, fill: 'none', stroke: 'none'},
+            {t: 'e', n: 'aside', w: 36, y: 60},
+            {t: 'e', n: 'aside', w: 36, y: 84}
+        ]
+    }]
+}, [
+    {d: 'M54,48H100', l: 0},
+    {d: 'M139,48C169,48 169,12 200,12', l: 1, style: {
+        strokeDasharray: '.5, 3.5',
+        strokeLinecap: 'round'
+    }},
+    {d: 'M139,48C169,48 169,36 200,36', l: 1, style: {
+        strokeDasharray: '.5, 3.5',
+        strokeLinecap: 'round'
+    }},
+    {d: 'M139,48C169,48 169,60 200,60', l: 1},
+    {d: 'M139,48C169,48 169,84 200,84', l: 1}
+]);
+
+// bind-data1
+DrawHelper.tree(new Snap('#bind-data1'), {
+    t: 'e', n: 'body', w: 34, y: 15, c: [{
+        t: 'd', n: '42', w: 32, y: 15}]
+}, ['M34,15H100']);
+
+// bind-data2
+DrawHelper.tree(new Snap('#bind-data2'), {
+    t: 's', n: 'selection', w: 51, y: 15, c: [{
+        t: 'a', n: 'group', w: 38, y: 15, c: [{
+            t: 'e', n: 'body', w: 34, y: 15, c: [{
+                t: 'd', n: '42', w: 32, y: 15
+            }]
         }]
-    }, [
-        'M54,48H100',
-        'M139,48C169,48 169,12 200,12',
-        'M139,48C169,48 169,36 200,36',
-        'M139,48C169,48 169,60 200,60',
-        'M139,48C169,48 169,84 200,84'
-    ]);
-}());
+    }]
+}, [
+    'M51,15H100',
+    'M138,15H200',
+    'M234,15H300'
+]);
+
+// bind-data3
+DrawHelper.tree(new Snap('#bind-data3'), {
+    t: 's', n: 'selection', w: 51, y: 15, c: [{
+        t: 'a', n: 'group', w: 38, y: 15, c: [{
+            t: 'e', n: 'h1', w: 32, y: 15, c: [{
+                t: 'd', n: '42', w: 32, y: 15
+            }]
+        }]
+    }]
+}, [
+    'M51,15H100',
+    'M138,15H200',
+    'M232,15H300'
+]);
+
+
+// whatis-data1
+DrawHelper.tree(new Snap('#whatis-data1'), {
+    t: 'a', n: 'array', w: 35, y: 60, c: [
+        {t: 'd', n: '4', y: 12},
+        {t: 'd', n: '5', y: 36},
+        {t: 'd', n: '18', y: 60},
+        {t: 'd', n: '23', y: 84},
+        {t: 'd', n: '42', y: 108}
+    ]
+}, [
+    'M0,60C-32,60 -32,12 -68,12',
+    'M0,60C-32,60 -32,36 -68,36',
+    'M0,60C-32,60 -32,60 -68,60',
+    'M0,60C-32,60 -32,84 -68,84',
+    'M0,60C-32,60 -32,108 -68,108'
+], 580, 0, -100);
+
+// whatis-data2
+DrawHelper.tree(new Snap('#whatis-data2'), {
+    t: 'a', n: 'data', y: 192, stroke: '#3182bd', c: [
+        {t: 'a', n: 'array', w: 35, y: 48, c: [
+            {t: 'd', n: '0', y: 12},
+            {t: 'd', n: '1', y: 36},
+            {t: 'd', n: '2', y: 60},
+            {t: 'd', n: '3', y: 84}
+        ]},
+        {t: 'a', n: 'array', w: 35, y: 144, c: [
+            {t: 'd', n: '4', y: 108},
+            {t: 'd', n: '5', y: 132},
+            {t: 'd', n: '6', y: 156},
+            {t: 'd', n: '7', y: 180}
+        ]},
+        {t: 'a', n: 'array', w: 35, y: 240, c: [
+            {t: 'd', n: '8', y: 204},
+            {t: 'd', n: '9', y: 228},
+            {t: 'd', n: '10', y: 252},
+            {t: 'd', n: '11', y: 276}
+        ]},
+        {t: 'a', n: 'array', w: 35, y: 336, c: [
+            {t: 'd', n: '12', y: 300},
+            {t: 'd', n: '13', y: 324},
+            {t: 'd', n: '14', y: 348},
+            {t: 'd', n: '15', y: 372}
+        ]},
+    ]
+}, [
+    {d:'M0,192C-32,192 -32,48 -68,48', l:0, style: {stroke: '#3182bd'}},
+    {d:'M0,192C-32,192 -32,144 -68,144', l:0, style: {stroke: '#3182bd'}},
+    {d:'M0,192C-32,192 -32,240 -68,240', l:0, style: {stroke: '#3182bd'}},
+    {d:'M0,192C-32,192 -32,336 -68,336', l:0, style: {stroke: '#3182bd'}},
+
+    {d:'M-100,48C-128,48 -128,12 -168,12', l:1},
+    {d:'M-100,48C-128,48 -128,36 -168,36', l:1},
+    {d:'M-100,48C-128,48 -128,60 -168,60', l:1},
+    {d:'M-100,48C-128,48 -128,84 -168,84', l:1},
+
+    {d:'M-100,144C-128,144 -128,108 -168,108', l:1},
+    {d:'M-100,144C-128,144 -128,132 -168,132', l:1},
+    {d:'M-100,144C-128,144 -128,156 -168,156', l:1},
+    {d:'M-100,144C-128,144 -128,180 -168,180', l:1},
+
+    {d:'M-100,240C-128,240 -128,204 -168,204', l:1},
+    {d:'M-100,240C-128,240 -128,228 -168,228', l:1},
+    {d:'M-100,240C-128,240 -128,252 -168,252', l:1},
+    {d:'M-100,240C-128,240 -128,276 -168,276', l:1},
+
+    {d:'M-100,336C-128,336 -128,300 -168,300', l:1},
+    {d:'M-100,336C-128,336 -128,324 -168,324', l:1},
+    {d:'M-100,336C-128,336 -128,348 -168,348', l:1},
+    {d:'M-100,336C-128,336 -128,372 -168,372', l:1}
+], 580, 0, -100);
