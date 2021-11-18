@@ -1,0 +1,421 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- common.css -->
+      <style>* {-webkit-tap-highlight-color: rgba(0,0,0,0);}html {-webkit-text-size-adjust: none;}body {font-family: -apple-system, Helvetica, Arial, sans-serif;margin: 0;padding: 20px;color: #333;word-wrap: break-word;}h1, h2, h3, h4, h5, h6 {line-height: 1.1;}img {max-width: 100% !important;height: auto;}blockquote {margin: 0;padding: 0 15px;color: #777;border-left: 4px solid #ddd;}hr {background-color: #ddd;border: 0;height: 1px;margin: 15px 0;}code {font-family: Menlo, Consolas, 'Ubuntu Mono', Monaco, 'source-code-pro', monospace;line-height: 1.4;margin: 0;padding: 0.2em 0;font-size: 90%;background-color: rgba(0,0,0,0.04);border-radius: 3px;}pre > code {margin: 0;padding: 0;font-size: 100%;word-break: normal;background: transparent;border: 0;}ol {list-style-type: decimal;}ol ol, ul ol {list-style-type: lower-latin;}ol ol ol, ul ol ol, ul ul ol, ol ul ol {list-style-type: lower-roman;}table {border-spacing: 0;border-collapse: collapse;margin-top: 0;margin-bottom: 16px;}table th {font-weight: bold;}table th, table td {padding: 6px 13px;border: 1px solid #ddd;}table tr {border-top: 1px solid #ccc;}table tr:nth-child(even) {background-color: #f8f8f8;}input[type="checkbox"] {cursor: default;margin-right: 0.5em;font-size: 13px;}.task-list-item {list-style-type: none;}.task-list-item+.task-list-item {margin-top: 3px;}.task-list-item input {float: left;margin: 0.3em 1em 0.25em -1.6em;vertical-align: middle;}#tag-field {margin: 8px 2px 10px;}#tag-field .tag {display: inline-block;background: #cadff3;border-radius: 4px;padding: 1px 8px;color: black;font-size: 12px;margin-right: 10px;line-height: 1.4;}</style>
+      <!-- ace-static.css -->
+      <style>.ace_static_highlight {white-space: pre-wrap;}.ace_static_highlight .ace_gutter {width: 2em;text-align: right;padding: 0 3px 0 0;margin-right: 3px;}.ace_static_highlight.ace_show_gutter > .ace_line {padding-left: 2.6em;}.ace_static_highlight .ace_line {position: relative;}.ace_static_highlight .ace_gutter-cell {-moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;top: 0;bottom: 0;left: 0;position: absolute;}.ace_static_highlight .ace_gutter-cell:before {content: counter(ace_line, decimal);counter-increment: ace_line;}.ace_static_highlight {counter-reset: ace_line;}</style>
+      <style>.ace-chrome .ace_gutter {background: #ebebeb;color: #333;overflow : hidden;}.ace-chrome .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-chrome {background-color: #FFFFFF;color: black;}.ace-chrome .ace_cursor {color: black;}.ace-chrome .ace_invisible {color: rgb(191, 191, 191);}.ace-chrome .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-chrome .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-chrome .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-chrome .ace_invalid {background-color: rgb(153, 0, 0);color: white;}.ace-chrome .ace_fold {}.ace-chrome .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-chrome .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-chrome .ace_support.ace_type,.ace-chrome .ace_support.ace_class.ace-chrome .ace_support.ace_other {color: rgb(109, 121, 222);}.ace-chrome .ace_variable.ace_parameter {font-style:italic;color:#FD971F;}.ace-chrome .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-chrome .ace_comment {color: #236e24;}.ace-chrome .ace_comment.ace_doc {color: #236e24;}.ace-chrome .ace_comment.ace_doc.ace_tag {color: #236e24;}.ace-chrome .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-chrome .ace_variable {color: rgb(49, 132, 149);}.ace-chrome .ace_xml-pe {color: rgb(104, 104, 91);}.ace-chrome .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-chrome .ace_heading {color: rgb(12, 7, 255);}.ace-chrome .ace_list {color:rgb(185, 6, 144);}.ace-chrome .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-chrome .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-chrome .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-chrome .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-chrome .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-chrome .ace_gutter-active-line {background-color : #dcdcdc;}.ace-chrome .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-chrome .ace_storage,.ace-chrome .ace_keyword,.ace-chrome .ace_meta.ace_tag {color: rgb(147, 15, 128);}.ace-chrome .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-chrome .ace_string {color: #1A1AA6;}.ace-chrome .ace_entity.ace_other.ace_attribute-name {color: #994409;}.ace-chrome .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}</style>
+      <!-- export.css -->
+      <style>
+        body{margin:0 auto;max-width:800px;line-height:1.4}
+        #nav{margin:5px 0 10px;font-size:15px}
+        #titlearea{border-bottom:1px solid #ccc;font-size:17px;padding:10px 0;}
+        #contentarea{font-size:15px;margin:16px 0}
+        .cell{outline:0;min-height:20px;margin:5px 0;padding:5px 0;}
+        .code-cell{font-family:Menlo,Consolas,'Ubuntu Mono',Monaco,'source-code-pro',monospace;font-size:12px;}
+        .latex-cell{white-space:pre-wrap;}
+      </style>
+      <!-- User CSS -->
+      <style> .text-cell {font-size: 15px;}.code-cell {font-size: 12px;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
+    </head>
+    <body>
+      <div id="nav"><div>Next: <a href='[总结] HTTP缓存知识整理.html'>[总结] HTTP缓存知识整理</a>, Previous: <a href='[总结] JavaScript 中高级知识整理.html'>[总结] JavaScript 中高级知识整理</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="titlearea">
+        <h2>[总结] Java8 之 Lambda 表达式</h2>
+      </div>
+      <div id="contentarea"><div class="cell markdown-cell"><p>Lambda表达式并不是什么新概念，Java8中引入它主要解决只有单一方法的匿名类使用起来过于丑陋、晦涩的问题。不说废话。假设有这样一个对象：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">class</span> <span class="ace_identifier">Person</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">enum</span> <span class="ace_identifier">Sex</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">MALE</span>, <span class="ace_identifier">FEMALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_support ace_function">String</span> <span class="ace_identifier">name</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">LocalDate</span> <span class="ace_identifier">birthday</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">Sex</span> <span class="ace_identifier">gender</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_support ace_function">String</span> <span class="ace_identifier">emailAddress</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">int</span> <span class="ace_identifier">getAge</span>() {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// ...</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">void</span> <span class="ace_identifier">printPerson</span>() {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// ...</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>如果想从一组 <code>Person</code> 中打印特定年龄的，代码看起来是这样的：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">printPersonsOlderThan</span>(<span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>, <span class="ace_keyword">int</span> <span class="ace_identifier">age</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_identifier">age</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">printPerson</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>如果查找年龄的算法变了，你可能会把代码改成这样：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">printPersonsWithinAgeRange</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>, <span class="ace_keyword">int</span> <span class="ace_identifier">low</span>, <span class="ace_keyword">int</span> <span class="ace_identifier">high</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">low</span> <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;</span> <span class="ace_identifier">high</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">printPerson</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>这时你意识到，算法的改变总是会导致修改上面的代码，为了应对将来可能的变化，你想到了把查找 <code>Person</code> 的算法从中剥离出来：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">printPersons</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>, <span class="ace_identifier">CheckPerson</span> <span class="ace_identifier">tester</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">tester</span>.<span class="ace_identifier">test</span>(<span class="ace_identifier">p</span>)) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">printPerson</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>这时只需要针对不同的查找算法提供不同的实现类：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">interface</span> <span class="ace_identifier">CheckPerson</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">boolean</span> <span class="ace_identifier">test</span>(<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">class</span> <span class="ace_identifier">CheckPersonEligibleForSelectiveService</span> <span class="ace_keyword">implements</span> <span class="ace_identifier">CheckPerson</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">boolean</span> <span class="ace_identifier">test</span>(<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">return</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">gender</span> <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span> <span class="ace_keyword ace_operator">&amp;&amp;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span> <span class="ace_keyword ace_operator">&amp;&amp;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>调用的时候，只需要实例化特定的实现类并传入方法即可：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">printPersons</span>(<span class="ace_identifier">roster</span>, <span class="ace_keyword">new</span> <span class="ace_identifier">CheckPersonEligibleForSelectiveService</span>());
+</div></div></div></pre>
+<p>然而这样的方式会引入一堆“很小”的实现类。于是你发现这种场景下使用匿名类更为合适：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">printPersons</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">new</span> <span class="ace_identifier">CheckPerson</span>() {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">public</span> <span class="ace_keyword">boolean</span> <span class="ace_identifier">test</span>(<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">return</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<h2>1. Lambda 表达式的使用</h2>
+<p><code>CheckPerson</code> 是一个<strong>函数接口</strong>，它是指只有一个抽象方法的接口(友情提示: 没有任何方法的接口叫<strong>标识接口</strong>)。由于只有一个抽象方法，我们完全有理由在实现中忽略掉方法名，而这正是 Lambda 表达式的作用：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">printPersons</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span>) <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<p>再回顾一下 <code>CheckPerson</code> 接口的代码：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">interface</span> <span class="ace_identifier">CheckPerson</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">boolean</span> <span class="ace_identifier">test</span>(<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>这样的<strong>函数接口</strong>过于简单，似乎没有必要在应用中定义诸多类似的东西。于是 JDK 给你提供了很多开箱即用的接口，它们在 <code>java.util.function</code> 包中。比如该例中可以使用 <code>Predicate&lt;T&gt;</code> ：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">interface</span> <span class="ace_identifier">Predicate</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">T</span><span class="ace_keyword ace_operator">&gt;</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">boolean</span> <span class="ace_identifier">test</span>(<span class="ace_identifier">T</span> <span class="ace_identifier">t</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>使用它来替换 <code>CheckPerson</code> 接口，代码变成了：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">printPersonsWithPredicate</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>, <span class="ace_identifier">Predicate</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">tester</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">tester</span>.<span class="ace_identifier">test</span>(<span class="ace_identifier">p</span>)) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span>.<span class="ace_identifier">printPerson</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>对应的调用方式为：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">printPersonsWithPredicate</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<p>玩完了年龄的查找算法，我们来看一下执行逻辑。前面的示例在找到合法的年龄后，只是调用了 <code>printPerson()</code> 方法进行打印。如果想改变这一执行逻辑，不再是打印呢？我们可以将执行过程当作一个参数并使用 lambda 表达式来改造。要记住，使用 lambda 表达式必须实现函数接口。</p>
+<p><code>Consumer&lt;T&gt;</code> 接口可以传入一个参数并返回 <code>void</code> ，该接口包含一个方法：<code>void accept(T t)</code> ，使用它将代码改为：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">processPersons</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Predicate</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">tester</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Consumer</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">block</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">tester</span>.<span class="ace_identifier">test</span>(<span class="ace_identifier">p</span>)) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">block</span>.<span class="ace_identifier">accept</span>(<span class="ace_identifier">p</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>这时便可以将不同的执行逻辑当作参数传入，如果依然想执行打印方法，则：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">processPersons</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span> <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span> <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span> <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span> <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span> <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">printPerson</span>()
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<p>有时会需要处理后得到一个返回值，<code>Function&lt;T,R&gt;</code> 接口正是此作用，它包含一个 <code>R apply(T t)</code> 方法。现在来继续改造上面的例子，加入一个新参数 <code>mapper</code> 来提供获得数据的逻辑：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">processPersonsWithFunction</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">List</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Predicate</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">tester</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Function</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Person</span>, <span class="ace_support ace_function">String</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">mapper</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Consumer</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_support ace_function">String</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">block</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">Person</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">roster</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">tester</span>.<span class="ace_identifier">test</span>(<span class="ace_identifier">p</span>)) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">String</span> <span class="ace_identifier">data</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">mapper</span>.<span class="ace_identifier">apply</span>(<span class="ace_identifier">p</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">block</span>.<span class="ace_identifier">accept</span>(<span class="ace_identifier">data</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>调用代码，获得用户的电子邮件地址并输出到控制台：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">processPersonsWithFunction</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getEmailAddress</span>(),
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">email</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_identifier">email</span>)
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<h2>2. 充分使用泛型</h2>
+<p>事实上，我们上面得到的 <code>processPersonsWithFunction</code> 方法不仅可以处理 <code>Person</code> 类型，如果我们把类型声明改用泛型，可以得到更为通用的方法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">X</span>, <span class="ace_identifier">Y</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_keyword">void</span> <span class="ace_identifier">processElements</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">Iterable</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">X</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">source</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Predicate</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">X</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">tester</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Function</span> <span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">X</span>, <span class="ace_identifier">Y</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">mapper</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Consumer</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">Y</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">block</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> (<span class="ace_identifier">X</span> <span class="ace_identifier">p</span> : <span class="ace_identifier">source</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> (<span class="ace_identifier">tester</span>.<span class="ace_identifier">test</span>(<span class="ace_identifier">p</span>)) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Y</span> <span class="ace_identifier">data</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">mapper</span>.<span class="ace_identifier">apply</span>(<span class="ace_identifier">p</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">block</span>.<span class="ace_identifier">accept</span>(<span class="ace_identifier">data</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>针对 <code>Person</code> 类型，依然可以如此调用：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">processElements</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">roster</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>,
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getEmailAddress</span>(),
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">email</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_identifier">email</span>)
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<p>它的执行过程是这样的：</p>
+<ol>
+<li>从集合 source 中获取一组对象，该例从 roster 中获得 Person 对象。</li>
+<li>从这组对象中过滤出符合 tester 的( 即满足 Predicate 的对象 )。该例的 Predicate 使用 lambda 表达式。</li>
+<li>通过 Function 类型的对象 mapper ，将上面过滤出的对象类型映射为某值类型。该例中的 Function 对象是 Lambda 表达式，它返回了 String 型的电子邮件地址。</li>
+<li>将映射后的值通过 Consumer 对象 block 执行某行为。该例中的 Consumer 对象也是 Lambda 表达式，执行的行为是打印字符串。</li>
+</ol>
+<h2>3. 使用链式操作</h2>
+<p>使用 Lambda 表达式作为参数，使得链式操作变得极为方便，比如：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">roster</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    .<span class="ace_identifier">stream</span>()
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    .<span class="ace_identifier">filter</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>)
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    .<span class="ace_identifier">map</span>(<span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getEmailAddress</span>())
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    .<span class="ace_identifier">forEach</span>(<span class="ace_identifier">email</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_identifier">email</span>));
+</div></div></div></pre>
+<p>例子中用到的方法签名如下：</p>
+<ul>
+<li>Stream stream()</li>
+<li>Stream filter(Predicate&lt;? super T&gt; predicate)</li>
+<li>Stream map(Function&lt;? super T,? extends R&gt; mapper)</li>
+<li>void forEach(Consumer&lt;? super T&gt; action)</li>
+</ul>
+<p>参考此例，可以在 Java 中写出许多能够媲美支持函数式编程的语言的代码。</p>
+<h2>4. 在 GUI 中的应用</h2>
+<p>Java GUI 编程中经常出现类似的代码：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">btn</span>.<span class="ace_identifier">setOnAction</span>(<span class="ace_keyword">new</span> <span class="ace_identifier">EventHandler</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">ActionEvent</span><span class="ace_keyword ace_operator">&gt;</span>() {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    @<span class="ace_support ace_function">Override</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">void</span> <span class="ace_identifier">handle</span>(<span class="ace_identifier">ActionEvent</span> <span class="ace_identifier">event</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"Hello World!"</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>});
+</div></div></div></pre>
+<p>它极其适合使用 Lambda 表达式进行改造：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">btn</span>.<span class="ace_identifier">setOnAction</span>(
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">event</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"Hello World!"</span>)
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>);
+</div></div></div></pre>
+<h2>5. 语法细节</h2>
+<p>领略了 Lambda 表达式的风采后，来看其语法。Lambda 表达式由三部分组成：</p>
+<ul>
+<li>形参列表</li>
+<li>箭头符号</li>
+<li>主体部分</li>
+</ul>
+<p>首先是放在圆括号中的、以逗号分隔的<strong>形参列表</strong>。比如：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>(<span class="ace_identifier">User</span> <span class="ace_identifier">u</span>, <span class="ace_identifier">Role</span> <span class="ace_identifier">r</span>) <span class="ace_keyword ace_operator">-&gt;</span> ...
+</div></div></div></pre>
+<p>在 Lambda 表达式中可以省略参数类型，当只有一个参数时，也可以省略圆括号：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span> 
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>
+</div></div></div></pre>
+<p><strong>箭头符号</strong>就是 <code>-&gt;</code> 。</p>
+<p><strong>主体</strong>可以是一个表达式：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span> 
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>
+</div></div></div></pre>
+<p>也可以是一个语句：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">p</span> <span class="ace_keyword ace_operator">-&gt;</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getGender</span>() <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">Person</span>.<span class="ace_identifier">Sex</span>.<span class="ace_identifier">MALE</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">18</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_identifier">p</span>.<span class="ace_identifier">getAge</span>() <span class="ace_keyword ace_operator">&lt;=</span> <span class="ace_constant ace_numeric">25</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>无返回值的语句也可以不使用语句块(<code>{}</code>)：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">email</span> <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_identifier">email</span>)
+</div></div></div></pre>
+<p>来看一个使用多个形参的例子：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">class</span> <span class="ace_identifier">Calculator</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">interface</span> <span class="ace_identifier">IntegerMath</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">int</span> <span class="ace_identifier">operation</span>(<span class="ace_keyword">int</span> <span class="ace_identifier">a</span>, <span class="ace_keyword">int</span> <span class="ace_identifier">b</span>);   
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">int</span> <span class="ace_identifier">operateBinary</span>(<span class="ace_keyword">int</span> <span class="ace_identifier">a</span>, <span class="ace_keyword">int</span> <span class="ace_identifier">b</span>, <span class="ace_identifier">IntegerMath</span> <span class="ace_identifier">op</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">return</span> <span class="ace_identifier">op</span>.<span class="ace_identifier">operation</span>(<span class="ace_identifier">a</span>, <span class="ace_identifier">b</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">main</span>(<span class="ace_support ace_function">String</span>... <span class="ace_identifier">args</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Calculator</span> <span class="ace_identifier">myApp</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_keyword">new</span> <span class="ace_identifier">Calculator</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">IntegerMath</span> <span class="ace_identifier">addition</span> <span class="ace_keyword ace_operator">=</span> (<span class="ace_identifier">a</span>, <span class="ace_identifier">b</span>) <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">a</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_identifier">b</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">IntegerMath</span> <span class="ace_identifier">subtraction</span> <span class="ace_keyword ace_operator">=</span> (<span class="ace_identifier">a</span>, <span class="ace_identifier">b</span>) <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_identifier">a</span> <span class="ace_keyword ace_operator">-</span> <span class="ace_identifier">b</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"40 + 2 = "</span> <span class="ace_keyword ace_operator">+</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">myApp</span>.<span class="ace_identifier">operateBinary</span>(<span class="ace_constant ace_numeric">40</span>, <span class="ace_constant ace_numeric">2</span>, <span class="ace_identifier">addition</span>));
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"20 - 10 = "</span> <span class="ace_keyword ace_operator">+</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">myApp</span>.<span class="ace_identifier">operateBinary</span>(<span class="ace_constant ace_numeric">20</span>, <span class="ace_constant ace_numeric">10</span>, <span class="ace_identifier">subtraction</span>));    
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>它的输出结果为：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>40 + 2 = 42
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>20 - 10 = 10
+</div></div></div></pre>
+<h2>6. 作用域</h2>
+<p>Lambda 表达式中可以使用变量，采用词法作用域(ps：可参考 JavaScript 作用域)，不存在变量作用域屏蔽问题。</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">import</span> <span class="ace_identifier">java</span>.<span class="ace_identifier">util</span>.<span class="ace_identifier">function</span>.<span class="ace_identifier">Consumer</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">class</span> <span class="ace_identifier">LambdaScopeTest</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">int</span> <span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">0</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">class</span> <span class="ace_identifier">FirstLevel</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">public</span> <span class="ace_keyword">int</span> <span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">1</span>;
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">void</span> <span class="ace_identifier">methodInFirstLevel</span>(<span class="ace_keyword">int</span> <span class="ace_identifier">x</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// <span class="ace_cjk" style="width:NaNpx">该</span><span class="ace_cjk" style="width:NaNpx">语</span><span class="ace_cjk" style="width:NaNpx">句</span><span class="ace_cjk" style="width:NaNpx">将</span><span class="ace_cjk" style="width:NaNpx">会</span><span class="ace_cjk" style="width:NaNpx">导</span><span class="ace_cjk" style="width:NaNpx">致</span> `<span class="ace_cjk" style="width:NaNpx">语</span><span class="ace_cjk" style="width:NaNpx">句</span>A` <span class="ace_cjk" style="width:NaNpx">编</span><span class="ace_cjk" style="width:NaNpx">译</span><span class="ace_cjk" style="width:NaNpx">错</span><span class="ace_cjk" style="width:NaNpx">误</span><span class="ace_cjk" style="width:NaNpx">：</span></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// "local variables referenced from a lambda expression</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// must be final or effectively final"</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_comment">// x = 99;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">Consumer</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_support ace_function">Integer</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">myConsumer</span> <span class="ace_keyword ace_operator">=</span> (<span class="ace_identifier">y</span>) <span class="ace_keyword ace_operator">-&gt;</span> 
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"x = "</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_identifier">x</span>); <span class="ace_comment">// <span class="ace_cjk" style="width:NaNpx">语</span><span class="ace_cjk" style="width:NaNpx">句</span>A</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"y = "</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_identifier">y</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"this.x = "</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_keyword">this</span>.<span class="ace_identifier">x</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_support ace_function">System</span>.<span class="ace_identifier">out</span>.<span class="ace_identifier">println</span>(<span class="ace_string">"LambdaScopeTest.this.x = "</span> <span class="ace_keyword ace_operator">+</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">LambdaScopeTest</span>.<span class="ace_keyword">this</span>.<span class="ace_identifier">x</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    };
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">myConsumer</span>.<span class="ace_identifier">accept</span>(<span class="ace_identifier">x</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">public</span> <span class="ace_keyword">static</span> <span class="ace_keyword">void</span> <span class="ace_identifier">main</span>(<span class="ace_support ace_function">String</span>... <span class="ace_identifier">args</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">LambdaScopeTest</span> <span class="ace_identifier">st</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_keyword">new</span> <span class="ace_identifier">LambdaScopeTest</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">LambdaScopeTest</span>.<span class="ace_identifier">FirstLevel</span> <span class="ace_identifier">fl</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">st</span>.<span class="ace_keyword">new</span> <span class="ace_identifier">FirstLevel</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">fl</span>.<span class="ace_identifier">methodInFirstLevel</span>(<span class="ace_constant ace_numeric">23</span>);
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    }
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>上例的输出结果为：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">23</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">y</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">23</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">this</span>.<span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">1</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">LambdaScopeTest</span>.<span class="ace_keyword">this</span>.<span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">0</span>
+</div></div></div></pre>
+<p>如果把例子中的 <code>myConsumer</code> 的参数改为 <code>y</code> :</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">Consumer</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_support ace_function">Integer</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">myConsumer</span> <span class="ace_keyword ace_operator">=</span> (<span class="ace_identifier">x</span>) <span class="ace_keyword ace_operator">-&gt;</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_comment">// ...</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>将会抛出错误： "variable x is already defined in method methodInFirstLevel(int)" 。这是因为 Lambda 表达式并不会引入新的作用域范围。Lambda 表达式中只能访问 final 或 effectively final 的变量，这一点和匿名类仍然是一致的。</p>
+<blockquote>
+<p>effectively final 是 Java8 的特性之一：局部内部类和匿名内部类访问的局部变量必须由final修饰，Java8 中可以不加final修饰符，由系统默认添加。</p>
+</blockquote>
+<h2>7. 目标类型</h2>
+<p>Lambda 表达式的类型是由上下文推导而来，并不是函数接口的名称。例如之前的两个例子：</p>
+<ul>
+<li>public static void printPersons(List roster, CheckPerson tester)</li>
+<li>public void printPersonsWithPredicate(List roster, Predicate tester)</li>
+</ul>
+<p>当 Java 的运行时执行 <code>printPersons</code> 方法时需要 <code>CheckPerson</code> 类型，因此 Lambda 表达式的类型是 <code>CheckPerson</code> 。而在方法 <code>printPersonsWithPredicate</code> 中，其类型为 <code>Predicate&lt;Person&gt;</code> 。这种类型叫做 <strong>目标类型(target type)</strong> ，它只能在下列场景使用：</p>
+<ul>
+<li>变量声明</li>
+<li>赋值</li>
+<li>返回语句 return</li>
+<li>数组初始化</li>
+<li>方法或构造器参数</li>
+<li>Lambda 表达式主体中</li>
+<li>条件表达式 ? :</li>
+<li>类型转换</li>
+</ul>
+<p>最后来看一个例子。假设有如下两个函数接口：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">interface</span> <span class="ace_support ace_function">Runnable</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">void</span> <span class="ace_identifier">run</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">public</span> <span class="ace_keyword">interface</span> <span class="ace_identifier">Callable</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">V</span><span class="ace_keyword ace_operator">&gt;</span> {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">V</span> <span class="ace_identifier">call</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p><code>Runnable.run</code> 没有返回值，而 <code>Callable&lt;V&gt;.call</code> 有返回值。</p>
+<p>现在有这样两个方法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword">void</span> <span class="ace_identifier">invoke</span>(<span class="ace_support ace_function">Runnable</span> <span class="ace_identifier">r</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">r</span>.<span class="ace_identifier">run</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">T</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">T</span> <span class="ace_identifier">invoke</span>(<span class="ace_identifier">Callable</span><span class="ace_keyword ace_operator">&lt;</span><span class="ace_identifier">T</span><span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">c</span>) {
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_identifier">c</span>.<span class="ace_identifier">call</span>();
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>}
+</div></div></div></pre>
+<p>下面的语句会执行哪个方法呢？</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_support ace_function">String</span> <span class="ace_identifier">s</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">invoke</span>(() <span class="ace_keyword ace_operator">-&gt;</span> <span class="ace_string">"done"</span>);
+</div></div></div></pre>
+<p>答案是 <code>invoke(Callable&lt;T&gt;)</code> ，因为它有返回值。因此，Lambda 表达式的类型是 <code>Callable&lt;T&gt;</code> ，很简单对吗？</p>
+<p><strong>参考资料</strong></p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">The Java™ Tutorials: Lambda Expressions</a></li>
+</ul>
+<hr>
+<p>@ssbunny 2015-10-30</p>
+<p><img src="resources/9BDF5BC45B39A9BBFBF64D55FD48EC5B.png" alt="微信二维码_zhq_tiny.png" width="217" height="260"></p>
+</div></div>
+      <script>document.body.onkeyup = function(e) {
+if (e.keyCode === 39) window.location.href = '[总结] HTTP缓存知识整理.html';
+if (e.keyCode === 37) window.location.href = '[总结] JavaScript 中高级知识整理.html';
+}</script>
+    </body>
+    </html>
+  

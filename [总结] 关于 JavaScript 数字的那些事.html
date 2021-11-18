@@ -1,0 +1,231 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- common.css -->
+      <style>* {-webkit-tap-highlight-color: rgba(0,0,0,0);}html {-webkit-text-size-adjust: none;}body {font-family: -apple-system, Helvetica, Arial, sans-serif;margin: 0;padding: 20px;color: #333;word-wrap: break-word;}h1, h2, h3, h4, h5, h6 {line-height: 1.1;}img {max-width: 100% !important;height: auto;}blockquote {margin: 0;padding: 0 15px;color: #777;border-left: 4px solid #ddd;}hr {background-color: #ddd;border: 0;height: 1px;margin: 15px 0;}code {font-family: Menlo, Consolas, 'Ubuntu Mono', Monaco, 'source-code-pro', monospace;line-height: 1.4;margin: 0;padding: 0.2em 0;font-size: 90%;background-color: rgba(0,0,0,0.04);border-radius: 3px;}pre > code {margin: 0;padding: 0;font-size: 100%;word-break: normal;background: transparent;border: 0;}ol {list-style-type: decimal;}ol ol, ul ol {list-style-type: lower-latin;}ol ol ol, ul ol ol, ul ul ol, ol ul ol {list-style-type: lower-roman;}table {border-spacing: 0;border-collapse: collapse;margin-top: 0;margin-bottom: 16px;}table th {font-weight: bold;}table th, table td {padding: 6px 13px;border: 1px solid #ddd;}table tr {border-top: 1px solid #ccc;}table tr:nth-child(even) {background-color: #f8f8f8;}input[type="checkbox"] {cursor: default;margin-right: 0.5em;font-size: 13px;}.task-list-item {list-style-type: none;}.task-list-item+.task-list-item {margin-top: 3px;}.task-list-item input {float: left;margin: 0.3em 1em 0.25em -1.6em;vertical-align: middle;}#tag-field {margin: 8px 2px 10px;}#tag-field .tag {display: inline-block;background: #cadff3;border-radius: 4px;padding: 1px 8px;color: black;font-size: 12px;margin-right: 10px;line-height: 1.4;}</style>
+      <!-- ace-static.css -->
+      <style>.ace_static_highlight {white-space: pre-wrap;}.ace_static_highlight .ace_gutter {width: 2em;text-align: right;padding: 0 3px 0 0;margin-right: 3px;}.ace_static_highlight.ace_show_gutter > .ace_line {padding-left: 2.6em;}.ace_static_highlight .ace_line {position: relative;}.ace_static_highlight .ace_gutter-cell {-moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;top: 0;bottom: 0;left: 0;position: absolute;}.ace_static_highlight .ace_gutter-cell:before {content: counter(ace_line, decimal);counter-increment: ace_line;}.ace_static_highlight {counter-reset: ace_line;}</style>
+      <style>.ace-chrome .ace_gutter {background: #ebebeb;color: #333;overflow : hidden;}.ace-chrome .ace_print-margin {width: 1px;background: #e8e8e8;}.ace-chrome {background-color: #FFFFFF;color: black;}.ace-chrome .ace_cursor {color: black;}.ace-chrome .ace_invisible {color: rgb(191, 191, 191);}.ace-chrome .ace_constant.ace_buildin {color: rgb(88, 72, 246);}.ace-chrome .ace_constant.ace_language {color: rgb(88, 92, 246);}.ace-chrome .ace_constant.ace_library {color: rgb(6, 150, 14);}.ace-chrome .ace_invalid {background-color: rgb(153, 0, 0);color: white;}.ace-chrome .ace_fold {}.ace-chrome .ace_support.ace_function {color: rgb(60, 76, 114);}.ace-chrome .ace_support.ace_constant {color: rgb(6, 150, 14);}.ace-chrome .ace_support.ace_type,.ace-chrome .ace_support.ace_class.ace-chrome .ace_support.ace_other {color: rgb(109, 121, 222);}.ace-chrome .ace_variable.ace_parameter {font-style:italic;color:#FD971F;}.ace-chrome .ace_keyword.ace_operator {color: rgb(104, 118, 135);}.ace-chrome .ace_comment {color: #236e24;}.ace-chrome .ace_comment.ace_doc {color: #236e24;}.ace-chrome .ace_comment.ace_doc.ace_tag {color: #236e24;}.ace-chrome .ace_constant.ace_numeric {color: rgb(0, 0, 205);}.ace-chrome .ace_variable {color: rgb(49, 132, 149);}.ace-chrome .ace_xml-pe {color: rgb(104, 104, 91);}.ace-chrome .ace_entity.ace_name.ace_function {color: #0000A2;}.ace-chrome .ace_heading {color: rgb(12, 7, 255);}.ace-chrome .ace_list {color:rgb(185, 6, 144);}.ace-chrome .ace_marker-layer .ace_selection {background: rgb(181, 213, 255);}.ace-chrome .ace_marker-layer .ace_step {background: rgb(252, 255, 0);}.ace-chrome .ace_marker-layer .ace_stack {background: rgb(164, 229, 101);}.ace-chrome .ace_marker-layer .ace_bracket {margin: -1px 0 0 -1px;border: 1px solid rgb(192, 192, 192);}.ace-chrome .ace_marker-layer .ace_active-line {background: rgba(0, 0, 0, 0.07);}.ace-chrome .ace_gutter-active-line {background-color : #dcdcdc;}.ace-chrome .ace_marker-layer .ace_selected-word {background: rgb(250, 250, 255);border: 1px solid rgb(200, 200, 250);}.ace-chrome .ace_storage,.ace-chrome .ace_keyword,.ace-chrome .ace_meta.ace_tag {color: rgb(147, 15, 128);}.ace-chrome .ace_string.ace_regex {color: rgb(255, 0, 0)}.ace-chrome .ace_string {color: #1A1AA6;}.ace-chrome .ace_entity.ace_other.ace_attribute-name {color: #994409;}.ace-chrome .ace_indent-guide {background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;}</style>
+      <!-- export.css -->
+      <style>
+        body{margin:0 auto;max-width:800px;line-height:1.4}
+        #nav{margin:5px 0 10px;font-size:15px}
+        #titlearea{border-bottom:1px solid #ccc;font-size:17px;padding:10px 0;}
+        #contentarea{font-size:15px;margin:16px 0}
+        .cell{outline:0;min-height:20px;margin:5px 0;padding:5px 0;}
+        .code-cell{font-family:Menlo,Consolas,'Ubuntu Mono',Monaco,'source-code-pro',monospace;font-size:12px;}
+        .latex-cell{white-space:pre-wrap;}
+      </style>
+      <!-- User CSS -->
+      <style> .text-cell {font-size: 15px;}.code-cell {font-size: 12px;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
+    </head>
+    <body>
+      <div id="nav"><div>Next: <a href='[总结] Redis 中的命令.html'>[总结] Redis 中的命令</a>, Previous: <a href='[总结] 写好程序分支控制.html'>[总结] 写好程序分支控制</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="titlearea">
+        <h2>[总结] 关于 JavaScript 数字的那些事</h2>
+      </div>
+      <div id="contentarea"><div class="cell markdown-cell"><p>本文总结 JavaScript 语言中和数字相关的语言特性、缺陷与陷阱及使用技巧。相关基础内容请参考语言规范，本文只涉及较容易被疏忽的方面。首先分享一个经验：我在使用 JavaScript 做大数计算或高精度计算时有个原则：<strong>不要使用 JavaScript 做这件事情！</strong> 如果某个运算过程你可以选择在 Java 中或 JavaScript 中完成，<strong>尽可能不要使用 JavaScript 做数学运算！</strong></p>
+<p>本文所有示例内容在如下环境测试：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_identifier">node</span> <span class="ace_keyword ace_operator">-</span><span class="ace_identifier">v</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">v4</span><span class="ace_constant ace_numeric">.0.0</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_identifier">node</span> <span class="ace_keyword ace_operator">-</span><span class="ace_identifier">p</span> <span class="ace_identifier">process</span>.<span class="ace_identifier">versions</span>.<span class="ace_identifier">v8</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">4.5.103.30</span>
+</div></div></div></pre>
+<p>或</p>
+<pre><code>Safari 版本 9.0 (11601.1.56)
+</code></pre>
+<h2>1. 数字字面值也是对象</h2>
+<p>在 JavaScript 中，数字的字面值也是对象。可以使用它直接调用方法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">3.1415926</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">toFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">4</span><span class="ace_paren ace_rparen">)</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_string">'3.1416'</span>
+</div></div></div></pre>
+<p>然而使用整数直接调用方法会抛出 <code>SyntaxError</code> ，这是因为解释器不能正确解析，它试图将点操作符解释成浮点数的一部分：</p>
+<p><img src="resources/4FB57463D1D93406B9C2F42EE6743AFB.png" alt="syntaxerror.png" width="992" height="264"></p>
+<p>克服这种情况非常简单，有下面三种方法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">123</span><span class="ace_punctuation ace_operator">..</span><span class="ace_support ace_function">toString</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">123</span> <span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">toString</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">123</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">toString</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div></div></div></pre>
+<h2>2. 两个特殊数值：NaN 和 Infinity</h2>
+<h3>2.1. NaN</h3>
+<p><code>NaN</code> 代表“不是一个数字”，而它的类型却是 <code>number</code> 。实际使用中，它通常产生自——从表单取数据并转换成数字类型：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">var</span> <span class="ace_identifier">age</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_variable ace_language">document</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_dom">getElementById</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'age'</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">value</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_variable ace_language">Number</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">age</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span> <span class="ace_comment">// <span class="ace_cjk" style="width:NaNpx">用</span><span class="ace_cjk" style="width:NaNpx">户</span><span class="ace_cjk" style="width:NaNpx">输</span><span class="ace_cjk" style="width:NaNpx">入</span> 'abc' <span class="ace_cjk" style="width:NaNpx">时</span><span class="ace_cjk" style="width:NaNpx">此</span><span class="ace_cjk" style="width:NaNpx">处</span><span class="ace_cjk" style="width:NaNpx">则</span><span class="ace_cjk" style="width:NaNpx">为</span> `NaN`</span>
+</div></div></div></pre>
+<p>识别 <code>NaN</code> 不能依赖等同判断( <code>===</code> )，甚至普通的相等判断( <code>==</code> )也不行：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_identifier">Number</span><span class="ace_paren ace_lparen">(</span><span class="ace_string ace_start">'</span><span class="ace_string">1.2x</span><span class="ace_string ace_end">'</span><span class="ace_paren ace_rparen">)</span> <span class="ace_keyword ace_operator">===</span> <span class="ace_identifier">NaN</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">false</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_identifier">Number</span><span class="ace_paren ace_lparen">(</span><span class="ace_string ace_start">'</span><span class="ace_string">abc</span><span class="ace_string ace_end">'</span><span class="ace_paren ace_rparen">)</span> <span class="ace_keyword ace_operator">==</span> <span class="ace_identifier">NaN</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">false</span>
+</div></div></div></pre>
+<p>需要使用 <code>isNaN</code> 方法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_identifier">isNaN</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">NaN</span><span class="ace_paren ace_rparen">)</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">true</span>
+</div></div></div></pre>
+<p>然而此方法会尝试将其参数动态转换成 <code>number</code> 类型再判断，因此对于 <code>string</code> 或 <code>object</code> 等类型的检测，它通常会返回 <code>true</code> :</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_variable ace_language">isNaN</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'xyz'</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>    <span class="ace_comment">// true</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_variable ace_language">isNaN</span><span class="ace_paren ace_lparen">([</span><span class="ace_string">'abc'</span><span class="ace_paren ace_rparen">])</span><span class="ace_punctuation ace_operator">;</span>  <span class="ace_comment">// true</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_variable ace_language">isNaN</span><span class="ace_paren ace_lparen">({</span><span class="ace_paren ace_rparen">})</span><span class="ace_punctuation ace_operator">;</span>       <span class="ace_comment">// true</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_variable ace_language">isNaN</span><span class="ace_paren ace_lparen">([</span><span class="ace_constant ace_numeric">123</span><span class="ace_paren ace_rparen">])</span><span class="ace_punctuation ace_operator">;</span>    <span class="ace_comment">// false</span>
+</div></div></div></pre>
+<p>为了正确的检测出 <code>NaN</code> 可以使用一个小技巧，它基于这样一个事实：目前只有 <code>NaN</code> 是不等于自身的对象：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">isRealNaN</span> <span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">x</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">!==</span> <span class="ace_identifier">x</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">console</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_firebug">log</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">isRealNaN</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_language">NaN</span><span class="ace_paren ace_rparen">))</span><span class="ace_punctuation ace_operator">;</span>   <span class="ace_comment">// true</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">console</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_firebug">log</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">isRealNaN</span><span class="ace_paren ace_lparen">({</span><span class="ace_paren ace_rparen">}))</span><span class="ace_punctuation ace_operator">;</span>    <span class="ace_comment">// false</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">console</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_firebug">log</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">isRealNaN</span><span class="ace_paren ace_lparen">(</span><span class="ace_string">'foo'</span><span class="ace_paren ace_rparen">))</span><span class="ace_punctuation ace_operator">;</span> <span class="ace_comment">// false</span>
+</div></div></div></pre>
+<p>更为正统的方式是这样的：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">isRealNaN</span> <span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">x</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_keyword">typeof</span> <span class="ace_identifier">x</span> <span class="ace_keyword ace_operator">===</span> <span class="ace_string">'number'</span> <span class="ace_keyword ace_operator">&amp;&amp;</span> <span class="ace_variable ace_language">isNaN</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">x</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div></div></div></pre>
+<p>当然，在实现了 ECMAScript 6 的解释器环境中，也可以使用 <code>Number.isNaN()</code> 方法。</p>
+<h3>2.2. Infinity</h3>
+<p><code>Infinity</code> 实际开发中出现的频率似乎并不高。它代表无穷大，对应的还有 <code>-Infinity</code> 代表无穷小。看几个例子即可：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">123</span> <span class="ace_keyword ace_operator">/</span> <span class="ace_constant ace_numeric">0</span>              <span class="ace_comment">// Infinity</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_language">Infinity</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_numeric">1</span>         <span class="ace_comment">// Infinity</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_language">Infinity</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_language">Infinity</span>  <span class="ace_comment">// Infinity</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_language">Infinity</span> <span class="ace_keyword ace_operator">-</span> <span class="ace_constant ace_language">Infinity</span>  <span class="ace_comment">// NaN</span>
+</div></div></div></pre>
+<h2>3. 数字的显示方式</h2>
+<ol>
+<li>整数位数超过 21 位时显示成科学计数法：</li>
+</ol>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">1234567890123456789012</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">1.2345678901234568e+21</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">123456789012345678901</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">123456789012345680000</span>
+</div></div></div></pre>
+<ol start="2">
+<li>以 <code>0.</code> 开头，后面跟着超过 5 个零时，显示成科学计数法：</li>
+</ol>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">0.0000001</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">1e-7</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">0.000001</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">0.000001</span>
+</div></div></div></pre>
+<ol start="3">
+<li>其它情况下正常显示。</li>
+</ol>
+<h2>4. 总是不准的数学运算</h2>
+<p>如果你有一定的 JavaScript 开发经验，一定遇到过浮点数算不准确的问题：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">0.1</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_numeric">0.2</span> <span class="ace_keyword ace_operator">===</span> <span class="ace_constant ace_numeric">0.3</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_language ace_boolean">false</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">0.2</span> <span class="ace_keyword ace_operator">*</span> <span class="ace_constant ace_numeric">0.2</span> <span class="ace_keyword ace_operator">===</span> <span class="ace_constant ace_numeric">0.04</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_language ace_boolean">false</span>
+</div></div></div></pre>
+<p>然而事情似乎并不只是发生在浮点数身上：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">9007199254740992</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_numeric">1</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">9007199254740992</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">9007199254740992</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_numeric">2</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_constant ace_numeric">9007199254740994</span>
+</div></div></div></pre>
+<p>这是因为事实上 JavaScript 中的一切数字实际存储的均为 64 bit 浮点数，采用 IEEE 754 规范。</p>
+<h2>5. 不尽如人意的四舍五入</h2>
+<blockquote>
+<p>toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。</p>
+</blockquote>
+<p>以上是 w3school 对 <code>toFixed()</code> 方法的解释，然而此方法并不尽如人意。</p>
+<p>当数字大于 21 位时，<code>toFixed()</code> 方法只是调用 <code>toString()</code> 返回科学计数法：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>$ <span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">1234567890123456789012</span><span class="ace_paren ace_rparen">)</span>.<span class="ace_identifier">toFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">2</span><span class="ace_paren ace_rparen">)</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_string ace_start">'</span><span class="ace_string">1.2345678901234568e+21</span><span class="ace_string ace_end">'</span>
+</div></div></div></pre>
+<p>由于浮点数精度问题，<code>toFixed()</code> 方法实际上只能正确做到“四舍六入”，对于“五”，它的处理看上去并不那么精确：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">$</span> <span class="ace_constant ace_numeric">1.105</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">toFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">2</span><span class="ace_paren ace_rparen">)</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_string">'1.10'</span>
+</div></div></div></pre>
+<p>关于此方法还有“四舍六入五成双”的解释：</p>
+<ol>
+<li>被修约的数字小于5时，该数字舍去；</li>
+<li>被修约的数字大于5时，则进位；</li>
+<li>被修约的数字等于5时，要看5前面的数字，若是奇数则进位，若是偶数则将5舍掉，即修约后末尾数字都成为偶数；若5的后面还有不为“0”的任何数，则此时无论5的前面是奇数还是偶数，均应进位。</li>
+</ol>
+<p>然而这也并不准确，可以参考下面的结果：</p>
+<pre><code>1.105   '1.10'
+1.115   '1.11'
+1.125   '1.13'
+1.135   '1.14'
+1.145   '1.15'
+1.155   '1.16'
+1.165   '1.17'
+1.175   '1.18'
+1.185   '1.19'
+1.195   '1.20'
+</code></pre>
+<p>有种比较流行的<strong>修正方法</strong>：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">myToFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">value</span><span class="ace_punctuation ace_operator">, </span><span class="ace_variable ace_parameter">precision</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_identifier">precision</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">precision</span> <span class="ace_keyword ace_operator">||</span> <span class="ace_constant ace_numeric">0</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_storage ace_type">var</span> <span class="ace_identifier">pow</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_variable ace_language">Math</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">pow</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">10</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_identifier">precision</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_language">Math</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">round</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">value</span> <span class="ace_keyword ace_operator">*</span> <span class="ace_identifier">pow</span><span class="ace_paren ace_rparen">)</span> <span class="ace_keyword ace_operator">/</span> <span class="ace_identifier">pow</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">toFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">precision</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div></div></div></pre>
+<p>它的计算结果看上去准确多了：</p>
+<pre><code>1.105   '1.11'
+1.115   '1.12'
+1.125   '1.13'
+1.135   '1.14'
+1.145   '1.15'
+1.155   '1.16'
+1.165   '1.17'
+1.175   '1.18'
+1.185   '1.19'
+1.195   '1.20'
+</code></pre>
+<p>然而这个世界对程序员并没有那么善意：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">console</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_firebug">log</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">myToFixed</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">2.135</span><span class="ace_punctuation ace_operator">,</span> <span class="ace_constant ace_numeric">2</span><span class="ace_paren ace_rparen">))</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_comment">// <span class="ace_cjk" style="width:NaNpx">输</span><span class="ace_cjk" style="width:NaNpx">出</span> 2.13</span>
+</div></div></div></pre>
+<p>最后，我就不告诉你IE7的结果不尽相同了。而其它浏览器的计算结果是否和我的环境相同，我也不敢告诉你答案，因为我不确定。至于如何完全正确地四舍五入，我并没有答案，也有人采用转成字符串进而进行正则匹配的方法，这在特定的场合下也许可行，但很难写出通用的方法。</p>
+<h2>6. 取随机整数</h2>
+<p>JavaScript 中缺少产生随机整数的方法，但是可以用 <code>Math.random()</code> 自行实现。参考代码如下：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">nextInt</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">n</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_storage ace_type">var</span> <span class="ace_identifier">ret</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_variable ace_language">parseInt</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_language">Math</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function">random</span><span class="ace_paren ace_lparen">(</span><span class="ace_paren ace_rparen">)</span> <span class="ace_keyword ace_operator">*</span> <span class="ace_identifier">n</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">if</span> <span class="ace_paren ace_lparen">(</span><span class="ace_identifier">ret</span> <span class="ace_keyword ace_operator">&gt;</span> <span class="ace_identifier">n</span> <span class="ace_keyword ace_operator">||</span> <span class="ace_identifier">ret</span> <span class="ace_keyword ace_operator">&lt;</span> <span class="ace_constant ace_numeric">0</span> <span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">ret</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">n</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">return</span> <span class="ace_identifier">ret</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div></div></div></pre>
+<p>产生的随机数分布的还算均匀。使用如下代码测试：</p>
+<pre><div class="ace-chrome"><div class="ace_static_highlight ace_show_gutter" style="counter-reset:ace_line 0"><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_storage ace_type">function</span> <span class="ace_entity ace_name ace_function">test</span><span class="ace_paren ace_lparen">(</span><span class="ace_variable ace_parameter">x</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_storage ace_type">var</span> <span class="ace_identifier">foo</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_paren ace_lparen">{</span><span class="ace_paren ace_rparen">}</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_keyword">for</span> <span class="ace_paren ace_lparen">(</span><span class="ace_storage ace_type">var</span> <span class="ace_identifier">i</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">10000</span> <span class="ace_keyword ace_operator">-</span> <span class="ace_constant ace_numeric">1</span><span class="ace_punctuation ace_operator">;</span> <span class="ace_identifier">i</span> <span class="ace_keyword ace_operator">&gt;=</span> <span class="ace_constant ace_numeric">0</span><span class="ace_punctuation ace_operator">;</span> <span class="ace_identifier">i</span><span class="ace_keyword ace_operator">--</span><span class="ace_paren ace_rparen">)</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_storage ace_type">var</span> <span class="ace_identifier">s</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">nextInt</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">x</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_keyword">if</span> <span class="ace_paren ace_lparen">(</span><span class="ace_identifier">foo</span><span class="ace_paren ace_lparen">[</span><span class="ace_identifier">s</span><span class="ace_paren ace_rparen">])</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">foo</span><span class="ace_paren ace_lparen">[</span><span class="ace_identifier">s</span><span class="ace_paren ace_rparen">]</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_identifier">foo</span><span class="ace_paren ace_lparen">[</span><span class="ace_identifier">s</span><span class="ace_paren ace_rparen">]</span> <span class="ace_keyword ace_operator">+</span> <span class="ace_constant ace_numeric">1</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span> <span class="ace_keyword">else</span> <span class="ace_paren ace_lparen">{</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span><span class="ace_indent-guide">    </span>    <span class="ace_identifier">foo</span><span class="ace_paren ace_lparen">[</span><span class="ace_identifier">s</span><span class="ace_paren ace_rparen">]</span> <span class="ace_keyword ace_operator">=</span> <span class="ace_constant ace_numeric">1</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_indent-guide">    </span>    <span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span>    <span class="ace_storage ace_type">console</span><span class="ace_punctuation ace_operator">.</span><span class="ace_support ace_function ace_firebug">log</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">foo</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_paren ace_rparen">}</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">test</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">2</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div><div class="ace_line"><span class="ace_gutter ace_gutter-cell" unselectable="on"></span><span class="ace_identifier">test</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">10</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span>
+</div></div></div></pre>
+<p>输出：</p>
+<p><img src="resources/5CFAA85F276D70FFFEF5405380ECFAD4.png" alt="nextint.png" width="1264" height="112"></p>
+<p><strong>参考资料：</strong></p>
+<ul>
+<li><a href="http://www.2ality.com/2012/04/number-encoding.html">How numbers are encoded in JavaScript</a></li>
+</ul>
+<hr>
+<p>@ssbunny 2015-11-03</p>
+<p><img src="resources/9BDF5BC45B39A9BBFBF64D55FD48EC5B.png" alt="微信二维码_zhq_tiny.png" width="217" height="260"></p>
+</div></div>
+      <script>document.body.onkeyup = function(e) {
+if (e.keyCode === 39) window.location.href = '[总结] Redis 中的命令.html';
+if (e.keyCode === 37) window.location.href = '[总结] 写好程序分支控制.html';
+}</script>
+    </body>
+    </html>
+  
