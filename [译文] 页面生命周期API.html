@@ -23,11 +23,12 @@
       <style> .text-cell {font-size: 15px;}.code-cell {font-size: 12px;}.markdown-cell {font-size: 15px;}.latex-cell {font-size: 15px;}</style>
     </head>
     <body>
-      <div id="nav"><div>Next: <a href='[笔记] VSCode 源代码组织方式.html'>[笔记] VSCode 源代码组织方式</a>, Previous: <a href='@ 一切从简.html'>@ 一切从简</a>, Up: <a href='index.html'>Index</a></div></div>
+      <div id="nav"><div>Next: <a href='[译文] 响应式编程介绍.html'>[译文] 响应式编程介绍</a>, Previous: <a href='@ 一切从简.html'>@ 一切从简</a>, Up: <a href='index.html'>Index</a></div></div>
       <div id="titlearea">
         <h2>[译文] 页面生命周期API</h2>
       </div>
-      <div id="contentarea"><div class="cell markdown-cell"><p>当系统资源受限时，现代浏览器会挂起甚至丢弃整个页面。今后，浏览器期望能够更加积极主动地处理此事以便更省电、省内存。<strong>页面生命周期API</strong>——由 Chrome 68 提供——可以使页面通过生命周期钩子安全地介入此类浏览器行为，而不会影响到用户体验。来看一眼这些 API ，看看你的应用是否需要此特性。</p>
+      <div id="contentarea"><div class="cell markdown-cell"><p>（PS：本文为本人自己翻译，如有纰漏欢迎指正。）</p>
+<p>当系统资源受限时，现代浏览器会挂起甚至丢弃整个页面。今后，浏览器期望能够更加积极主动地处理此事以便更省电、省内存。<strong>页面生命周期API</strong>——由 Chrome 68 提供——可以使页面通过生命周期钩子安全地介入此类浏览器行为，而不会影响到用户体验。来看一眼这些 API ，看看你的应用是否需要此特性。</p>
 <h1>背景</h1>
 <p><strong>应用生命周期</strong>是现代操作系统管理资源的关键方式。在 Android、iOS 及最近几版 Windows 中，操作系统可以随时启停应用，从而精简或重新分配系统资源，使其更好地服务用户。</p>
 <p>由于历史原因，web 中并没有应用生命周期的概念，因而 web 应用可以无限期的存活。当 web 页面运行地越来越多，它们会占用掉一些至关重要的系统资源，如内存、CPU、电池及网络，这将给最终用户带来糟糕的体验。</p>
@@ -324,7 +325,7 @@
 <p><a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api">原文地址</a></p>
 </div><div class="cell markdown-cell"></div><div class="cell markdown-cell"></div><div class="cell markdown-cell"></div></div>
       <script>document.body.onkeyup = function(e) {
-if (e.keyCode === 39) window.location.href = '[笔记] VSCode 源代码组织方式.html';
+if (e.keyCode === 39) window.location.href = '[译文] 响应式编程介绍.html';
 if (e.keyCode === 37) window.location.href = '@ 一切从简.html';
 }</script>
     </body>
