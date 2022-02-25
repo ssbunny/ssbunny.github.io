@@ -1,0 +1,1 @@
+const e={key:"v-8c71a0f8",path:"/notes/n2202_resize_observer/",title:"Resize Observer API",lang:"zh-CN",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1645146635e3,contributors:[{name:"ssbunny",email:"qqbunny@yeah.net",commits:1}]},filePathRelative:"notes/n2202_resize_observer/README.md"};export{e as data};

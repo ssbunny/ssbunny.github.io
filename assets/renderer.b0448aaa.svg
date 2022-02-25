@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="103.5 391.5 845 76.0002" width="845" height="76.0002">
+  <defs>
+    <filter id="Shadow" filterUnits="userSpaceOnUse" x="103.5" y="391.5">
+      <feGaussianBlur in="SourceAlpha" result="blur" stdDeviation=".43257925"/>
+      <feOffset in="blur" result="offset" dx="0" dy="1"/>
+      <feFlood flood-color="black" flood-opacity=".15" result="flood"/>
+      <feComposite in="flood" in2="offset" operator="in" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient x1="0" x2="1" id="Gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#feffff" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#f8fafe" stop-opacity=".4"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(166 391.5) rotate(90) scale(75.0002)"/>
+    <font-face font-family="PingFang SC" font-size="18" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <linearGradient id="Obj_Gradient_2" xl:href="#Gradient" gradientTransform="translate(886 391.5) rotate(90) scale(75.0002)"/>
+    <font-face font-family="Verdana" font-size="18" panose-1="2 11 6 4 3 5 4 4 2 4" units-per-em="1000" underline-position="-87.89062" underline-thickness="58.59375" slope="0" x-height="545.41016" cap-height="727.0508" ascent="1005.3711" descent="-209.96094" font-weight="400">
+      <font-face-src>
+        <font-face-name name="Verdana"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <linearGradient x1="0" x2="1" id="Gradient_2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#45a330" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#45a330" stop-opacity=".4"/>
+    </linearGradient>
+    <linearGradient id="Obj_Gradient_3" xl:href="#Gradient_2" gradientTransform="translate(706 391.5) rotate(90) scale(75.0002)"/>
+    <linearGradient id="Obj_Gradient_4" xl:href="#Gradient" gradientTransform="translate(526 391.5) rotate(90) scale(75.0002)"/>
+    <linearGradient id="Obj_Gradient_5" xl:href="#Gradient" gradientTransform="translate(346 391.5) rotate(90) scale(75.0002)"/>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.13 
+    <dc:date>2022-02-25 01:20:44 +0000</dc:date>
+  </metadata>
+  <g id="Canvas_1" stroke="none" fill="none" fill-opacity="1" stroke-opacity="1" stroke-dasharray="none">
+    <title>Canvas 1</title>
+    <g id="Canvas_1: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_18" filter="url(#Shadow)">
+        <rect x="103.5" y="391.5" width="125" height="75.0002" fill="url(#Obj_Gradient)"/>
+        <text transform="translate(124 416.5001)" fill="black" fill-opacity=".75">
+          <tspan font-family="PingFang SC" font-size="18" font-weight="400" fill="black" fill-opacity=".75" x="24" y="19">数据</tspan>
+        </text>
+      </g>
+      <g id="Graphic_17" filter="url(#Shadow)">
+        <rect x="823.5" y="391.5" width="125" height="75.0002" fill="url(#Obj_Gradient_2)"/>
+        <text transform="translate(844 416.5001)" fill="black" fill-opacity=".75">
+          <tspan font-family="PingFang SC" font-size="18" font-weight="400" fill="black" fill-opacity=".75" x="2.3964844" y="19">真实</tspan>
+          <tspan font-family="Verdana" font-size="18" font-weight="400" fill="black" fill-opacity=".75" y="19">DOM</tspan>
+        </text>
+      </g>
+      <g id="Line_16">
+        <line x1="228.5" y1="429.0001" x2="273.6" y2="429.0001" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_15">
+        <line x1="588.5" y1="429.0001" x2="633.6" y2="429.0001" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_14" filter="url(#Shadow)">
+        <rect x="643.5" y="391.5" width="125" height="75.0002" fill="url(#Obj_Gradient_3)"/>
+        <text transform="translate(664 416.5001)" fill="black" fill-opacity=".75">
+          <tspan font-family="PingFang SC" font-size="18" font-weight="400" fill="black" fill-opacity=".75" x="15" y="19">渲染器</tspan>
+        </text>
+      </g>
+      <g id="Graphic_13" filter="url(#Shadow)">
+        <rect x="463.5" y="391.5" width="125" height="75.0002" fill="url(#Obj_Gradient_4)"/>
+        <text transform="translate(484 416.5001)" fill="black" fill-opacity=".75">
+          <tspan font-family="PingFang SC" font-size="18" font-weight="400" fill="black" fill-opacity=".75" x="2.3964844" y="19">虚拟</tspan>
+          <tspan font-family="Verdana" font-size="18" font-weight="400" fill="black" fill-opacity=".75" y="19">DOM</tspan>
+        </text>
+      </g>
+      <g id="Line_12">
+        <line x1="408.5" y1="429.0001" x2="453.6" y2="429.0001" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_26" filter="url(#Shadow)">
+        <rect x="283.5" y="391.5" width="125" height="75.0002" fill="url(#Obj_Gradient_5)"/>
+        <text transform="translate(304 416.5001)" fill="black" fill-opacity=".75">
+          <tspan font-family="PingFang SC" font-size="18" font-weight="400" fill="black" fill-opacity=".75" x="6" y="19">响应系统</tspan>
+        </text>
+      </g>
+      <g id="Line_27">
+        <line x1="768.5" y1="429.0001" x2="813.6" y2="429.0001" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>
