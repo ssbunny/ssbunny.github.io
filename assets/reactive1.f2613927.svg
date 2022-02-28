@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="10.5 375 726.55736 227" width="726.55736" height="227">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#003776">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="Arrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="#003776">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="none" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.13 
+    <dc:date>2022-02-28 08:19:55 +0000</dc:date>
+  </metadata>
+  <g id="reactive" stroke-opacity="1" fill-opacity="1" stroke="none" stroke-dasharray="none" fill="none">
+    <title>reactive</title>
+    <g id="reactive: 图层 1">
+      <title>图层 1</title>
+      <g id="Graphic_5">
+        <rect x="11" y="384.5" width="129.16364" height="36" fill="#3a8eed"/>
+        <rect x="11" y="384.5" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(16 392.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="8.033818" y="15">执行 effect 函数</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <rect x="207.16727" y="384.5" width="129.16364" height="36" fill="#3a8eed"/>
+        <rect x="207.16727" y="384.5" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(212.16727 392.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="31.581818" y="15">读取数据</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <path d="M 599.5018 424.1 L 599.5018 380.9 C 599.5018 377.9192 616.8614 375.5 638.2509 375.5 C 659.6404 375.5 677 377.9192 677 380.9 L 677 424.1 C 677 427.0808 659.6404 429.5 638.2509 429.5 C 616.8614 429.5 599.5018 427.0808 599.5018 424.1" fill="#3a8eed"/>
+        <path d="M 599.5018 424.1 L 599.5018 380.9 C 599.5018 377.9192 616.8614 375.5 638.2509 375.5 C 659.6404 375.5 677 377.9192 677 380.9 L 677 424.1 C 677 427.0808 659.6404 429.5 638.2509 429.5 C 616.8614 429.5 599.5018 427.0808 599.5018 424.1 M 599.5018 380.9 C 599.5018 383.8808 616.8614 386.3 638.2509 386.3 C 659.6404 386.3 677 383.8808 677 380.9" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(604.5018 395.2)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="14.863092" y="15">effect</tspan>
+        </text>
+      </g>
+      <g id="Graphic_9">
+        <rect x="403.33455" y="384.5" width="129.16364" height="36" fill="#3a8eed"/>
+        <rect x="403.33455" y="384.5" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(408.33455 392.5)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="8.033818" y="15">存放 effect 函数</tspan>
+        </text>
+      </g>
+      <g id="Line_10">
+        <line x1="140.16364" y1="402.5" x2="197.26727" y2="402.5" marker-end="url(#FilledArrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_11">
+        <line x1="336.3309" y1="402.5" x2="393.43455" y2="402.5" marker-end="url(#FilledArrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_12">
+        <line x1="532.4982" y1="402.5" x2="589.6018" y2="402.5" marker-end="url(#FilledArrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_13">
+        <rect x="11" y="480" width="128.86997" height="36" fill="#3a8eed"/>
+        <rect x="11" y="480" width="128.86997" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(16 488)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="31.434986" y="15">更新数据</tspan>
+        </text>
+      </g>
+      <g id="Graphic_14">
+        <rect x="207.46094" y="480" width="128.86997" height="36" fill="#3a8eed"/>
+        <rect x="207.46094" y="480" width="128.86997" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(212.46094 488)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="7.886986" y="15">取出 effect 函数</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <rect x="403.33455" y="480" width="129.16364" height="36" fill="#3a8eed"/>
+        <rect x="403.33455" y="480" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(408.33455 488)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="8.033818" y="15">执行 effect 函数</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <path d="M 232.49526 596.1 L 232.49526 552.9 C 232.49526 549.9192 249.81538 547.5 271.15625 547.5 C 292.4971 547.5 309.81724 549.9192 309.81724 552.9 L 309.81724 596.1 C 309.81724 599.0808 292.4971 601.5 271.15625 601.5 C 249.81538 601.5 232.49526 599.0808 232.49526 596.1" fill="#3a8eed"/>
+        <path d="M 232.49526 596.1 L 232.49526 552.9 C 232.49526 549.9192 249.81538 547.5 271.15625 547.5 C 292.4971 547.5 309.81724 549.9192 309.81724 552.9 L 309.81724 596.1 C 309.81724 599.0808 292.4971 601.5 271.15625 601.5 C 249.81538 601.5 232.49526 599.0808 232.49526 596.1 M 232.49526 552.9 C 232.49526 555.8808 249.81538 558.3 271.15625 558.3 C 292.4971 558.3 309.81724 555.8808 309.81724 552.9" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(237.49526 567.2)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="14.774992" y="15">effect</tspan>
+        </text>
+      </g>
+      <g id="Line_17">
+        <line x1="139.86997" y1="498" x2="197.56094" y2="498" marker-end="url(#FilledArrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_18">
+        <line x1="336.3309" y1="498" x2="393.43455" y2="498" marker-end="url(#FilledArrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_19">
+        <line x1="271.15625" y1="547.5" x2="271.66352" y2="525.8973" marker-end="url(#Arrow_Marker)" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

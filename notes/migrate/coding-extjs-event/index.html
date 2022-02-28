@@ -23,7 +23,7 @@
 			}
     </script>
     <link rel="icon" href="/images/favicon.ico"><title>ExtJS 核心概念 - 事件模型 | 兔子不咬人</title><meta name="description" content="我的个人空间">
-    <link rel="modulepreload" href="/assets/app.1ea428fb.js"><link rel="modulepreload" href="/assets/index.html.7eec51a5.js"><link rel="modulepreload" href="/assets/index.html.35ba16b9.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="modulepreload" href="/assets/app.75c5ff89.js"><link rel="modulepreload" href="/assets/index.html.7eec51a5.js"><link rel="modulepreload" href="/assets/index.html.75a6f153.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
     <link rel="stylesheet" href="/assets/style.cdb4f165.css">
   </head>
   <body>
@@ -183,6 +183,6 @@ subject<span class="token punctuation">.</span><span class="token function">noti
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>遗憾的是，如果李四的代码先于张三的执行，则李四能得到正确结果；如果张三的代码先于李四的执行，则李四不能得到正确结果。这显然使得代码结构变得混乱，本来通过事件模型解耦而不相关的代码，又无形地被耦合起来了。而更痛苦的是这样的代码变得更分散，很可能彼此并不知道他人的存在。</p><p><strong>4. 代码调试变得困难</strong></p><p>事件注册到容器中，发布者和订阅者不存在直接调用关系，因此代码调试相对困难一些。</p><h2 id="备注" tabindex="-1"><a class="header-anchor" href="#备注" aria-hidden="true">#</a> 备注</h2><p>button 组件的 <code>handler</code> 不是事件。ExtJS中配置的 <code>handler</code> 只是一个方法调用，不进行事件绑定；</p><hr><p>@ssbunny 2015-07-21</p><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: qqbunny@yeah.net">ssbunny</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/assets/app.1ea428fb.js" defer></script>
+    <script type="module" src="/assets/app.75c5ff89.js" defer></script>
   </body>
 </html>
