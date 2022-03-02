@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="11.05126 1575.3664 450.5619 314.4992" width="450.5619" height="314.4992">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.13 
+    <dc:date>2022-03-02 03:29:55 +0000</dc:date>
+  </metadata>
+  <g id="renderer" fill-opacity="1" stroke="none" fill="none" stroke-dasharray="none" stroke-opacity="1">
+    <title>renderer</title>
+    <g id="renderer: 图层 1">
+      <title>图层 1</title>
+      <g id="Graphic_102">
+        <path d="M 397.671 1602.9613 C 483.0536 1636.8467 482.1371 1689.3534 395.6239 1720.2384 C 309.11116 1751.1235 169.7629 1748.6912 84.38071 1714.8056 C -1.0019186 1680.9202 -.08541028 1628.4135 86.42779 1597.5285 C 172.94055 1566.6434 312.28882 1569.0757 397.671 1602.9613" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_100">
+        <path d="M 384.4835 1824.7438 C 463.45676 1863.3249 456.26727 1892.1604 368.42533 1889.1497 C 280.5838 1886.1393 145.35416 1852.4227 66.38136 1813.8417 C -12.591883 1775.2606 -5.4023885 1746.4252 82.43956 1749.4358 C 170.2811 1752.4463 305.51072 1786.1628 384.4835 1824.7438" stroke="#b1001c" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+      </g>
+      <g id="Graphic_99">
+        <rect x="52.104" y="1612" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 52.104 1612 L 181.26764 1612 L 181.26764 1648 L 52.104 1648 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(57.104 1620)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="39.512818" y="15">new: 1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_98">
+        <rect x="294.604" y="1612" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 294.604 1612 L 423.76764 1612 L 423.76764 1648 L 294.604 1648 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(299.604 1620)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="42.74682" y="15">old: 1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_97">
+        <rect x="294.604" y="1684.5" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 294.604 1684.5 L 423.76764 1684.5 L 423.76764 1720.5 L 294.604 1720.5 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(299.604 1692.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="41.35382" y="15">old: 2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_96">
+        <rect x="294.604" y="1757" width="129.16364" height="36" fill="#68bc36"/>
+        <rect x="294.604" y="1757" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(299.604 1765)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="41.35382" y="15">old: 3</tspan>
+        </text>
+      </g>
+      <g id="Graphic_95">
+        <rect x="294.604" y="1829.5" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 294.604 1829.5 L 423.76764 1829.5 L 423.76764 1865.5 L 294.604 1865.5 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(299.604 1837.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="41.35382" y="15">old: 4</tspan>
+        </text>
+      </g>
+      <g id="Graphic_94">
+        <rect x="52.104" y="1684.5" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 52.104 1684.5 L 181.26764 1684.5 L 181.26764 1720.5 L 52.104 1720.5 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(57.104 1692.5)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="38.119818" y="15">new: 2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_93">
+        <rect x="52.104" y="1757" width="129.16364" height="36" fill="#ccc"/>
+        <path d="M 52.104 1757 L 181.26764 1757 L 181.26764 1793 L 52.104 1793 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(57.104 1765)" fill="#666">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="#666" x="38.119818" y="15">new: 4</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
