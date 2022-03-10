@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="-856.5 -150.5 701 228.5" width="701" height="228.5">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.13 
+    <dc:date>2022-03-10 03:29:13 +0000</dc:date>
+  </metadata>
+  <g id="parser" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+    <title>parser</title>
+    <g id="parser: 图层 1">
+      <title>图层 1</title>
+      <g id="Graphic_10">
+        <rect x="-305" y="-25.5" width="149" height="103" fill="white"/>
+        <path d="M -305 -25.5 L -156 -25.5 L -156 77.5 L -305 77.5 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(-300 57.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="0" y="15">transform()</tspan>
+        </text>
+      </g>
+      <g id="Graphic_20">
+        <rect x="-656" y="-25.5" width="179" height="103" fill="white"/>
+        <path d="M -656 -25.5 L -477 -25.5 L -477 77.5 L -656 77.5 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(-651 57.5)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="0" y="15">generate()</tspan>
+        </text>
+      </g>
+      <g id="Graphic_9">
+        <rect x="-656" y="-150" width="341" height="103" fill="white"/>
+        <path d="M -656 -150 L -315 -150 L -315 -47 L -656 -47 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4.0,4.0" stroke-width="1"/>
+        <text transform="translate(-651 -150)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="0" y="15">parse()</tspan>
+        </text>
+      </g>
+      <g id="Graphic_2">
+        <rect x="-856" y="-121.5" width="125" height="53.48248" fill="#3a8eed"/>
+        <rect x="-856" y="-121.5" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-851 -104.75876)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="43.5" y="15">模版</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <path d="M -293 -121.5 L -163.83636 -121.5 L -163.83636 -78.3 C -202.58545 -83.7 -254.2509 -62.1 -293 -72.9 Z" fill="white"/>
+        <path d="M -293 -121.5 L -163.83636 -121.5 L -163.83636 -78.3 C -202.58545 -83.7 -254.2509 -62.1 -293 -72.9 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-288 -107.74)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.894818" y="15">模版 AST</tspan>
+        </text>
+      </g>
+      <g id="Graphic_5">
+        <path d="M -459.25 -4 L -330.08636 -4 L -330.08636 39.2 C -368.83545 33.8 -420.5009 55.4 -459.25 44.6 Z" fill="white"/>
+        <path d="M -459.25 -4 L -330.08636 -4 L -330.08636 39.2 C -368.83545 33.8 -420.5009 55.4 -459.25 44.6 Z" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-454.25 9.76)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="9.888818" y="15">JavaScript AST</tspan>
+        </text>
+      </g>
+      <g id="Graphic_6">
+        <rect x="-625.5" y="-121.5" width="125" height="53.48248" fill="white"/>
+        <rect x="-625.5" y="-121.5" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-620.5 -104.75876)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.5" y="15">词法分析</tspan>
+        </text>
+      </g>
+      <g id="Graphic_7">
+        <rect x="-856" y="-4" width="125" height="53.48248" fill="#3a8eed"/>
+        <rect x="-856" y="-4" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-851 12.74124)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="29.5" y="15">渲染函数</tspan>
+        </text>
+      </g>
+      <g id="Graphic_8">
+        <rect x="-459.25" y="-122.01752" width="125" height="53.48248" fill="white"/>
+        <rect x="-459.25" y="-122.01752" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-454.25 -105.27628)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.5" y="15">语法分析</tspan>
+        </text>
+      </g>
+      <g id="Graphic_11">
+        <rect x="-293" y="-4" width="125" height="53.48248" fill="white"/>
+        <rect x="-293" y="-4" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-288 12.74124)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="27.813" y="15">AST 转换</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <rect x="-625.5" y="-4" width="125" height="53.48248" fill="white"/>
+        <rect x="-625.5" y="-4" width="125" height="53.48248" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-620.5 12.74124)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.5" y="15">代码生成</tspan>
+        </text>
+      </g>
+      <g id="Line_13">
+        <line x1="-731" y1="-94.75876" x2="-635.4" y2="-94.75876" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_14">
+        <line x1="-500.5" y1="-94.95332" x2="-469.14995" y2="-95.0509" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_15">
+        <line x1="-334.25" y1="-94.80864" x2="-302.89972" y2="-94.57407" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_16">
+        <line x1="-228.41818" y1="-73.575" x2="-229.70807" y2="-13.897688" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_17">
+        <line x1="-293" y1="22.903637" x2="-320.1864" y2="22.974277" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_18">
+        <line x1="-459.25" y1="23" x2="-490.60003" y2="22.92181" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_19">
+        <line x1="-625.5" y1="22.74124" x2="-721.1" y2="22.74124" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

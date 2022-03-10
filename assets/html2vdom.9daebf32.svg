@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:dc="http://purl.org/dc/elements/1.1/" version="1.1" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="-189.5 747.5 850.1636 134.9999" width="850.1636" height="134.9999">
+  <defs>
+    <font-face font-family="PingFang SC" font-size="14" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="400">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -4 10 8" markerWidth="10" markerHeight="8" color="black">
+      <g>
+        <path d="M 8 0 L 0 -3 L 0 3 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Helvetica Neue" font-size="30" panose-1="2 0 5 3 0 0 0 2 0 4" units-per-em="1000" underline-position="-100" underline-thickness="50" slope="0" x-height="517" cap-height="714" ascent="951.9958" descent="-212.99744" font-weight="400">
+      <font-face-src>
+        <font-face-name name="HelveticaNeue"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.13 
+    <dc:date>2022-03-10 02:58:29 +0000</dc:date>
+  </metadata>
+  <g id="overview" fill="none" fill-opacity="1" stroke="none" stroke-dasharray="none" stroke-opacity="1">
+    <title>overview</title>
+    <g id="overview: Layer 1">
+      <title>Layer 1</title>
+      <g id="Graphic_114">
+        <ellipse cx="55.58182" cy="856.2499" rx="64.5819213772279" ry="25.7500411459738" fill="#3a8eed"/>
+        <ellipse cx="55.58182" cy="856.2499" rx="64.5819213772279" ry="25.7500411459738" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-4 846.2499)" fill="white">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="white" x="39.91882" y="15">HTML</tspan>
+        </text>
+      </g>
+      <g id="Graphic_113">
+        <rect x="351" y="748" width="129.16364" height="36" fill="white"/>
+        <rect x="351" y="748" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(356 756)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="38.581818" y="15">渲染器</tspan>
+        </text>
+      </g>
+      <g id="Graphic_112">
+        <rect x="-189" y="748" width="129.16364" height="36" fill="white"/>
+        <rect x="-189" y="748" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-184 756)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="45.58182" y="15">数据</tspan>
+        </text>
+      </g>
+      <g id="Graphic_111">
+        <rect x="531" y="748" width="129.16364" height="36" fill="white"/>
+        <rect x="531" y="748" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(536 756)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.096818" y="15">真实DOM</tspan>
+        </text>
+      </g>
+      <g id="Line_110">
+        <line x1="-59.836364" y1="766" x2="-18.9" y2="766" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_109">
+        <line x1="300.16364" y1="766" x2="341.1" y2="766" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_108">
+        <rect x="171" y="748" width="129.16364" height="36" fill="white"/>
+        <rect x="171" y="748" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(176 756)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="29.096818" y="15">虚拟DOM</tspan>
+        </text>
+      </g>
+      <g id="Line_107">
+        <line x1="120.16364" y1="766" x2="161.1" y2="766" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_106">
+        <rect x="-9" y="748" width="129.16364" height="36" fill="white"/>
+        <rect x="-9" y="748" width="129.16364" height="36" stroke="#003776" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+        <text transform="translate(-4 756)" fill="black">
+          <tspan font-family="PingFang SC" font-size="14" font-weight="400" fill="black" x="31.581818" y="15">响应系统</tspan>
+        </text>
+      </g>
+      <g id="Line_105">
+        <line x1="480.16364" y1="766" x2="521.1" y2="766" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Line_104">
+        <path d="M 120.16367 856.2499 L 235.39062 856.2499 L 235.39062 831.582 L 235.58182 798.9 L 235.58182 793.9" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      </g>
+      <g id="Graphic_115">
+        <text transform="translate(193 819)" fill="#b34400">
+          <tspan font-family="Helvetica Neue" font-size="30" font-weight="400" fill="#b34400" x="14566126e-20" y="29">?</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>
