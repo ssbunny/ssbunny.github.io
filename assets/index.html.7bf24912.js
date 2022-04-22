@@ -1,0 +1,1 @@
+const t={key:"v-2aedcbf0",path:"/notes/n2204_thinking_rust/",title:"\u518D\u6B21\u5B66\u4E60 Rust",lang:"zh-CN",frontmatter:{sidebar:!1},excerpt:"",headers:[],git:{updatedTime:null,contributors:[]},filePathRelative:"notes/n2204_thinking_rust/README.md"};export{t as data};
