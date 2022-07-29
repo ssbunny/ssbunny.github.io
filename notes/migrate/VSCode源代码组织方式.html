@@ -23,7 +23,7 @@
 			}
     </script>
     <link rel="icon" href="/images/favicon.ico"><title>VSCode 源代码组织方式 | 兔子不咬人</title><meta name="description" content="我的个人空间">
-    <link rel="modulepreload" href="/assets/app.049c8e84.js"><link rel="modulepreload" href="/assets/VSCode源代码组织方式.html.9f0fa5c4.js"><link rel="modulepreload" href="/assets/VSCode源代码组织方式.html.fdbaa8c4.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
+    <link rel="modulepreload" href="/assets/app.5aa41349.js"><link rel="modulepreload" href="/assets/VSCode源代码组织方式.html.9f0fa5c4.js"><link rel="modulepreload" href="/assets/VSCode源代码组织方式.html.f39be270.js"><link rel="modulepreload" href="/assets/plugin-vue_export-helper.21dcd24c.js">
     <link rel="stylesheet" href="/assets/style.cdb4f165.css">
   </head>
   <body>
@@ -36,6 +36,6 @@
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre><div class="line-numbers"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>使用 instantiation 服务创建服务消费者的实例：<code>instantiationService.createInstance(Client)</code></p><h2 id="contrib" tabindex="-1"><a class="header-anchor" href="#contrib" aria-hidden="true">#</a> Contrib</h2><p>约束:</p><ul><li>Contrib 目录下的所有代码不允许依赖任何本文件夹之外的文件</li><li>Contrib 主要是使用 Core 暴露的一些扩展点来做事情</li><li>每一个 Contrib 如果要对外暴露，将API 在一个出口文件里面导出 eg: contrib/search/common/search.ts</li><li>一个 Contrib 如果要和另一个 Contrib 发生调用，不允许使用除了出口 API 文件之外的其它文件</li><li>接上一条，即使 Contrib 可以调用另一个 Contrib 的出口 API，也要审慎的考虑，应尽量避免两个 Contrib 互相依赖</li></ul><!--]--></div><footer class="page-meta"><!----><div class="meta-item last-updated"><span class="meta-item-label">Last Updated: </span><!----></div><div class="meta-item contributors"><span class="meta-item-label">Contributors: </span><span class="meta-item-info"><!--[--><!--[--><span class="contributor" title="email: qqbunny@yeah.net">ssbunny</span><!----><!--]--><!--]--></span></div></footer><!----><!--[--><!--]--></main><!--]--></div><!----><!--]--></div>
-    <script type="module" src="/assets/app.049c8e84.js" defer></script>
+    <script type="module" src="/assets/app.5aa41349.js" defer></script>
   </body>
 </html>
